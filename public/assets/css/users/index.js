@@ -1,0 +1,10 @@
+import './Animate.min.css';
+import './Blue.css';
+import './Bootstrap.min.css';
+import './BootstrapSelect.min.css';
+import './Demo.css';
+import './FontAwesome.css';
+import './Home.css';
+import './LightBox.css';
+import './Main.css';
+import './fonts/index.js'
