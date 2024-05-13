@@ -1,9 +1,0 @@
-.highlighted-products {
-    display: flex; /* Sử dụng flexbox để sắp xếp các sản phẩm trên cùng một hàng */
-    flex-wrap: nowrap; /* Không cho phép các sản phẩm tràn xuống hàng dưới */
-    overflow-x: auto; /* Nếu không đủ không gian để hiển thị tất cả sản phẩm, cho phép cuộn ngang */
-  }
-  
-  .highlighted-products .card {
-    margin: 0 10px; /* Khoảng cách 10px ở cả hai bên */
-  }
