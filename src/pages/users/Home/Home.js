@@ -1,6 +1,6 @@
 import React from "react";
-import Banner from "../../components/Banner";
-import GoogleMapsEmbed from "../../components/GoogleMapsEmbed";
+import Banner from "../../../components/Banner";
+import GoogleMapsEmbed from "../../../components/GoogleMapsEmbed";
 
 function Home() {
   return (
@@ -42,7 +42,6 @@ function Home() {
                   <div className="text-center item-icon-home">
                     <i
                       className="fas fa-star icon"
-                      // style={{ fontSize: "24px", marginBottom: "10px" }}
                     ></i>
                     <h4>Beauty</h4>
                   </div>
@@ -133,7 +132,7 @@ function Home() {
       </div>
       <div class="container mt-5">
             <div class="row justify-content-center">
-              <div class="col-sm-6">
+              <div class="col-sm-5">
                 <h3>
                   Come visit our store and experience the difference for
                   yourself!
@@ -146,7 +145,7 @@ function Home() {
                   laboris...
                 </p>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-5">
                 <GoogleMapsEmbed />
               </div>
             </div>
