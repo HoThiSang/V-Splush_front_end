@@ -15,6 +15,7 @@ function Cart() {
   }, []);
 
   console.log(carts);
+  // const { cartData } = carts;
   return (
     <>
       <div
@@ -31,16 +32,15 @@ function Cart() {
               <th scope="col">#</th>
               <th scope="col">Image</th>
               <th scope="col">Product name</th>
-              <th scope="col">Category name</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(carts) &&
-              carts.length > 0 &&
-              carts.map((cart, index) =>  <CartItem key={index} cart={cart} />  ) }
+          {Array.isArray(carts) &&
+            carts.length > 0 &&
+            carts.map((cart, index) => <CartItem key={index} props={cart} />)}
           </tbody>
         </table>
       </div>
