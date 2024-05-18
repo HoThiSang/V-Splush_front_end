@@ -1,9 +1,25 @@
-// note chỉ nhập class dạng : btn btn-outline-success or btn btn-primary
-function Button({title,href,onClick,className}){
-    let Component ='button'
+// note chỉ nhập className dạng : btn btn-outline-success or btn btn-primary 
+// còn nhưng thông số có thể thay ddổi
+
+import styled from "styled-components";
+const StyleLink=styled.a`
+
+${props => props.className};
+color: ${props=> props.color || 'black'}; 
+padding: ${props => props.size || '6px 12px 6px 12px'};
+`
+const StyleButton=styled.button`
+  border-radius: 5px;
+  width: ${props => props.width || '100px'};
+  height: ${props => props.height || '40px'};
+
+`
+
+function Button({title,href,onClick,className,color,size,width,height}){
+    let Component = StyleButton;
     const props={}
     if(href && className ==='btn btn-outline-success'){
-        Component= 'a'
+        Component= StyleLink;
         props.href=href
     }
     if(onClick){
@@ -12,7 +28,7 @@ function Button({title,href,onClick,className}){
   
     return (
         <>
-            <Component className={className} {...props}>{title}</Component>
+            <Component className={`btn ${className}`} color={color} size={size} {...props} width={width} height= {height}>{title}</Component>
         </>
     );
 }

@@ -7,7 +7,7 @@ function CardItem({title,text}) {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text" style={{width:'100%'}}>{text}</p>
-            <Button className="btn btn-outline-success" href="#" title="VIEW MORE"   />
+            <Button className="btn btn-outline-success" href="#" title="VIEW MORE"/>
           </div>
         </div>
 
