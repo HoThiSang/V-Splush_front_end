@@ -8,8 +8,7 @@ function App() {
   return (
     <div className='cnt-home'>
       <Header />
-      <Home />
-
+      {/* <Home /> */}
       <Footer />
     </div>
   );

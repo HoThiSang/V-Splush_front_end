@@ -1,16 +1,20 @@
-function ButtonOuline(){
+// note chỉ nhập class dạng : btn btn-outline-success or btn btn-primary
+function Button({title,href,onClick,className}){
+    let Component ='button'
+    const props={}
+    if(href && className ==='btn btn-outline-success'){
+        Component= 'a'
+        props.href=href
+    }
+    if(onClick){
+        props.onClick=onClick
+    }
+  
     return (
         <>
-            <a className="btn btn-sm btn-outline-success" href={{}} role="button">VIEW MORE</a>
+            <Component className={className} {...props}>{title}</Component>
         </>
     );
 }
 
-function ButtonNotOuline(){
-    return (
-        <>
-           <button type="button" class="btn btn-primary btn-sm">Small button</button>
-        </>
-    );
-}
-export  {ButtonOuline,ButtonNotOuline};
+export  default Button;
