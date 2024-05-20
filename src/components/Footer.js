@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer id="footer" className="footer color-bg">
@@ -27,7 +27,7 @@ const Footer = () => {
                   </li>
                   <li className="media">
                     <div className="pull-left"> <span className="icon fa-stack fa-lg"> <i className="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                    <div className="media-body"> <span><a href="mailto:v_splushcometics@gmail.com">v_splushcometics@gmail.com</a></span> </div>
+                    <div className="media-body"> <span><Link to="mailto:v_splushcometics@gmail.com">v_splushcometics@gmail.com</Link></span> </div>
                   </li>
                 </ul>
               </div>
@@ -41,11 +41,11 @@ const Footer = () => {
 
               <div className="module-body">
                 <ul className='list-unstyled'>
-                  <li className="first"><a href="#" title="Contact us">My Account</a></li>
-                  <li><a href="#" title="About us">Order History</a></li>
-                  <li><a href="#" title="faq">FAQ</a></li>
-                  <li><a href="#" title="Popular Searches">Specials</a></li>
-                  <li className="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                  <li className="first"><Link to="#" title="Contact us">My Account</Link></li>
+                  <li><Link to="#" title="About us">Order History</Link></li>
+                  <li><Link to="#" title="faq">FAQ</Link></li>
+                  <li><Link to="#" title="Popular Searches">Specials</Link></li>
+                  <li className="last"><Link to="#" title="Where is my order?">Help Center</Link></li>
                 </ul>
               </div>
 
@@ -58,11 +58,11 @@ const Footer = () => {
 
               <div className="module-body">
                 <ul className='list-unstyled'>
-                  <li className="first"><a title="Your Account" href="#">About us</a></li>
-                  <li><a title="Information" href="#">Customer Service</a></li>
-                  <li><a title="Addresses" href="#">Company</a></li>
-                  <li><a title="Addresses" href="#">Investor Relations</a></li>
-                  <li className="last"><a title="Orders History" href="#">Advanced Search</a></li>
+                  <li className="first"><Link title="Your Account" to="#">About us</Link></li>
+                  <li><Link title="Information" to="#">Customer Service</Link></li>
+                  <li><Link title="Addresses" to="#">Company</Link></li>
+                  <li><Link title="Addresses" to="#">Investor Relations</Link></li>
+                  <li className="last"><Link title="Orders History" to="#">Advanced Search</Link></li>
                 </ul>
               </div>
             </div>
@@ -74,11 +74,11 @@ const Footer = () => {
 
               <div className="module-body">
                 <ul className='list-unstyled'>
-                  <li className="first"><a href="#" title="About us">Shopping Guide</a></li>
-                  <li><a href="#" title="Blog">Blog</a></li>
-                  <li><a href="#" title="Company">Company</a></li>
-                  <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                  <li className=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                  <li className="first"><Link to="#" title="About us">Shopping Guide</Link></li>
+                  <li><Link to="#" title="Blog">Blog</Link></li>
+                  <li><Link to="#" title="Company">Company</Link></li>
+                  <li><Link to="#" title="Investor Relations">Investor Relations</Link></li>
+                  <li className=" last"><Link to="contact-us.html" title="Suppliers">Contact Us</Link></li>
                 </ul>
               </div>
             </div>
@@ -89,13 +89,13 @@ const Footer = () => {
         <div className="container">
           <div className="col-xs-12 col-sm-6 no-padding social">
             <ul className="link">
-              <li className="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
-              <li className="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
-              <li className="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
-              <li className="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
-              <li className="pintrest pull-left"><a target="_blank" rel="nofollow" href="#" title="PInterest"></a></li>
-              <li className="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a></li>
-              <li className="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a></li>
+              <li className="fb pull-left"><Link target="_blank" rel="nofollow" to="#" title="Facebook"></Link></li>
+              <li className="tw pull-left"><Link target="_blank" rel="nofollow" to="#" title="Twitter"></Link></li>
+              <li className="googleplus pull-left"><Link target="_blank" rel="nofollow" to="#" title="GooglePlus"></Link></li>
+              <li className="rss pull-left"><Link target="_blank" rel="nofollow" to="#" title="RSS"></Link></li>
+              <li className="pintrest pull-left"><Link target="_blank" rel="nofollow" to="#" title="PInterest"></Link></li>
+              <li className="linkedin pull-left"><Link target="_blank" rel="nofollow" to="#" title="Linkedin"></Link></li>
+              <li className="youtube pull-left"><Link target="_blank" rel="nofollow" to="#" title="Youtube"></Link></li>
             </ul>
           </div>
           <div className="col-xs-12 col-sm-6 no-padding">
