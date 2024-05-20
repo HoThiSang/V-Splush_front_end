@@ -50,3 +50,23 @@
 .about-service{
   margin:  50px 0 0 0 ;
 }
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.5em;
+  line-height: 1.5em; 
+}
+
+.section-product-popular{
+  display: flex;
+  justify-content: space-around;
+  margin: 5em 0 5em 2em;
+}
+
+.product_name{
+  color: #EE4D2D;
+}

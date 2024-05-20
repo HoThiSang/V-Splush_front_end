@@ -1,14 +1,17 @@
 import './App.css';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import React, { useState, useEffect } from 'react';
-import Home  from './pages/users/Home.js';
+import { Routes, Route}  from 'react-router-dom'
+import {Home , Cart } from './pages/users'
 function App() {
  
   return (
     <div className='cnt-home'>
       <Header />
-      <Home />
+      <Routes>
+        <Route path='/'  element={<Home />} />
+        <Route path='/carts'  element={<Cart />} />
+      </Routes>
 
       <Footer />
     </div>

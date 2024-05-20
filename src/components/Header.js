@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 function Header() {
     return (
         <header className="header-style-1">
@@ -7,20 +8,20 @@ function Header() {
                 <div className="header-top-inner">
                     <div className="cnt-account">
                         <ul className="list-unstyled">
-                            <li><a href="/!"><i className="icon fa fa-heart"></i>Wishlist</a></li>
-                            <li><a href="/!"><i className="icon fa fa-shopping-cart"></i>My Cart</a></li>
-                            <li><a href="/!"><i className="icon fa fa-check"></i>Checkout</a></li>
+                            <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
+                            <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
+                            <li><Link to="/!"><i className="icon fa fa-check"></i>Checkout</Link></li>
                         </ul>
                     </div>
                     <div className="cnt-block">
                         <ul className="list-unstyled list-inline">
                             <li className="dropdown dropdown-small">
-                                <a href="/!" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                <Link to="/!" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                                     <span className="value">Login</span><b className="caret"></b>
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu">
-                                    <li><a href="/!">Register</a></li>
-                                    <li><a href="/!">Login</a></li>
+                                    <li><Link to="/!">Register</Link></li>
+                                    <li><Link to="/!">Login</Link></li>
                                 </ul>
                             </li>
                         </ul>
@@ -34,9 +35,10 @@ function Header() {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                        <div className="logo"> <a href="/!">
+                        <div className="logo"> 
+                            <Link to="/">
                                 <h1 style={{ color: "white" }}>V_SPLUSH </h1>
-                            </a> </div>
+                            </Link> </div>
                     </div>  
                     <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
                         <div className="search-area">
@@ -44,23 +46,23 @@ function Header() {
                                 <div className="control-group">
                                     <ul className="categories-filter animate-dropdown">
                                         <li className="dropdown">
-                                            <a className="dropdown-toggle" data-toggle="dropdown" href="/!category.html">Categories <b className="caret"></b></a>
+                                            <Link className="dropdown-toggle" data-toggle="dropdown" to="/!category.html">Categories <b className="caret"></b></Link>
                                         </li>
                                     </ul>
                                     <input className="search-field" name="keyword_submitted" placeholder="Search here..." />
-                                    <a className="search-button" href="/!"></a>
+                                    <Link className="search-button" to="/!"></Link>
                                 </div>
                             {/* </form> */}
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
-                        <div className=" dropdown-cart"> <a href="/!" className="lnk-cart">
+                        <div className=" dropdown-cart"> <Link to="/!" className="lnk-cart">
                                 <div className="items-cart-inner">
                                     <div className="basket"><i className="icon fa fa-shopping-cart"></i></div>
                                     <div className="basket-item-count"><span className="count"></span></div>
                                     <div className="total-price-basket"> <span className="lbl"></span> <span className="total-price"> <span className="sign"></span><span className="value"></span> </span> </div>
                                 </div>
-                            </a>
+                            </Link>
     
                         </div>
                     </div>
@@ -78,14 +80,14 @@ function Header() {
                         <div className="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                             <div className="nav-outer">
                                 <ul className="nav navbar-nav">
-                                    <li className="active dropdown yamm-fw"> <a href="/!" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                                    <li className="active dropdown yamm-fw"> <Link to="/" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</Link> </li>
     
-                                    <li className="dropdown hidden-sm"> <a href="/!">Products</a> </li>
+                                    <li className="dropdown hidden-sm"> <Link to="/!">Products</Link> </li>
     
-                                    <li className="dropdown"> <a href="/!">Contact us</a> </li>
-                                    <li className="dropdown"> <a href="/!">Order purchased</a> </li>
+                                    <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
+                                    <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
     
-                                    <li className="dropdown  navbar-right special-menu"> <a href="/!#">Todays offer</a> </li>
+                                    <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
                                 </ul>
                                 <div className="clearfix"></div>
                             </div>
