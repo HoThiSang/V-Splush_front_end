@@ -50,15 +50,15 @@
 .about-service{
   margin:  50px 0 0 0 ;
 }
-/* styles.css hoặc tệp CSS của bạn */
+
 .description {
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Số dòng bạn muốn hiển thị */
+  -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 4.5em; /* Điều chỉnh theo chiều cao của dòng văn bản */
-  line-height: 1.5em; /* Điều chỉnh theo chiều cao của dòng văn bản */
+  max-height: 4.5em;
+  line-height: 1.5em; 
 }
 
 .section-product-popular{
