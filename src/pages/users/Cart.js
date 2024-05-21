@@ -6,7 +6,7 @@ function Cart() {
   const [carts, setCarts] = useState([]);
   
   const fetchData = async () => {
-    const { data } = await axios.get('http://127.0.0.1:8000/api/shopping-cart');
+    const { data } = await axios.get(process.env.GET_CART_URL);
     setCarts(data.carts);
   };
 
