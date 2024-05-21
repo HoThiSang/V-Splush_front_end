@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import instance from '../../services/configAxios';
+import axiosService  from '../../services/configAxios';
 
 function Test() {
     const [categories, setCategories] = useState([]);
@@ -9,7 +9,7 @@ function Test() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const { data } = await instance.get('/categories');
+                const { data } = await axiosService.get('/categories');
                 setCategories(data.data);
                 setLoading(false);
             } catch (error) {
