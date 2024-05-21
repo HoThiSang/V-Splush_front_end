@@ -9,7 +9,7 @@ function CartItem(cart ){
           <td>{total_price}</td>
           <td>{ discount }</td>
           <td>{quantity}</td>
-          <td><i class="fa-solid fa-trash"></i></td>
+          <td><i class="fa-solid fa-cart-shopping"></i></td>
         </tr>
     )
 }
