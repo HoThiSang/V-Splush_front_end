@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import WishlistItem from "../../components/WishList";
+import axiosService from "../../services/configAxios";
 
 function WishList() {
   const [wishlist, setWishList] = useState([]);
@@ -8,8 +8,7 @@ function WishList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/show-allwishlist');
-        const { data } = response;
+        const {data} = await axiosService.get("/show-allwishlist");
         console.log(data);
         if (data && data.status === "success") {
           setWishList(data.data || []);
