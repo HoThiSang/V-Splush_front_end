@@ -1,21 +1,31 @@
 import { CartItem } from "../../components";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosService from "../../services/configAxios";
+// import { Checkbox  } from "antd";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
-  
+  // const [selectedItems, setSelectedItems] = useState([]);
+
   const fetchData = async () => {
-    const { data } = await axios.get('http://127.0.0.1:8000/api/shopping-cart');
+    const { data } = await axiosService.get("/shopping-cart");
     setCarts(data.carts);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(carts)
-
+  
+  
+  const handleDeletCart = async (id) => {
+    await axiosService.delete(`delete-cart/${id}`);
+    setCarts(
+       carts.filter((cart) => {
+          return cart.id !== id;
+       })
+    );
+ };
+ 
   return (
     <>
       <div
@@ -23,7 +33,8 @@ function Cart() {
         style={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          textAlign: "text-center"
         }}
       >
         <table className="table table-striped text-center">
@@ -39,18 +50,18 @@ function Cart() {
             </tr>
           </thead>
           <tbody>
-          { 
-            carts.map((cart, index) => 
-            <CartItem 
+            {carts.map((cart, index) => (
+              <CartItem
                 key={index}
-                image_url={cart.image_url} 
-                discount={cart.discount} 
-                total_price={cart.total_price} 
+                id={cart.product_id}
+                image_url={cart.image_url}
+                discount={cart.discount}
+                total_price={cart.total_price}
                 product_name={cart.product_name}
                 quantity={cart.quantity}
-
-
-             />)}
+                handleDeletCart={handleDeletCart}
+              />
+            ))}
           </tbody>
         </table>
       </div>

@@ -38,15 +38,14 @@ function Home() {
         <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
           <Banner />
            <div className="row mt-6 section-product-popular">
-            {displayedProducts.map((item)=> (
+            {displayedProducts.map((item, index)=> (
               <CardItem 
-                key={item.id}
+                key={index}
                 product_name={item.product_name}
                 description={item.description}
                 image_url={item.image_url}
                />
             )
-             
           )}
            </div>
           
@@ -62,7 +61,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div class="container mt-5">
+      <div className="container mt-5">
         <Location />
       </div>
     </>
