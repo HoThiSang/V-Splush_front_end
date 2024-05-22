@@ -28,12 +28,7 @@ function Home() {
     
     <>
       <div
-        className="container"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
+        className="container main-body"
       >
         <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
           <Banner />

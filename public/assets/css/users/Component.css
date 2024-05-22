@@ -1,0 +1,11 @@
+.cart-component .image-row .image-cart-item{
+    width: 160px;
+
+}
+
+.cart-component{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
