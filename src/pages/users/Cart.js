@@ -20,18 +20,20 @@ function Cart() {
 
   const handleIncreaseQuantity = async (id) => {
     try {
-      console.log('handle Increase Quantity ')
+      // console.log('handle Increase Quantity ')
       // Make an API call to update the quantity on the server
-      // const { data } = await axiosService.put(`/shopping-cart/${id}`, { quantity: quantity + 1 });
-
+    const quantity =1;
+      const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:quantity, product_id:id} );
+      console.log(quantity)
+      console.log(data)
       // // Update the local state
-      // const updatedCarts = carts.map((cart) => {
-      //   if (cart.id === id) {
-      //     return { ...cart, quantity: data.quantity };
-      //   }
-      //   return cart;
-      // });
-      // setCarts(updatedCarts);
+      const updatedCarts = carts.map((cart) => {
+        if (cart.id === id) {
+          return { ...cart, quantity: data.quantity };
+        }
+        return cart;
+      });
+      setCarts(updatedCarts);
     } catch (error) {
       console.error(error);
     }
@@ -40,8 +42,9 @@ function Cart() {
   const handleDescreaseQuantity = async (id) => {
     try {
       // console.log('handle Descrease Quantity')
-      const { data } = await axiosService.post(`/update-cart/${id}`, { quantity: quantity - 1 });
-
+      const quantity =1;
+      const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: quantity , product_id:id});
+console.log(data)
       const updatedCarts = carts.map((cart) => {
         if (cart.id === id) {
           return { ...cart, quantity: data.quantity };
@@ -82,7 +85,7 @@ function Cart() {
             carts.map((cart, index) => 
             <CartItem 
                 key={index}
-                id={cart.id}
+                id={cart.product_id}
                 image_url={cart.image_url} 
                 discount={cart.discount} 
                 total_price={cart.total_price} 
