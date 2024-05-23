@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import WishlistItem from "../../components/WishList";
 import axiosService from "../../services/configAxios";
+import { fetchWishlistData } from '../../services/configAxios';
 
 function WishList() {
   const [wishlist, setWishList] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
       try {
-        const {data} = await axiosService.get("/show-allwishlist");
-        console.log(data);
-        if (data && data.status === "success") {
-          setWishList(data.data || []);
-        } else {
-          console.error("Error: Invalid data format or API response.");
-        }
+        const data = await fetchWishlistData();
+        setWishList(data);
       } catch (error) {
-        console.error("Error fetching the wishlist data", error);
+        console.error('Error fetching the wishlist data', error.message);
       }
     };
 
