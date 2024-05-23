@@ -29,7 +29,7 @@ function Cart() {
         <table className="table table-striped text-center">
           <thead className="text-center">
             <tr>
-              <th scope="col">#</th>
+              <th scope="col"></th>
               <th scope="col">Image</th>
               <th scope="col">Product name</th>
               <th scope="col">Product name</th>
