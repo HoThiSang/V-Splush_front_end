@@ -14,6 +14,5 @@ const fetchWishlistData = async () => {
   }
   return response.data.data || [];
 };
-
 export { fetchWishlistData };
 export default axiosService ;
