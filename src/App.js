@@ -2,7 +2,8 @@ import './App.css';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import { Routes, Route}  from 'react-router-dom'
-import {Home , Cart, Test } from './pages/users'
+import { Home, Cart, Test, WishList } from './pages/users'
+import About from './components/About.js';
 function App() {
  
   return (
@@ -12,8 +13,9 @@ function App() {
         <Route path='/'  element={<Home />} />
         <Route path='/carts'  element={<Cart />} />
         <Route path='/test'  element={<Test />} />
+        <Route path='/wishlist' element={<WishList />} />
+        <Route path='/about'  element={<About />} />
       </Routes>
-
       <Footer />
     </div>
   );
