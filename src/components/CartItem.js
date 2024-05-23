@@ -4,6 +4,7 @@ import { Button } from "antd";
 function CartItem(cart) {
   const {
     id,
+    index,
     image_url,
     product_name,
     discount,
@@ -14,8 +15,8 @@ function CartItem(cart) {
   } = cart;
 
   return (
-    <tr>
-      <th scope="row">{id}</th>
+    <tr key={index}>
+      <th scope="row">{index+1}</th>
       <td className="image-row">
         <img
           className="image-cart-item"

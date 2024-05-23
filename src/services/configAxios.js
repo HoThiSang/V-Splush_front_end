@@ -7,12 +7,15 @@ const axiosService  = axios.create({
 axiosService.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';
 axiosService.defaults.headers.post['Content-Type'] = 'application/json';
 
-const fetchWishlistData = async () => {
-  const response = await axiosService.get('/show-allwishlist');
-  if (response.data?.status !== 'success') {
-    throw new Error('Invalid data format or API response.');
-  }
-  return response.data.data || [];
-};
-export { fetchWishlistData };
+axiosService.interceptors.response.use(function (response) {
+    console.log(response.data)
+
+    if (response.data?.status !== 'success') {
+      throw new Error('Invalid data format or API response.');
+    }
+    return response || {};
+    }, function (error) {
+      return Promise.reject(error);
+    });
+    
 export default axiosService ;

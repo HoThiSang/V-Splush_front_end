@@ -15,20 +15,18 @@ function Cart() {
     fetchData();
   }, []);
 
-  // console.log(carts)
-
+  
   const handleIncreaseQuantity = async (id) => {
     try {
       const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:1, product_id:id} );
       console.log(data)
-      // const updatedCarts = carts.map((cart) => {
-      //   if (cart.id === id) {
-      //     console.log(cart)
-      //     return { ...cart, quantity: data.quantity };
-      //   }
-      //   return cart;
-      // });
-      // setCarts(updatedCarts);
+      const index = carts.findIndex(item=> item.product_id===id) 
+      if(index!==-1){
+        const list = [...carts] ;
+        list[index].quantity = data.data.quantity
+        setCarts(list)
+        
+      }
     } catch (error) {
       throw new Error('Something went wrong!');
     }
@@ -38,7 +36,12 @@ function Cart() {
     try {
       const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: 1 , product_id:id});
       console.log(data)
-   
+      const index = carts.findIndex(item=> item.product_id===id) 
+      if(index!==-1){
+        const list = [...carts] ;
+        list[index].quantity = data.data.quantity
+        setCarts(list)
+      }
     } catch (error) {
       throw new Error('Something went wrong!');
     }
@@ -68,6 +71,7 @@ function Cart() {
             <CartItem 
                 key={index}
                 id={cart.product_id}
+                index={index}
                 image_url={cart.image_url} 
                 discount={cart.discount} 
                 total_price={cart.total_price} 
