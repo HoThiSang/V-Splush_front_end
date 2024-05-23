@@ -21,14 +21,14 @@ function Cart() {
     try {
       const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:1, product_id:id} );
       console.log(data)
-      const updatedCarts = carts.map((cart) => {
-        if (cart.id === id) {
-          console.log(cart)
-          return { ...cart, quantity: data.quantity };
-        }
-        return cart;
-      });
-      setCarts(updatedCarts);
+      // const updatedCarts = carts.map((cart) => {
+      //   if (cart.id === id) {
+      //     console.log(cart)
+      //     return { ...cart, quantity: data.quantity };
+      //   }
+      //   return cart;
+      // });
+      // setCarts(updatedCarts);
     } catch (error) {
       throw new Error('Something went wrong!');
     }
@@ -38,14 +38,7 @@ function Cart() {
     try {
       const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: 1 , product_id:id});
       console.log(data)
-      const updatedCarts = carts.map((cart) => {
-        if (cart.id === id) {
-          return { ...cart, quantity: data.quantity };
-        }
-        return cart;
-      });
-      setCarts(updatedCarts);
-      console.log(updatedCarts)
+   
     } catch (error) {
       throw new Error('Something went wrong!');
     }
