@@ -15,7 +15,6 @@ useEffect(() => {
         console.error('Error fetching the wishlist data', error.message);
       }
     };
-
     fetchData();
   }, []);
 
