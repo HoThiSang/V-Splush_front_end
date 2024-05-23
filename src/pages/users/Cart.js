@@ -2,11 +2,11 @@ import { CartItem } from "../../components";
 import React, { useState, useEffect } from "react";
 import axiosService  from '../../services/configAxios';
 
-
 function Cart() {
   const [carts, setCarts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  
+  // const [isChangeQUantity, setIsChangeQUantity] = useState(false);
+  // const [error, setError] = useState(null);
+
   const fetchData = async () => {
     const { data } = await axiosService.get('/shopping-cart');
     setCarts(data.carts);
@@ -20,31 +20,26 @@ function Cart() {
 
   const handleIncreaseQuantity = async (id) => {
     try {
-      // console.log('handle Increase Quantity ')
-      // Make an API call to update the quantity on the server
-    const quantity =1;
-      const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:quantity, product_id:id} );
-      console.log(quantity)
+      const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:1, product_id:id} );
       console.log(data)
-      // // Update the local state
       const updatedCarts = carts.map((cart) => {
         if (cart.id === id) {
+          // setIsChangeQUantity(true)
+          console.log(cart)
           return { ...cart, quantity: data.quantity };
         }
         return cart;
       });
       setCarts(updatedCarts);
     } catch (error) {
-      console.error(error);
+      throw new Error('Something went wrong!');
     }
   };
 
   const handleDescreaseQuantity = async (id) => {
     try {
-      // console.log('handle Descrease Quantity')
-      const quantity =1;
-      const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: quantity , product_id:id});
-console.log(data)
+      const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: 1 , product_id:id});
+      console.log(data)
       const updatedCarts = carts.map((cart) => {
         if (cart.id === id) {
           return { ...cart, quantity: data.quantity };
@@ -54,13 +49,9 @@ console.log(data)
       setCarts(updatedCarts);
       console.log(updatedCarts)
     } catch (error) {
-      console.error(error);
+      throw new Error('Something went wrong!');
     }
   };
-
-  // return (
-  //   // ... the rest of your component
-  // );
 
   return (
     <>
