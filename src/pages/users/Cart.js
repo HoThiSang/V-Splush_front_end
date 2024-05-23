@@ -4,8 +4,7 @@ import axiosService  from '../../services/configAxios';
 
 function Cart() {
   const [carts, setCarts] = useState([]);
-  // const [isChangeQUantity, setIsChangeQUantity] = useState(false);
-  // const [error, setError] = useState(null);
+  // const [isChangeQuantity, setIsChangeQUantity] = useState(0);
 
   const fetchData = async () => {
     const { data } = await axiosService.get('/shopping-cart');
@@ -24,7 +23,6 @@ function Cart() {
       console.log(data)
       const updatedCarts = carts.map((cart) => {
         if (cart.id === id) {
-          // setIsChangeQUantity(true)
           console.log(cart)
           return { ...cart, quantity: data.quantity };
         }
@@ -82,6 +80,7 @@ function Cart() {
                 total_price={cart.total_price} 
                 product_name={cart.product_name}
                 quantity={cart.quantity}
+                // currentQUantity 
                 handleIncreaseQuantity={handleIncreaseQuantity}
                 handleDescreaseQuantity={handleDescreaseQuantity}
 
