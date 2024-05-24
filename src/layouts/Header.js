@@ -1,48 +1,145 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
+
 function Header() {
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+
+    const openLoginModal = () => {
+        setIsLoginModalOpen(true);
+    };
+
+    const closeLoginModal = () => {
+        setIsLoginModalOpen(false);
+    };
+
+    const openRegisterModal = () => {
+        setIsRegisterModalOpen(true);
+    };
+
+    const closeRegisterModal = () => {
+        setIsRegisterModalOpen(false);
+    };
+
+
     return (
         <header className="header-style-1">
-        <div className="top-bar animate-dropdown">
-            <div className="container">
-                <div className="header-top-inner">
-                    <div className="cnt-account">
-                        <ul className="list-unstyled">
-                            <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
-                            <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
-                            <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
-                        </ul>
-                    </div>
-                    <div className="cnt-block">
+            <div className="top-bar animate-dropdown">
+                <div className="container">
+                    <div className="header-top-inner">
+                        <div className="cnt-account">
+                            <ul className="list-unstyled">
+                                <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
+                                <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
+                                <li><Link to="/!"><i className="icon fa fa-check"></i>Checkout</Link></li>
+                            </ul>
+                        </div>
+                        <div className="cnt-account">
+                            <ul className="list-unstyled">
+                                <li>
+                                    <Link to="#" onClick={openLoginModal}>
+                                        <i className="icon fa fa-heart"></i>Login
+                                    </Link>
+                                    <Modal
+                                        isOpen={isLoginModalOpen}
+                                        onRequestClose={closeLoginModal}
+                                        contentLabel="Login Modal"
+                                    >
+                                        <div className='wrapper'>
+                                            <form action=''>
+                                                <h1>Login</h1>
+                                                <div className='input-box'>
+                                                    <input type='text' placeholder='Username' required />
+                                                </div>
+                                                <div className='input-box'>
+                                                    <input type='password' placeholder='Password' required />
+                                                </div>
+                                                <div className='remember-forgot'>
+                                                    <label><input type='checkbox' />Remember me</label>
+                                                    <Link href='#'>Forgot password</Link>
+                                                </div>
+
+                                                <button type='submit'>Login</button>
+                                            </form>
+                                        </div>
+                                        {/* <div>Login modal content</div>
+                                        <button onClick={closeLoginModal}>Close</button> */}
+                                    </Modal>
+                                </li>
+
+                                <li>
+                                    <Link to="#" onClick={openRegisterModal}>
+                                        <i className="icon fa fa-heart"></i>Register
+                                    </Link>
+                                    <Modal
+                                        isOpen={isRegisterModalOpen}
+                                        onRequestClose={closeRegisterModal}
+                                        contentLabel="Register Modal"
+                                    >
+                                        <div class="wrapper">
+                                            <form action="">
+                                                <h1>Register</h1>
+                                                <div class="input-box">
+                                                    <input type="text" placeholder="Name" required />
+                                                </div>
+                                                <div class="input-box">
+                                                    <input type="email" placeholder="Email" required />
+                                                </div>
+                                                <div class="input-box">
+                                                    <input type="tel" placeholder="Phone" required />
+                                                </div>
+                                                <div class="input-box">
+                                                    <input type="text" placeholder="Address" required />
+                                                </div>
+                                                <div class="input-box">
+                                                    <input type="password" placeholder="Password" required />
+                                                </div>
+                                                <div class="input-box">
+                                                    <input type="password" placeholder="Re-enter Password" required />
+                                                </div>
+                                                <button type="submit">Create Account</button>
+                                                <div class="remember-signin">
+                                                    <span>Already have an account?</span>
+                                                    {/* <a href="#">Sign in now</a> */}
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </Modal>
+                                </li>
+                            </ul>
+                        </div>
+                        {/* <div className="cnt-block">
                         <ul className="list-unstyled list-inline">
                             <li className="dropdown dropdown-small">
                                 <Link to="/!" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                                     <span className="value">Login</span><b className="caret"></b>
                                 </Link>
+
                                 <ul className="dropdown-menu">
                                     <li><Link to="/!">Register</Link></li>
                                     <li><Link to="/!">Login</Link></li>
                                 </ul>
                             </li>
                         </ul>
+                    </div> */}
+                        <div className="clearfix"></div>
                     </div>
-                    <div className="clearfix"></div>
                 </div>
             </div>
-        </div>
-    
-        <div className="main-header">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                        <div className="logo"> 
-                            <Link to="/">
-                                <h1 style={{ color: "white" }}>V_SPLUSH </h1>
-                            </Link> </div>
-                    </div>  
-                    <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
-                        <div className="search-area">
-                            {/* <form action="" method="POST"> */}
+
+            <div className="main-header">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                            <div className="logo">
+                                <Link to="/">
+                                    <h1 style={{ color: "white" }}>V_SPLUSH </h1>
+                                </Link> </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
+                            <div className="search-area">
+                                {/* <form action="" method="POST"> */}
                                 <div className="control-group">
                                     <ul className="categories-filter animate-dropdown">
                                         <li className="dropdown">
@@ -52,11 +149,11 @@ function Header() {
                                     <input className="search-field" name="keyword_submitted" placeholder="Search here..." />
                                     <Link className="search-button" to="/!"></Link>
                                 </div>
-                            {/* </form> */}
+                                {/* </form> */}
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
-                        <div className=" dropdown-cart"> <Link to="/!" className="lnk-cart">
+                        <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
+                            <div className=" dropdown-cart"> <Link to="/!" className="lnk-cart">
                                 <div className="items-cart-inner">
                                     <div className="basket"><i className="icon fa fa-shopping-cart"></i></div>
                                     <div className="basket-item-count"><span className="count"></span></div>
@@ -87,17 +184,17 @@ function Header() {
                                     <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
 
-                                    <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
-                                </ul>
-                                <div className="clearfix"></div>
+                                        <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
+                                    </ul>
+                                    <div className="clearfix"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </header>
+        </header>
     )
 }
 export default Header;

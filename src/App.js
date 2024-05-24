@@ -8,7 +8,7 @@ import Product from './pages/users/Product.js';
 function App() {
  
   return (
-    <>
+    <div className='cnt-home'> 
       <Header />
       <Routes>
         <Route path='/'  element={<Home />} />
@@ -19,9 +19,8 @@ function App() {
         <Route path='/products' element={<Product />} />
     </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
 export default App;
-
