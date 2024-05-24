@@ -1,13 +1,12 @@
 import { CartItem } from "../../components";
 import React, { useState, useEffect } from "react";
-import axiosService  from '../../services/configAxios';
+import axiosService from "../../services/configAxios";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
-  // const [isChangeQuantity, setIsChangeQUantity] = useState(0);
 
   const fetchData = async () => {
-    const { data } = await axiosService.get('/shopping-cart');
+    const { data } = await axiosService.get("/shopping-cart");
     setCarts(data.carts);
   };
 
@@ -15,35 +14,40 @@ function Cart() {
     fetchData();
   }, []);
 
-  console.log(carts)
+  console.log(carts);
   const handleIncreaseQuantity = async (id) => {
     try {
-      const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:1, product_id:id} );
-      console.log(data)
-      const index = carts.findIndex(item=> item.product_id===id) 
-      if(index!==-1){
-        const list = [...carts] ;
-        list[index].quantity = data.data.quantity
-        setCarts(list)
-        
+      const { data } = await axiosService.post(`/update-cart/${id}`, {
+        quantity: 1,
+        product_id: id
+      });
+      console.log(data);
+      const index = carts.findIndex((item) => item.product_id === id);
+      if (index !== -1) {
+        const list = [...carts];
+        list[index].quantity = data.data.quantity;
+        setCarts(list);
       }
     } catch (error) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
   };
 
   const handleDescreaseQuantity = async (id) => {
     try {
-      const { data } = await axiosService.post(`/sub-update-cart/${id}`, { quantity: 1 , product_id:id});
-      console.log(data)
-      const index = carts.findIndex(item=> item.product_id===id) 
-      if(index!==-1){
-        const list = [...carts] ;
-        list[index].quantity = data.data.quantity
-        setCarts(list)
+      const { data } = await axiosService.post(`/sub-update-cart/${id}`, {
+        quantity: 1,
+        product_id: id
+      });
+      console.log(data);
+      const index = carts.findIndex((item) => item.product_id === id);
+      if (index !== -1) {
+        const list = [...carts];
+        list[index].quantity = data.data.quantity;
+        setCarts(list);
       }
     } catch (error) {
-      throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
   };
 
@@ -51,23 +55,17 @@ function Cart() {
     try {
       const { data } = await axiosService.delete(`delete-cart/${id}`);
       console.log(data);
-      const index = carts.findIndex(item => item.product_id === id);
-      if (index !== -1) {
-        const list = [...carts];
-        list[index].quantity = data.data.quantity;
-        setCarts(list);
-      }
+  
+      const updatedCarts = carts.filter((item) => item.product_id !== id);
+      setCarts(updatedCarts);
     } catch (err) {
-      console.error('Error deleting cart item:', err);
-      throw new Error('Failed to delete cart item. Please try again later.');
+      console.error("Error deleting cart item:", err);
+      throw new Error("Failed to delete cart item. Please try again later.");
     }
   };
-  
   return (
     <>
-      <div
-        className="container cart-component"
-      >
+      <div className="container cart-component">
         <table className="table table-striped text-center">
           <thead className="text-center">
             <tr>
@@ -82,22 +80,25 @@ function Cart() {
             </tr>
           </thead>
           <tbody>
-          { 
-            carts.map((cart, index) => 
-            <CartItem 
-                key={index}
-                id={cart.product_id}
-                index={index}
-                image_url={cart.image_url} 
-                discount={cart.discount} 
-                total_price={cart.total_price} 
-                product_name={cart.product_name}
-                quantity={cart.quantity}
-                handleDeletCart={handleDeletCart}
-                handleIncreaseQuantity={handleIncreaseQuantity}
-                handleDescreaseQuantity={handleDescreaseQuantity}
-
-             />)}
+            {carts.length === 0 ? (
+              <div><h1>Your cart is empty</h1></div>
+            ) : (
+              carts.map((cart, index) => (
+                <CartItem
+                  key={index}
+                  id={cart.product_id}
+                  index={index}
+                  image_url={cart.image_url}
+                  discount={cart.discount}
+                  total_price={cart.total_price}
+                  product_name={cart.product_name}
+                  quantity={cart.quantity}
+                  handleDeletCart={handleDeletCart}
+                  handleIncreaseQuantity={handleIncreaseQuantity}
+                  handleDescreaseQuantity={handleDescreaseQuantity}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>
