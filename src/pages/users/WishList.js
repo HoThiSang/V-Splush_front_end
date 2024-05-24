@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WishlistItem from "../../components/WishList";
 import axiosService from "../../services/configAxios";
-import { fetchWishlistData } from '../../services/configAxios';
 
 function WishList() {
   const [wishlist, setWishList] = useState([]);
@@ -9,10 +8,10 @@ function WishList() {
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchWishlistData();
+        const data = await axiosService.get('/show-allwishlist');
         setWishList(data);
       } catch (error) {
-        console.error('Error fetching the wishlist data', error.message);
+        throw new  Error('Error fetching the wishlist data', error.message);
       }
     };
     fetchData();
@@ -37,6 +36,7 @@ useEffect(() => {
               {wishlist.map((wishlist, index) => (
                 <WishlistItem 
                   key={index}
+                  id={index}
                   image_url={wishlist.image_url} 
                   product_name={wishlist.product_name}
                   category_name={wishlist.category_name}

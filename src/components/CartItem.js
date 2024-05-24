@@ -11,12 +11,13 @@ function CartItem(cart) {
     total_price,
     quantity,
     handleIncreaseQuantity,
-    handleDescreaseQuantity
+    handleDescreaseQuantity,
+    handleDeletCart
   } = cart;
 
   return (
     <tr key={index}>
-      <th scope="row">{index+1}</th>
+      <th scope="row">{index + 1}</th>
       <td className="image-row">
         <img
           className="image-cart-item"
@@ -42,8 +43,13 @@ function CartItem(cart) {
         ></Button>
       </td>
       <td>
-        <Button type="primary" shape="circle">
-          <i className="fa-solid fa-cart-shopping"></i>
+        <Button
+          type="primary"
+          shape="round"
+          size="middle"
+          onClick={() => handleDeletCart(id)}
+        >
+          <i className="fa-solid fa-trash"></i>
         </Button>
       </td>
     </tr>

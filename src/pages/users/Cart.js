@@ -15,7 +15,7 @@ function Cart() {
     fetchData();
   }, []);
 
-  
+  console.log(carts)
   const handleIncreaseQuantity = async (id) => {
     try {
       const { data } = await axiosService.post(`/update-cart/${id}`, { quantity:1, product_id:id} );
@@ -47,6 +47,22 @@ function Cart() {
     }
   };
 
+  const handleDeletCart = async (id) => {
+    try {
+      const { data } = await axiosService.delete(`delete-cart/${id}`);
+      console.log(data);
+      const index = carts.findIndex(item => item.product_id === id);
+      if (index !== -1) {
+        const list = [...carts];
+        list[index].quantity = data.data.quantity;
+        setCarts(list);
+      }
+    } catch (err) {
+      console.error('Error deleting cart item:', err);
+      throw new Error('Failed to delete cart item. Please try again later.');
+    }
+  };
+  
   return (
     <>
       <div
@@ -77,7 +93,7 @@ function Cart() {
                 total_price={cart.total_price} 
                 product_name={cart.product_name}
                 quantity={cart.quantity}
-                // currentQUantity 
+                handleDeletCart={handleDeletCart}
                 handleIncreaseQuantity={handleIncreaseQuantity}
                 handleDescreaseQuantity={handleDescreaseQuantity}
 
