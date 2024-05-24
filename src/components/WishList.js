@@ -1,8 +1,8 @@
 import React from "react";
 
-function WishlistItem({ image_url, product_name, category_name, price }) {
+function WishlistItem({ id, image_url, product_name, category_name, price }) {
   return (
-    <tr>
+    <tr key={id}>
       <th scope="row"><i className="fa-solid fa-heart"></i></th>
 
       <td><img src={image_url} alt={product_name} className="wishlist-img" /></td>
