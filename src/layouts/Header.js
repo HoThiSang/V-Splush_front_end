@@ -32,83 +32,12 @@ function Header() {
                             <ul className="list-unstyled">
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
-                                <li><Link to="/!"><i className="icon fa fa-check"></i>Checkout</Link></li>
+                                <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
+                                <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
+
                             </ul>
                         </div>
-                        <div className="cnt-account">
-                            <ul className="list-unstyled">
-                                <li>
-                                    <Link to="#" onClick={openLoginModal}>
-                                        <i className="icon fa fa-heart"></i>Login
-                                    </Link>
-                                    <Modal
-                                        isOpen={isLoginModalOpen}
-                                        onRequestClose={closeLoginModal}
-                                        contentLabel="Login Modal"
-                                    >
-                                        <div className='wrapper'>
-                                            <form action=''>
-                                                <h1>Login</h1>
-                                                <div className='input-box'>
-                                                    <input type='text' placeholder='Username' required />
-                                                </div>
-                                                <div className='input-box'>
-                                                    <input type='password' placeholder='Password' required />
-                                                </div>
-                                                <div className='remember-forgot'>
-                                                    <label><input type='checkbox' />Remember me</label>
-                                                    <Link href='#'>Forgot password</Link>
-                                                </div>
-
-                                                <button type='submit'>Login</button>
-                                            </form>
-                                        </div>
-                                        {/* <div>Login modal content</div>
-                                        <button onClick={closeLoginModal}>Close</button> */}
-                                    </Modal>
-                                </li>
-
-                                <li>
-                                    <Link to="#" onClick={openRegisterModal}>
-                                        <i className="icon fa fa-heart"></i>Register
-                                    </Link>
-                                    <Modal
-                                        isOpen={isRegisterModalOpen}
-                                        onRequestClose={closeRegisterModal}
-                                        contentLabel="Register Modal"
-                                    >
-                                        <div class="wrapper">
-                                            <form action="">
-                                                <h1>Register</h1>
-                                                <div class="input-box">
-                                                    <input type="text" placeholder="Name" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="email" placeholder="Email" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="tel" placeholder="Phone" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="text" placeholder="Address" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="password" placeholder="Password" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="password" placeholder="Re-enter Password" required />
-                                                </div>
-                                                <button type="submit">Create Account</button>
-                                                <div class="remember-signin">
-                                                    <span>Already have an account?</span>
-                                                    {/* <a href="#">Sign in now</a> */}
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </Modal>
-                                </li>
-                            </ul>
-                        </div>
+                        
                         {/* <div className="cnt-block">
                         <ul className="list-unstyled list-inline">
                             <li className="dropdown dropdown-small">

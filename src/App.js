@@ -5,6 +5,7 @@ import { Routes, Route}  from 'react-router-dom'
 import { Home, Cart, Test, WishList,Blog } from './pages/users'
 import About from './components/About.js';
 import Product from './pages/users/Product.js';
+import Register from './pages/auth/RegisterUser.js';
 function App() {
  
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/about'  element={<About />} />
         <Route path='/products' element={<Product />} />
+        <Route path='/register'  element={<Register />} />
     </Routes>
       <Footer />
     </div>
