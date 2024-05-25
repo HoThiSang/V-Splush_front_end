@@ -82,7 +82,7 @@ function Header() {
                                 <ul className="nav navbar-nav">
                                     <li className="active dropdown yamm-fw"> <Link to="/" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</Link> </li>
     
-                                    <li className="dropdown hidden-sm"> <Link to="/!">Products</Link> </li>
+                                    <li className="dropdown hidden-sm"> <Link to="/products">Products</Link> </li>
     
                                     <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>

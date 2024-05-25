@@ -1,6 +1,6 @@
 function ProductItem({ link, title, description,price }) {
   return (
-    <div className="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+    <div className="col-6 col-sm-6 col-md-4 d-flex justify-content-center products">
       <div className="card m-2" style={{ width: '25rem' }}>
         <img src={link} className="card-img-top" alt="Product" />
         <div className="card-body">
