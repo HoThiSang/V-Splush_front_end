@@ -1,45 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-function ProductFilterSidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+function ProductFilterSidebar({ setSelectedCategory }) {
+
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId);
   };
 
   return (
-    <div className="col-md-3 sidebar ml-3">
-      <div className="side-menu animate-dropdown outer-bottom-xs">
-        <div className="head head-bg" onClick={toggleMenu}>
+    <div className="col-md-3 sidebar siderbarProduct">
+      <div className="side-menu animate-dropdown outer-bottom-xs siderbarProduct">
+        <div className="head head-bg">
           <i className="icon fa fa-align-justify fa-fw"></i> Categories
         </div>
-        {isOpen && (
-          <nav className="yamm megamenu-horizontal">
-            <ul className="nav">
-              <MenuItem
-                to="?sort-by=Make up"
-                icon="fa fa-shopping-bag"
-                label="Make up"
-              />
-              <MenuItem
-                to="?sort-by=Body"
-                icon="fa fa-laptop"
-                label="Body care"
-              />
-              <MenuItem
-                to="?sort-by=Skincare"
-                icon="fa fa-paw"
-                label="Skincare"
-              />
-              <MenuItem
-                to="?sort-by=Fragrance"
-                icon="fa fa-clock-o"
-                label="Fragrance"
-              />
-              <MenuItem to="?sort-by=Hair" icon="fa fa-diamond" label="Hair" />
-            </ul>
-          </nav>
-        )}
+        <nav className="yamm megamenu-horizontal">
+          <ul className="nav">
+            <MenuItem
+              onClick={() => handleCategoryClick(1)}
+              icon="fa fa-shopping-bag"
+              label="Make up"
+            />
+            <MenuItem
+              onClick={() => handleCategoryClick(2)}
+              icon="fa fa-paw"
+              label="Skincare"
+            />
+             <MenuItem
+              onClick={() => handleCategoryClick(3)}
+              icon="fa fa-clock-o"
+              label="Fragrance"
+            />
+            <MenuItem
+              onClick={() => handleCategoryClick(4)}
+              icon="fa fa-diamond"
+              label="Hair"
+            />
+            <MenuItem
+              onClick={() => handleCategoryClick(5)}
+              icon="fa fa-laptop"
+              label="Body care"
+            />
+          </ul>
+        </nav>
       </div>
       <div className="sidebar-module-container">
         <div className="sidebar-filter"></div>
@@ -48,12 +50,12 @@ function ProductFilterSidebar() {
   );
 }
 
-function MenuItem({ to, icon, label }) {
+function MenuItem({ onClick, icon, label }) {
   return (
     <li className="menu-item">
-      <Link to={to} className="menu-toggle">
+      <a href="#" onClick={(e) => { e.preventDefault(); onClick(); }} className="menu-toggle">
         <i className={icon} aria-hidden="true"></i> {label}
-      </Link>
+      </a>
     </li>
   );
 }
