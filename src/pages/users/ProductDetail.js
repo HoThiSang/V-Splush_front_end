@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { Link, useParams } from 'react-router-dom'; // Import useParams
 import axiosService from '../../services/configAxios';
+import Button from '../../components/Button';
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
@@ -8,14 +9,14 @@ const ProductDetail = () => {
   const [mainImage, setMainImage] = useState('');
   const [error, setError] = useState(null);
 
-  const { id } = useParams(); // Use useParams to access URL parameters
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axiosService.get(`/admin-product-detail/${id}`);
         const data = response.data;
-
+        console.log(data)
         if (data.status === 'success') {
           setProduct(data.productDetail);
           setImages(data.imageAll);
@@ -30,7 +31,7 @@ const ProductDetail = () => {
     };
 
     fetchProduct();
-  }, [id]); // Add id to the dependencies array
+  }, [id]); 
 
   const handleThumbnailClick = (image) => {
     setMainImage(image);
@@ -45,26 +46,47 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="product-detail">
-      <div className="left-section">
-        <img src={mainImage} alt="Main Product" className="main-image" />
-        <div className="thumbnails">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Thumbnail ${index + 1}`}
-              className="thumbnail"
-              onClick={() => handleThumbnailClick(image)}
-            />
-          ))}
+    <div className="container">
+      <div className="product-detail row">
+        <div className="left-section col-6">
+          <div className="row image1">
+            <img src={mainImage.image_url} alt="Main Product" className="main-image" />
+          </div>
+          <div className="row border">
+            {images.map((image, index) => (
+              <div className='col-md-4 border'>
+                <img
+                  key={index}
+                  src={image.image_url}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="thumbnail"
+                  onClick={() => handleThumbnailClick(image)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="thumbnails">
+          </div>
+        </div>
+        <div className="right-section col-6">
+          <h1 className="product-title">{product.product_name}</h1>
+          <p className="product-description">{product.description}</p>
+          <p className="product-price">${product.price}</p>
+          <hr />
+          <div className="add-to-cart">
+            <Link to="/">
+              <Button className="btn-outline-success" width="600px" title="Add to cart" color="#abd07e" />
+            </Link>
+          </div>
+          <div className="buy-now">
+            <Button className="btn-outline-success" width={"600px"} href="#" title="Buy now" color={"#abd07e"} />
+          </div>
         </div>
       </div>
-      <div className="right-section">
-        <h1 className="product-title">{product.name}</h1>
-        <p className="product-price">${product.price}</p>
-        <button className="btn add-to-cart">Add to Cart</button>
-        <button className="btn buy-now">Buy Now</button>
+      <div className="ingredient">
+        <h3>Ingredient</h3>
+        <hr/>
+        <p className="product-description">{product.ingredient}</p>
       </div>
     </div>
   );
