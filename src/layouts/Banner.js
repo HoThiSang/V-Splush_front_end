@@ -1,39 +1,41 @@
-function Banner() {
-  const bannerAll = [];
+function Banner(props ){
+    const { title ,sub_title, content, image_url } = props;
+  
     return (
         <>
-        <div id="hero">
-            <div id="owl-main" className="owl-carousel owl-inner-nav owl-ui-sm">
-            {bannerAll.map((banner) => (
+        {/* <div id="hero">
+            <div id="owl-main" className="owl-carousel owl-inner-nav owl-ui-sm"> */}
+            {/* {bannerAll.map((banner) => ( */}
                 <div
                 className="item"
-                style={{ backgroundImage: `url(${banner.image_url})` }}
+                style={{ backgroundImage: `url(${image_url})` }}
                 >
                 <div className="container-fluid">
                     <div className="caption bg-color vertical-center text-left">
                     <div className="slider-header fadeInDown-1">
-                        {banner.title}
+                        {title}
                     </div>
-                    <div className="big-text fadeInDown-1">{banner.title}</div>
+                    <div className="big-text fadeInDown-1">{sub_title}</div>
                     <div className="excerpt fadeInDown-2 hidden-xs">
-                        <span>{banner.content}</span>
+                        <span>{content}</span>
                     </div>
                     <div className="button-holder fadeInDown-3">
-                        <a
+                        {/* <a
                         href="/categories"
                         className="btn-lg btn btn-uppercase btn-primary shop-now-button"
                         >
                         Shop Now
-                        </a>
+                        </a> */}
                     </div>
                     </div>
                 </div>
                 
                 </div>
-            ))}
-            </div>
-        </div>
-        <div className="info-boxes wow fadeInUp">
+            {/* ))} */}
+            {/* </div>
+        </div> */}
+        
+        {/* <div className="info-boxes wow fadeInUp">
             <div className="info-boxes-inner">
             <div className="row">
                 <div className="col-md-6 col-sm-4 col-lg-4">
@@ -69,7 +71,7 @@ function Banner() {
                 </div>
             </div>
             </div>
-        </div>
+        </div> */}
     </>
     );
 }

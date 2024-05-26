@@ -1,8 +1,8 @@
 import GoogleMapsEmbed from "./GoogleMapsEmbed";
 function Location() {
   return (
-    <div class="row justify-content-center location">
-      <div class="col-sm-5">
+    <div className="row justify-content-center location">
+      <div className="col-sm-5">
         <h3>
           Come visit our store and experience the difference for yourself!
         </h3>
@@ -11,7 +11,7 @@ function Location() {
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...
         </p>
       </div>
-      <div class="col-sm-6">
+      <div className="col-sm-6">
         <GoogleMapsEmbed />
       </div>
     </div>

@@ -86,7 +86,7 @@ function Header() {
     
                                     <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
-    
+
                                     <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
                                 </ul>
                                 <div className="clearfix"></div>
@@ -96,7 +96,7 @@ function Header() {
                 </div>
             </div>
         </div>
-    
+
     </header>
     )
 }

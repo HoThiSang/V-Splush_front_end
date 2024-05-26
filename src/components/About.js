@@ -28,12 +28,12 @@ function About() {
           </div>
 
           <div className="text-center item-icon-home mt-5">
-            <i class="fa-solid fa-face-smile icon"></i>
+            <i className="fa-solid fa-face-smile icon"></i>
 
             <h4>Great</h4>
           </div>
           <div className="text-center item-icon-home mt-5">
-            <i class="fa-solid fa-circle-half-stroke icon"></i>
+            <i className="fa-solid fa-circle-half-stroke icon"></i>
             <h4>Genuine</h4>
           </div>
         </div>
@@ -46,8 +46,8 @@ function About() {
             className="image-service"
             style={{
               width: "30em",
-              height: "28em",
-              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+              height: "28em"
+              
             }}
           />
           </div>
@@ -58,8 +58,7 @@ function About() {
             className="image-service"
             style={{
               width: "30em",
-              height: "28em",
-              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+              height: "28em"
             }}
           />
           </div>
