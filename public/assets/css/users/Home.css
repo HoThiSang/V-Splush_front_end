@@ -12,7 +12,7 @@
 
   .section-service{
       padding-left: 0;
-      margin: 60px 0 100px 0;
+      margin: 100px 100px 100px 150px;
       background-color: #F5F6FA;
   }
 
@@ -33,12 +33,12 @@
 
   .location{
     padding: 20px;
-    margin: 30px 0 50px 0;
+    margin: 30px 0 50px 200px;
   }
 
  #image-service .image-service-1{
     position: absolute;
-    margin: 30px 0 50px 30px;
+    margin: 30px 0 40px 40px;
 
   }
 
@@ -63,8 +63,8 @@
 
 .section-product-popular{
   display: flex;
-  justify-content: space-around;
-  margin: 5em 0 5em 2em;
+  justify-content: space-between;
+  margin: 5em 0 5em 0 ;
 }
 
 .product_name{
@@ -73,6 +73,14 @@
 
 .main-body{
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#product-section{
+  margin-right: 10px
+}
+
+#product-tabs-slider{
+  margin: 5em  0 5em 0;
 }

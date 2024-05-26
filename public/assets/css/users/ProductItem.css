@@ -1,4 +1,4 @@
-.card {
+/* .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +30,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .card-price {
   align-self: flex-start;
   font-weight: bold;
-}
+} */
