@@ -14,7 +14,7 @@ axiosService.interceptors.response.use(function (response) {
       throw new Error('Invalid data format or API response.');
     }
     return response || {};
-    }, function (error) {
+}, function (error) {
       return Promise.reject(error);
     });
     
