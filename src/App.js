@@ -6,6 +6,8 @@ import { Home, Cart, Test, WishList } from './pages/users'
 import About from './components/About.js';
 import {Blog} from './pages/users/Blog.js';
 import {Blog, BlogDetail} from './pages/users/Blog.js';
+import {Home , Cart, Test,Blog} from './pages/users'
+
 function App() {
  
   return (
@@ -16,7 +18,6 @@ function App() {
         <Route path='/carts'  element={<Cart />} />
         <Route path='/test'  element={<Test />} />
         <Route path='/blog' element={<Blog />} />
-        <Route path='/blog-detail/:id' element={<BlogDetail />}></Route>
       </Routes>
       <Footer />
     </div>

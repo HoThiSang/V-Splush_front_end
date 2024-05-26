@@ -1,11 +1,12 @@
 import BlogItem from "../../components/BlogItem";
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
-import { Col, Row, Alert, Pagination } from "antd";
-import { useParams } from "react-router";
+import { Alert, Pagination } from "antd";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
+  const numEachPage = 8;
+  const [page, setPage] = useState({ minValue: 0, maxValue: numEachPage });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,50 +19,33 @@ function Blog() {
     };
     fetchData();
   }, []);
-
+  const handleChange = (value) => {
+    setPage({
+      minValue: (value - 1) * numEachPage,
+      maxValue: value * numEachPage,
+    });
+  };
   return (
     <>
       <Alert description="Articles & News" type="info" />
-      <Row>
-        {blogs.map((blog, index) => (
-          <Col span={8} xs={20} sm={16} md={12} lg={8} xl={6}>
-            <BlogItem key={index} props={blog} />
-          </Col>
-        ))}
-      </Row>
-      <Pagination defaultCurrent={1} total={50} />
+      <div className="blog">
+        <div className="container">
+          <div className="row  main-blog">
+            {blogs.length > 0 &&
+              blogs
+                .slice(page.minValue, page.maxValue)
+                .map((blog, index) => <BlogItem key={index} props={blog} />)}
+          </div>
+          <Pagination
+            defaultCurrent={1}
+            defaultPageSize={numEachPage}
+            onChange={handleChange}
+            total={blogs.length}
+          />
+        </div>
+      </div>
     </>
   );
 }
 
-
-function BlogDetail() {
-  
-  const { id } = useParams();
-  const [blog, setBlog] = useState(id);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosService.get(`/admin-show-post/${id}`);
-        setBlog(response.data.data);
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-
-  return (
-    <>
-    <Alert description="Bank your beauty sleep with our overnight skin care edit" type="info" />
-    <img  src={blog.image_url} className="img-blog-detail" alt="" />
-    <p>{blog.content}</p>
-    </>
-  )
-
-}
-
-export { Blog, BlogDetail };
-
+export default Blog;
