@@ -48,18 +48,18 @@ function HomeTest() {
   console.log(banners);
 
   return (
+    <>
     <div className="body-content outer-top-xs" id="top-banner-and-menu">
       <div className="container">
         <div className="row">
-          <div
-            className="container"
+          <div className="container"
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center"
             }}
           >
-            <div className="container main-body">
+          
               <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
                 <div id="hero">
                   <div
@@ -119,35 +119,27 @@ function HomeTest() {
                     </div>
                   </div>
                 </div>
-
-                <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp"
+                <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
                 >
-                  <div className="tab-content outer-top-xs">
-                    <div className="tab-pane in active" id="all">
-                      <div className="product-slider">
-                        <div className="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4"
-                        >
                        { displayedProducts.map((item, index) => (
-                        <Card
-                        key={index}
-                        product_name={item.product_name}
-                        description={item.description}
-                        image_url={item.image_url}
+                        <CardItem 
+                          key={item.id} 
+                          product_name={item.product_name}
+                          description={item.description}
+                          image_url={item.image_url}
                         />
                   ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                
-              </div>
             </div>
           </div>
-          
         </div>
+        <About />
+      
       </div>
+     
     </div>
+    <Location />
+    </>
   );
 }
 export default HomeTest;

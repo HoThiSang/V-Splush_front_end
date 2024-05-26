@@ -1,7 +1,7 @@
 function About() {
   return (
-    <div className="row mt-5 section-service">
-      <div className="col-md-4">
+    <div className="row mt-3 section-service" id="section-service">
+      <div className="col-md-5">
         <h2 className="">
           The Beauty is about being Comfortable in your own skin! True beauty
           emanates
@@ -38,7 +38,7 @@ function About() {
           </div>
         </div>
       </div>
-      <div className="col-md-4 mt-2" style={{ marginRight: 20 }}>
+      <div className="col-md-6 mt-2">
         <div className="text-center mt-4" id="image-service">
         <div className="image-service-1"> <img
             src="https://res.cloudinary.com/di9iwkkrc/image/upload/v1715920167/upload_image/Background_mvkre6.jpg"
@@ -52,7 +52,8 @@ function About() {
           />
           </div>
          
-          <div className="image-service-2"> <img
+          <div className="image-service-2"> 
+          <img
             src="https://res.cloudinary.com/di9iwkkrc/image/upload/v1715920236/upload_image/pexels-sora-shimazaki-5938440_1_gl0lg4.jpg"
             alt="Image"
             className="image-service"

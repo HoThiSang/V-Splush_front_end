@@ -46,7 +46,7 @@ function CartItem(cart) {
         <Button
           type="primary"
           shape="round"
-          size="middle"
+          size="middle" 
           onClick={() => handleDeletCart(id)}
         >
           <i className="fa-solid fa-trash"></i>

@@ -3,7 +3,7 @@ function CardItem(props) {
   const {product_name, description, image_url, image_name} = props;
   return (
 
-    <div className="col-md-3">
+    <div className="col-md-4 px-3 mt-3">
       <div className="card">
           <img src={ image_url } className="card-img-top" alt={ image_name } style={{width:'100%',height:'220px'}}/>
           <div className="card-body">
