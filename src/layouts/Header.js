@@ -3,26 +3,6 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 function Header() {
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-
-    const openLoginModal = () => {
-        setIsLoginModalOpen(true);
-    };
-
-    const closeLoginModal = () => {
-        setIsLoginModalOpen(false);
-    };
-
-    const openRegisterModal = () => {
-        setIsRegisterModalOpen(true);
-    };
-
-    const closeRegisterModal = () => {
-        setIsRegisterModalOpen(false);
-    };
-
-
     return (
         <header className="header-style-1">
             <div className="top-bar animate-dropdown">
@@ -34,6 +14,7 @@ function Header() {
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
                                 <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
+                                <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
 
                             </ul>
                         </div>

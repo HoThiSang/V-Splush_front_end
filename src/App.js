@@ -6,6 +6,7 @@ import { Home, Cart, Test, WishList,Blog } from './pages/users'
 import About from './components/About.js';
 import Product from './pages/users/Product.js';
 import Register from './pages/auth/RegisterUser.js';
+import Login from './pages/auth/Login.js';
 function App() {
  
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path='/about'  element={<About />} />
         <Route path='/products' element={<Product />} />
         <Route path='/register'  element={<Register />} />
-    </Routes>
+        <Route path='/login'  element={<Login />} />
+      </Routes>
       <Footer />
     </div>
   );

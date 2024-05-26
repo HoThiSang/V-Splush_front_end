@@ -1,35 +1,41 @@
+import { Link } from "react-router-dom"
 
-
-function Register(){
+function Register() {
     return (
         <div class="wrapper">
-                                            <form action="">
-                                                <h1>Register</h1>
-                                                <div class="input-box">
-                                                    <input type="text" placeholder="Name" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="email" placeholder="Email" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="tel" placeholder="Phone" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="text" placeholder="Address" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="password" placeholder="Password" required />
-                                                </div>
-                                                <div class="input-box">
-                                                    <input type="password" placeholder="Re-enter Password" required />
-                                                </div>
-                                                <button type="submit">Create Account</button>
-                                                <div class="remember-signin">
-                                                    <span>Already have an account?</span>
-                                                    {/* <a href="#">Sign in now</a> */}
-                                                </div>
-                                            </form>
-                                        </div>
+            <form action="">
+                <h1>Register</h1>
+                <div class="input-box">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required />
+                </div>
+                <div class="input-box">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required />
+                </div>
+                <div class="input-box">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required />
+                </div>
+                <div class="input-box">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Enter your address" required />
+                </div>
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required />
+                </div>
+                <div class="input-box">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Re-enter your password" required />
+                </div>
+                <button type="submit">Create Account</button>
+                <div class="remember-signin">
+                    <span>Already have an account?</span>
+                    <Link to="/login">Sign in now</Link>
+                </div>
+            </form>
+        </div>
     )
 }
 
