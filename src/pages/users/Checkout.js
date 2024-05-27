@@ -1,4 +1,19 @@
+import { useState, useEffect } from "react";
+import { Input } from "../../components";
+import axiosService from "../../services/configAxios";
+
 const CheckoutForm = () => {
+  const [carts, setCarts] = useState([]);
+
+  const fetchData = async () => {
+    const { data } = await axiosService.get("/shopping-cart");
+    setCarts(data.carts);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <form className="form-checkout">
       <div className="container">
@@ -8,52 +23,10 @@ const CheckoutForm = () => {
 
         <div className="row">
           <div className="form-container">
-            <div className="form-group mb-3 col-md-6">
-              <label htmlFor="username" className="form-label">
-                User name:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                name="username"
-                value=""
-              />
-            </div>
-            <input type="hidden" name="user_id" />
-            <div className="form-group mb-3 col-md-6">
-              <label htmlFor="email" className="form-label">
-                Email:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="email"
-                name="email"
-              />
-            </div>
-            <div className="form-group mb-3 col-md-6">
-              <label htmlFor="email" className="form-label">
-                Email:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="email"
-                name="email"
-              />
-            </div>
-            <div className="form-group mb-3 col-md-6">
-              <label htmlFor="email" className="form-label">
-                Email:
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-              />
-            </div>
+            <Input type="text" label="User name" />
+            <Input type="email" label="Email" />
+            <Input type="text" label="Phone number" />
+            <Input type="text" label="Address" />
           </div>
         </div>
 
@@ -72,18 +45,23 @@ const CheckoutForm = () => {
             <div className="form-group col-md-3">
               <label htmlFor="total-price">Total price</label>
             </div>
-            <div className="form-group col-md-3">
-              <label htmlFor="product"></label>
-            </div>
-            <div className="form-group col-md-3">
-              <label htmlFor="quantity">X</label>
-            </div>
-            <div className="form-group col-md-3">
-              <label htmlFor="unit-price">X</label>
-            </div>
-            <div className="form-group col-md-3">
-              <label htmlFor="total-price"></label>
-            </div>
+            {carts.map((item, index) => (
+              <>
+                <div className="form-group col-md-3">
+                  <label htmlFor="product"></label>
+                </div>
+                <div className="form-group col-md-3">
+                  <label htmlFor="quantity">X</label>
+                </div>
+                <div className="form-group col-md-3">
+                  <label htmlFor="unit-price">X</label>
+                </div>
+                <div className="form-group col-md-3">
+                  <label htmlFor="total-price"></label>
+                </div>
+              </>
+            ))}
+
             <input type="hidden" />
           </div>
         </div>
