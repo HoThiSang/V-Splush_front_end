@@ -23,6 +23,7 @@ function App() {
         <Route path='/products' element={<Product />} />
         <Route path='/register'  element={<RegistrationForm />} />
         <Route path='/login'  element={<Login />} />
+        <Route path='/checkout'  element={<CheckoutForm />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
         <Route path='/about' element={<About />} />

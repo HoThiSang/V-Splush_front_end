@@ -55,7 +55,7 @@ function Cart() {
     try {
       const { data } = await axiosService.delete(`delete-cart/${id}`);
       console.log(data);
-  
+
       const updatedCarts = carts.filter((item) => item.product_id !== id);
       setCarts(updatedCarts);
     } catch (err) {
@@ -66,41 +66,59 @@ function Cart() {
   return (
     <>
       <div className="container cart-component">
-        <table className="table table-striped text-center">
-          <thead className="text-center">
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Image</th>
-              <th scope="col">Product name</th>
-              <th scope="col">Product name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Action quantity</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {carts.length === 0 ? (
-              <div><h1>Your cart is empty</h1></div>
-            ) : (
-              carts.map((cart, index) => (
-                <CartItem
-                  key={index}
-                  id={cart.product_id}
-                  index={index}
-                  image_url={cart.image_url}
-                  discount={cart.discount}
-                  total_price={cart.total_price}
-                  product_name={cart.product_name}
-                  quantity={cart.quantity}
-                  handleDeletCart={handleDeletCart}
-                  handleIncreaseQuantity={handleIncreaseQuantity}
-                  handleDescreaseQuantity={handleDescreaseQuantity}
-                />
-              ))
-            )}
-          </tbody>
-        </table>
+        <div className="row">
+          <table className="table table-striped text-center">
+            <thead className="text-center">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Image</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Action quantity</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {carts.length === 0 ? (
+                <div>
+                  <h1>Your cart is empty</h1>
+                </div>
+              ) : (
+                carts.map((cart, index) => (
+                  <CartItem
+                    key={index}
+                    id={cart.product_id}
+                    index={index}
+                    image_url={cart.image_url}
+                    discount={cart.discount}
+                    total_price={cart.total_price}
+                    product_name={cart.product_name}
+                    quantity={cart.quantity}
+                    handleDeletCart={handleDeletCart}
+                    handleIncreaseQuantity={handleIncreaseQuantity}
+                    handleDescreaseQuantity={handleDescreaseQuantity}
+                  />
+                ))
+              )}
+              <tr>
+                <h4>Total price : </h4>
+                <h4>Shipping : </h4>
+              </tr>
+              <tr>
+                <div className="cart-checkout-btn pull-right">
+                  <button
+                    type="submit"
+                    className="btn btn-primary checkout-btn"
+                  >
+                    <a href="#!">PROCCED TO CHEKOUT</a>
+                  </button>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
