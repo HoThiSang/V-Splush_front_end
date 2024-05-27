@@ -1,10 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Location, About, CardItem, BannerBottom } from "../../components";
 import { Banner } from "../../layouts";
-import axios from "axios";
-
-import "./style.css";
-import { Card } from "antd";
 import axiosService from "../../services/configAxios";
 
 function HomeTest() {

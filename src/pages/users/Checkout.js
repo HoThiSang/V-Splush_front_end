@@ -8,6 +8,7 @@ const CheckoutForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [user, setUser] = useState({});
 
   const fetchData = async () => {
     try {
@@ -27,9 +28,16 @@ const CheckoutForm = () => {
     e.preventDefault();
     console.log("Username:", name);
     console.log("Password:", email);
-    console.log("Password:", email);
-    console.log("Password:", email);
-    const {data} = await axiosService.post('/')
+    console.log("Password:", phone);
+    console.log("Password:", address);
+    setUser(() => ({
+      user_id: 1,
+      address: address,
+      phone_number: phone,
+    }));
+    console.log(user)
+    const cart = [...carts];
+    console.log(cart);
   }
   return (
     <form className="form-checkout" onSubmit={handelSubmitForm}>
@@ -55,7 +63,7 @@ const CheckoutForm = () => {
             </div>
             <div className="form-group mb-3 col-md-6">
               <label htmlFor="" className="form-label"></label>
-              <input type="email" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
+              <input type="text" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
           </div>
         </div>
