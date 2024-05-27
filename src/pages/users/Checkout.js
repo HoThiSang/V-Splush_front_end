@@ -4,18 +4,35 @@ import axiosService from "../../services/configAxios";
 
 const CheckoutForm = () => {
   const [carts, setCarts] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
 
   const fetchData = async () => {
-    const { data } = await axiosService.get("/shopping-cart");
-    setCarts(data.carts);
+    try {
+      const { data } = await axiosService.get("/shopping-cart");
+      setCarts(data.carts);
+      console.log(data.carts);
+    } catch (error) {
+      throw new Error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  const handelSubmitForm = async(e) => {
+    e.preventDefault();
+    console.log("Username:", name);
+    console.log("Password:", email);
+    console.log("Password:", email);
+    console.log("Password:", email);
+    const {data} = await axiosService.post('/')
+  }
   return (
-    <form className="form-checkout">
+    <form className="form-checkout" onSubmit={handelSubmitForm}>
       <div className="container">
         <h3 className="checkout-heading">CHECKOUT PAGE</h3>
         <hr style={{ borderWidth: "2px", borderColor: "#C4C4C4" }} />
@@ -23,10 +40,23 @@ const CheckoutForm = () => {
 
         <div className="row">
           <div className="form-container">
-            <Input type="text" label="User name" />
-            <Input type="email" label="Email" />
-            <Input type="text" label="Phone number" />
-            <Input type="text" label="Address" />
+            
+            <div className="form-group mb-3 col-md-6">
+              <label htmlFor="" className="form-label"></label>
+              <input type="text"  className="form-control"  value={name}  onChange={(e) => setName(e.target.value)}  />
+            </div>
+            <div className="form-group mb-3 col-md-6">
+              <label htmlFor="" className="form-label"></label>
+              <input type="email" className="form-control" value={email}  onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="form-group mb-3 col-md-6">
+              <label htmlFor="" className="form-label"></label>
+              <input type="text" className="form-control" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            </div>
+            <div className="form-group mb-3 col-md-6">
+              <label htmlFor="" className="form-label"></label>
+              <input type="email" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
+            </div>
           </div>
         </div>
 
@@ -48,24 +78,21 @@ const CheckoutForm = () => {
             {carts.map((item, index) => (
               <>
                 <div className="form-group col-md-3">
-                  <label htmlFor="product"></label>
+                  <label htmlFor="product">{item.product_name}</label>
                 </div>
                 <div className="form-group col-md-3">
-                  <label htmlFor="quantity">X</label>
+                  <label htmlFor="quantity">X{item.quantity}</label>
                 </div>
                 <div className="form-group col-md-3">
-                  <label htmlFor="unit-price">X</label>
+                  <label htmlFor="unit-price">X{item.unit_price}</label>
                 </div>
                 <div className="form-group col-md-3">
-                  <label htmlFor="total-price"></label>
+                  <label htmlFor="total-price">{item.total_price}</label>
                 </div>
               </>
             ))}
-
-            <input type="hidden" />
           </div>
         </div>
-        <input type="hidden" name="totalPrice" />
         <div className="form-container">
           <div className="form-group col-md-12 text-right">
             <hr
@@ -87,13 +114,6 @@ const CheckoutForm = () => {
               <label htmlFor=""></label>
               <input type="hidden" name="total_price" />
             </div>
-            <hr
-              style={{
-                borderWidth: "2px",
-                borderColor: "#C4C4C4",
-                marginTop: "10px"
-              }}
-            />
           </div>
           <div className="form-group col-md-12 text-right">
             <div

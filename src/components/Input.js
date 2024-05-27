@@ -1,5 +1,5 @@
 const Input = (props) => {
-  const { label, type , name, value, onChangeInput } = props
+  const { label, type ,  value } = props
   return (
     <div className="form-group mb-3 col-md-6">
       <label htmlFor={label}  className="form-label">
@@ -8,10 +8,7 @@ const Input = (props) => {
       <input
         type={type}
         className="form-control"
-        id="username"
-        name={name}
         value={value}
-        onChange={onChangeInput}
       />
     </div>
   );
