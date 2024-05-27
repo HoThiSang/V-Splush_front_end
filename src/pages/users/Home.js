@@ -2,7 +2,8 @@ import { React, useState, useEffect } from "react";
 import { Bennefit, Location, About, CardItem } from "../../components";
 import { BennefitData } from "../../data";
 import { Banner } from "../../layouts";
-import axios from "axios";
+import "./style.css";
+import { Card } from "antd";
 import axiosService from "../../services/configAxios";
 
 function Home() {
@@ -12,10 +13,8 @@ function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/admin-product"
-      );
-      setPopularProducts(response.data);
+      const response = await axiosService.get("/admin-product");
+      setPopularProducts(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -30,9 +29,7 @@ function Home() {
 
   const fechDataBanner = async () => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/admin-show-all-banner"
-      );
+      const response = await axiosService.get("/admin-show-all-banner");
       console.log(response.data);
       setBanners(response.data.data);
     } catch (error) {
@@ -44,12 +41,20 @@ function Home() {
     fechDataBanner();
   }, []);
   console.log(banners);
+
   return (
     <>
-      <div class="body-content outer-top-xs" id="top-banner-and-menu">
-        <div class="container">
-          <div class="row">
-            <div className="container main-body">
+      <div className="body-content outer-top-xs" id="top-banner-and-menu">
+        <div className="container">
+          <div className="row">
+            <div
+              className="container"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
                 <div id="hero">
                   <div
@@ -62,43 +67,73 @@ function Home() {
                         content={item.content}
                         sub_title={item.sub_title}
                         image_url={item.image_url}
-                        // image_name={item.image_name}
                       />
                     ))}
                   </div>
                 </div>
-                <div className="row mt-6 section-product-popular">
+                <div className="info-boxes wow fadeInUp">
+                  <div className="info-boxes-inner">
+                    <div className="row">
+                      <div className="col-md-6 col-sm-4 col-lg-4">
+                        <div className="info-box">
+                          <div className="row">
+                            <div className="col-xs-12">
+                              <h4 className="info-box-heading green">
+                                money back
+                              </h4>
+                            </div>
+                          </div>
+                          <h6 className="text">30 Days Money Back Guarantee</h6>
+                        </div>
+                      </div>
+
+                      <div className="hidden-md col-sm-4 col-lg-4">
+                        <div className="info-box">
+                          <div className="row">
+                            <div className="col-xs-12">
+                              <h4 className="info-box-heading green">
+                                free shipping
+                              </h4>
+                            </div>
+                          </div>
+                          <h6 className="text">Shipping on orders over $99</h6>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-sm-4 col-lg-4">
+                        <div className="info-box">
+                          <div className="row">
+                            <div className="col-xs-12">
+                              <h4 className="info-box-heading green">
+                                Special Sale
+                              </h4>
+                            </div>
+                          </div>
+                          <h6 className="text">Extra $5 off on all items </h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="product-tabs-slider"
+                  className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
+                >
                   {displayedProducts.map((item, index) => (
                     <CardItem
-                      key={index}
+                      key={item.id}
                       product_name={item.product_name}
                       description={item.description}
                       image_url={item.image_url}
                     />
                   ))}
                 </div>
-
-                <div className="container mt-6 about-service">
-                  <About />
-                </div>
-                <div className="row mt-6 section-promotion">
-                  <p className="text-center">OUR AWESOME BENEFITS</p>
-                  <h2 className="text-center mb-5">
-                    Actually what you’ll get from
-                  </h2>
-                  {BennefitData.map((item, index) => (
-                    <Bennefit key={index} props={item} />
-                  ))}
-                </div>
               </div>
             </div>
-
-            <div className="container mt-5">
-              <Location />
-            </div>
           </div>
+          <About />
         </div>
       </div>
+      <Location />
     </>
   );
 }
