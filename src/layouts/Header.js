@@ -11,7 +11,7 @@ function Header() {
                             <ul className="list-unstyled">
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
-                                <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
+                                <li><Link to="/checkout"><i className="icon fa fa-check"></i>Checkout</Link></li>
                                 <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
                                 <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
                             </ul>
