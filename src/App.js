@@ -10,6 +10,7 @@ import Login from './pages/auth/Login.js';
 function App() {
  
   return (
+    <>
     <div className='cnt-home'> 
       <Header />
       <Routes>
@@ -24,6 +25,8 @@ function App() {
       </Routes>
       <Footer />
     </div>
+      
+    </>
   );
 }
 
