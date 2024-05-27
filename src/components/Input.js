@@ -1,15 +1,17 @@
-const Input = () => {
+const Input = (props) => {
+  const { label, type , name, value, onChangeInput } = props
   return (
     <div className="form-group mb-3 col-md-6">
-      <label htmlFor="username" className="form-label">
-        User name:
+      <label htmlFor={label}  className="form-label">
+        {label}
       </label>
       <input
-        type="text"
+        type={type}
         className="form-control"
         id="username"
-        name="username"
-        value=""
+        name={name}
+        value={value}
+        onChange={onChangeInput}
       />
     </div>
   );

@@ -59,7 +59,6 @@ function Cart() {
       const updatedCarts = carts.filter((item) => item.product_id !== id);
       setCarts(updatedCarts);
     } catch (err) {
-      console.error("Error deleting cart item:", err);
       throw new Error("Failed to delete cart item. Please try again later.");
     }
   };
@@ -112,7 +111,7 @@ function Cart() {
                     type="submit"
                     className="btn btn-primary checkout-btn"
                   >
-                    <a href="#!">PROCCED TO CHEKOUT</a>
+                    <a className="btn " href="#!">PROCCED TO CHEKOUT</a>
                   </button>
                 </div>
               </tr>

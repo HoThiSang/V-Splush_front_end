@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Bennefit, Location, About, CardItem } from "../../components";
-import { BennefitData } from "../../data";
+import { Location, About, CardItem, BannerBottom } from "../../components";
 import { Banner } from "../../layouts";
 import axios from "axios";
 
@@ -10,7 +9,6 @@ import axiosService from "../../services/configAxios";
 
 function HomeTest() {
   const [popularProducts, setPopularProducts] = useState([]);
-  // const [load, setLoad] = useState(false);
   const [banners, setBanners] = useState([]);
 
   const fetchData = async () => {
@@ -21,7 +19,7 @@ function HomeTest() {
       setPopularProducts(response.data.data);
       console.log(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      throw new Error("Error fetching data:", error);
     }
   };
 
@@ -40,7 +38,7 @@ function HomeTest() {
       console.log(response.data.data);
       setBanners(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      throw new Error("Error fetching data:", error);
     }
   };
 
@@ -78,7 +76,7 @@ function HomeTest() {
                     ))}
                   </div>
                 </div>
-           
+                <BannerBottom />
                 <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
                 >
                        { displayedProducts.map((item, index) => (
