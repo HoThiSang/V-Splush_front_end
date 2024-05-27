@@ -1,11 +1,10 @@
-.products{
-    margin-top: 70px;
-  }
-  .row.no-margin-left {
-    margin-left: 0;
+.product-item{
+  margin-top: 70px;
 }
-.ant-pagination {
+.row.no-margin-left {
+  margin-left: 0;
+}
+.ant-pagination.product {
   margin-left: 600px;
   margin-bottom: 30px;
 }
-

@@ -53,7 +53,7 @@ function Product() {
 
   return (
     <div className="product-container">
-      <div className="row products no-margin-left">
+      <div className="row product-item no-margin-left">
         <ProductFilterSidebar setSelectedCategory={setSelectedCategory} />
         <div className="col-md-8">
           {filteredProducts
@@ -74,6 +74,7 @@ function Product() {
         defaultPageSize={numEachPage}
         onChange={handleChange}
         total={filteredProducts.length}
+        className='product'
       />
     </div>
   );
