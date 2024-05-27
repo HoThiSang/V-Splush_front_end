@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axiosService from "../../services/configAxios";
 import ProductItem from "../../components/ProductItem";
 import ProductFilterSidebar from "../../components/ProductFilterSidebar";
-import axios from "axios";
 import { Pagination } from "antd";
 
 const numEachPage = 9;
@@ -13,9 +13,10 @@ function Product() {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/admin-product");
+      const response = await axiosService.get("/admin-product");
+      const responseData = response.data;
       const updatedProducts = {};
-      data.forEach((product) => {
+      responseData.data.forEach((product) => {
         if (!updatedProducts[product.id]) {
           updatedProducts[product.id] = {
             ...product,
@@ -25,10 +26,9 @@ function Product() {
       });
       setProducts(Object.values(updatedProducts));
     } catch (error) {
-      console.error("Lỗi khi lấy dữ liệu sản phẩm", error);
+      console.error("Error fetching product data", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -36,7 +36,7 @@ function Product() {
   useEffect(() => {
     setFilteredProducts(
       selectedCategory
-        ? products.filter(product => product.category_id === selectedCategory)
+        ? products.filter((product) => product.category_id === selectedCategory)
         : products
     );
   }, [products, selectedCategory]);
