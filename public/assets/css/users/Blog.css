@@ -62,3 +62,28 @@
     padding-left: 60px 
   };
 }
+
+.img-blog-detail {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  margin-top: 250px;
+  margin-left: 250px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 5px white);
+}
+
+
+.alert-blog-detail {
+  position: absolute;
+  height: 450px;
+}
+.p-blog-content {
+  width: 900px;
+  margin-top: 80px;
+  margin-left: 250px;
+  margin-bottom: 80px;
+  text-align: justify;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
