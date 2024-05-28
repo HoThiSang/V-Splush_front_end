@@ -21,10 +21,9 @@ function App() {
         <Route path='/products' element={<Product />} />
         <Route path='/register'  element={<RegistrationForm />} />
         <Route path='/login'  element={<Login />} />
-      </Routes>
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
-    </Routes>
+      </Routes>
       <Footer />
     </div>
   );
