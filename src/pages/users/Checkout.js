@@ -37,8 +37,14 @@ const CheckoutForm = () => {
     }));
     console.log(user)
     const cart = [...carts];
-    console.log(cart);
+    try {
+      const postData = await axiosService.post('/checkout');
+      
+    } catch (error) {
+      throw new Error('Wrong went checkout');
+    }
   }
+
   return (
     <form className="form-checkout" onSubmit={handelSubmitForm}>
       <div className="container">
