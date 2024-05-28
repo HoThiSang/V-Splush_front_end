@@ -75,7 +75,7 @@ const Footer = () => {
               <div className="module-body">
                 <ul className='list-unstyled'>
                   <li className="first"><Link to="#" title="About us">Shopping Guide</Link></li>
-                  <li><Link to="#" title="Blog">Blog</Link></li>
+                  <li><Link to={'/blog'} title="Blog">Blog</Link></li>
                   <li><Link to="#" title="Company">Company</Link></li>
                   <li><Link to="#" title="Investor Relations">Investor Relations</Link></li>
                   <li className=" last"><Link to="contact-us.html" title="Suppliers">Contact Us</Link></li>
