@@ -8,7 +8,8 @@ const CheckoutForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [user, setUser] = useState({});
+  const [payment, setPayment] = useState("");
+  // const [user, setUser] = useState({});
 
   const fetchData = async () => {
     try {
@@ -24,21 +25,27 @@ const CheckoutForm = () => {
     fetchData();
   }, []);
 
+  const handleSelect = (e) => {
+    console.log(e.target.value);
+    setPayment(e.target.value);
+  }
+  // debugger
   const handelSubmitForm = async(e) => {
     e.preventDefault();
     console.log("Username:", name);
-    console.log("Password:", email);
-    console.log("Password:", phone);
-    console.log("Password:", address);
-    setUser(() => ({
-      user_id: 1,
-      address: address,
-      phone_number: phone,
-    }));
-    console.log(user)
-    const cart = [...carts];
+    console.log("Email:", email);
+    console.log("Phone:", phone);
+    console.log("Address:", address);
+    console.log("Payment:", payment);
+
     try {
-      const postData = await axiosService.post('/checkout');
+      const postData = await axiosService.post('/checkout', {name, email, phone, address, payment,user_id: 2 , totalPrice: 20000});
+     console.log(postData)
+      if(postData.status===200){
+      alert('Thành công!')
+     }else{
+      alert("Thất bại!")
+     }
       
     } catch (error) {
       throw new Error('Wrong went checkout');
@@ -56,24 +63,24 @@ const CheckoutForm = () => {
           <div className="form-container">
             
             <div className="form-group mb-3 col-md-6">
-              <label htmlFor="" className="form-label"></label>
+              <label htmlFor="" className="form-label">Name</label>
               <input type="text"  className="form-control"  value={name}  onChange={(e) => setName(e.target.value)}  />
             </div>
             <div className="form-group mb-3 col-md-6">
-              <label htmlFor="" className="form-label"></label>
+              <label htmlFor="" className="form-label">Email</label>
               <input type="email" className="form-control" value={email}  onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="form-group mb-3 col-md-6">
-              <label htmlFor="" className="form-label"></label>
+              <label htmlFor="" className="form-label">Phone number</label>
               <input type="text" className="form-control" value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
             <div className="form-group mb-3 col-md-6">
-              <label htmlFor="" className="form-label"></label>
+              <label htmlFor="" className="form-label">Address</label>
               <input type="text" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
           </div>
         </div>
-
+        <input type="hidden" name="user_id" value={2} />
         <h4 className="checkout-heading text-center mt-4">Order information</h4>
         <div className="form-container">
           <div className="form-row mt-3">
@@ -91,16 +98,16 @@ const CheckoutForm = () => {
             </div>
             {carts.map((item, index) => (
               <>
-                <div className="form-group col-md-3">
+                <div className="form-group col-md-3" key={index}>
                   <label htmlFor="product">{item.product_name}</label>
                 </div>
-                <div className="form-group col-md-3">
+                <div className="form-group col-md-3" key={index}>
                   <label htmlFor="quantity">X{item.quantity}</label>
                 </div>
-                <div className="form-group col-md-3">
+                <div className="form-group col-md-3" key={index}>
                   <label htmlFor="unit-price">X{item.unit_price}</label>
                 </div>
-                <div className="form-group col-md-3">
+                <div className="form-group col-md-3" key={index}>
                   <label htmlFor="total-price">{item.total_price}</label>
                 </div>
               </>
@@ -139,10 +146,11 @@ const CheckoutForm = () => {
               }}
             >
               <h4 className="checkout-heading">Payment method</h4>
-              <select
+              <select value={payment} onChange={handleSelect}
                 className="btn-sm form-select custom-select"
                 name="payment_method"
               >
+               <option value="">--Choose an option--</option>
                 <option value="VNP">VNP</option>
                 <option value="COD">COD</option>
               </select>
