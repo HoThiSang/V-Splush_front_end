@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import axios from 'axios';
+import axiosService from "../../services/configAxios";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Login = () => {
     const handleLogin = async(event)=>{
         event.preventDefault();
         try{
-            const response = await axios.post("/login", {email, password});
+            const response = await axiosService.post("/login", {email, password});
             if (response.data.token) {
                 localStorage.setItem('authToken', response.data.token);
                 setEmail("");

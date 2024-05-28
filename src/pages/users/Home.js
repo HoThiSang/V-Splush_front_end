@@ -7,8 +7,9 @@ import axios from "axios";
 import "./style.css";
 import { Card } from "antd";
 import axiosService from "../../services/configAxios";
+import { Card } from "antd";
 
-function Home() {
+function HomeTest() {
   const [popularProducts, setPopularProducts] = useState([]);
   // const [load, setLoad] = useState(false);
   const [banners, setBanners] = useState([]);
@@ -19,6 +20,7 @@ function Home() {
         "/admin-product"
       );
       setPopularProducts(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -36,7 +38,7 @@ function Home() {
       const response = await axiosService.get(
         "/admin-show-all-banner"
       );
-      console.log(response.data);
+      console.log(response.data.data);
       setBanners(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -47,7 +49,6 @@ function Home() {
     fechDataBanner();
   }, []);
   console.log(banners);
-
 
   return (
     <>
@@ -145,4 +146,4 @@ function Home() {
     </>
   );
 }
-export default Home;
+export default HomeTest;
