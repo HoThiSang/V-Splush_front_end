@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosService from '../../services/configAxios';
-import { Button, CardItem } from "../../components";
-import axios from "axios";
+import { Button} from "../../components";
+import ProductItem from "../../components/ProductItem";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
@@ -92,12 +92,13 @@ const ProductDetail = () => {
       )}
       <h3>Popular Products</h3>
       <hr />
-      {popularProducts.slice(0, 3).map((item) => (
-        <CardItem
-          key={item.id}
-          product_name={item.product_name}
-          description={item.description}
-          image_url={item.image_url}
+      {popularProducts.slice(0, 3).map((product) => (
+        <ProductItem
+          key={id}
+          link={product.image_url}
+          title={product.product_name}
+          description={product.description}
+          price={product.price}
         />
       ))}
     </div>
