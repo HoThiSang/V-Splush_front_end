@@ -1,21 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axiosService from "../../services/configAxios";
+import { Link, useNavigate } from "react-router-dom"
 
 const RegistrationForm = () => {
-    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [usernameFocus, setUsernameFocus] = useState(false);
+    const [nameFocus, setNameFocus] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
     const [phoneFocus, setPhoneFocus] = useState(false);
     const [addressFocus, setAddressFocus] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
     const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
 
-    const [validUsername, setValidUsername] = useState(false);
+    const [validName, setValidName] = useState(false);
     const [validEmail, setValidEmail] = useState(false);
     const [validPhone, setValidPhone] = useState(false);
     const [validAddress, setValidAddress] = useState(false);
@@ -28,9 +30,9 @@ const RegistrationForm = () => {
 
     useEffect(() => {
         const USER_REGEX = /^[a-zA-Z0-9]+$/;
-        const result = USER_REGEX.test(username);
-        setValidUsername(result);
-    }, [username])
+        const result = USER_REGEX.test(name);
+        setValidName(result);
+    }, [name])
 
     useEffect(() => {
         const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -62,17 +64,35 @@ const RegistrationForm = () => {
 
     useEffect(() => {
         setErrMsg('');
-    },[username, email, phone, address, password, confirmPassword])
+    },[name, email, phone, address, password, confirmPassword])
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Handle form submission here
+    const navigate = useNavigate();
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        try{
+            const response = await axiosService.post("/register", {name, email, phone, address, password, confirmPassword});
+            if (response.data.token) {
+                localStorage.setItem('authToken', response.data.token);
+                setName("");
+                setEmail("");
+                setPhone("");
+                setAddress("");
+                setPassword("");
+                setConfirmPassword("");
+                navigate("/login");
+            } else {
+                console.log(response.data.error);
+            }
+        } catch(e){
+            console.log(e);
+        }
 
     }
 
     return (
         <div className="registration-form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
             <h2>Registration</h2>
                 <div className="input-box">
                     <label htmlFor="username">Username</label>
@@ -81,12 +101,13 @@ const RegistrationForm = () => {
                         id="username"
                         placeholder="Enter your username"
                         autoComplete="off"
-                        onChange={(e) => setUsername(e.target.value)}
-                        onFocus={() => setUsernameFocus(true)}
-                        onBlur={() => setUsernameFocus(false)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        onFocus={() => setNameFocus(true)}
+                        onBlur={() => setNameFocus(false)}
                         required
                     />
-                    {usernameFocus && username && !validUsername && (
+                    {nameFocus && name && !validName && (
                         <p>Please enter a valid username.</p>
                     )}
                 </div>
@@ -98,6 +119,7 @@ const RegistrationForm = () => {
                         id="email"
                         placeholder="Enter your email"
                         autoComplete="off"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         onFocus={() => setEmailFocus(true)}
                         onBlur={() => setEmailFocus(false)}
@@ -115,6 +137,7 @@ const RegistrationForm = () => {
                         id="phone"
                         placeholder="Enter your phone number"
                         autoComplete="off"
+                        value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         onFocus={() => setPhoneFocus(true)}
                         onBlur={() => setPhoneFocus(false)}
@@ -132,6 +155,7 @@ const RegistrationForm = () => {
                         id="address"
                         placeholder="Enter your address"
                         autoComplete="off"
+                        value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         onFocus={() => setAddressFocus(true)}
                         onBlur={() => setAddressFocus(false)}
@@ -149,6 +173,7 @@ const RegistrationForm = () => {
                         id="password"
                         placeholder="Enter your password"
                         autoComplete="off"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         onFocus={() => setPasswordFocus(true)}
                         onBlur={() => setPasswordFocus(false)}
@@ -170,6 +195,7 @@ const RegistrationForm = () => {
                         id="confirm-password"
                         placeholder="Re-enter your password"
                         autoComplete="off"
+                        value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         onFocus={() => setConfirmPasswordFocus(true)}
                         onBlur={() => setConfirmPasswordFocus(false)}
