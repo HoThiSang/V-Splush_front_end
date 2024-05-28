@@ -7,18 +7,17 @@ function BlogDetail() {
   const { id } = useParams();
   const [blog, setBlog] = useState({});
 
+  const getBlogDetail = async () => {
+    try {
+      const res = await axiosService.get(`/admin-show-post/${id}`);
+      setBlog(res.data.data);
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+    }
+  };
   useEffect(() => {
-    const getBlogDetail = async () => {
-      try {
-        const res = await axiosService.get(`/admin-show-post/${id}`);
-        setBlog(res.data.data);
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-      }
-    };
     getBlogDetail();
   }, []);
-
 
   return (
     <>
@@ -33,7 +32,9 @@ function BlogDetail() {
           src={blog.image_url}
           alt={blog.title}
         />
-        <p className="p-blog-content"><span>{blog.content}</span></p>
+        <p className="p-blog-content">
+          <span>{blog.content}</span>
+        </p>
       </div>
     </>
   );
