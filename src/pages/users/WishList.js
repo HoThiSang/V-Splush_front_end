@@ -5,19 +5,19 @@ import axiosService from "../../services/configAxios";
 function WishList() {
   const [wishlist, setWishList] = useState([]);
   const [error, setError] = useState(null);
+  
+  const fetchData = async () => {
+    try {
+      const response = await axiosService.get("/show-allwishlist");
+      console.log('Wishlist Response:', response);
+      setWishList(response.data.data || []);
+    } catch (error) {
+      setError("Error fetching the wishlist data: " + error.message);
+      console.error("Error fetching the wishlist data", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosService.get("/show-allwishlist");
-        console.log('Wishlist Response:', response);
-        setWishList(response.data.data || []);
-      } catch (error) {
-        setError("Error fetching the wishlist data: " + error.message);
-        console.error("Error fetching the wishlist data", error);
-      }
-    };
-
     fetchData();
   }, []);
 
