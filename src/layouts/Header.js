@@ -18,21 +18,6 @@ function Header() {
 
                             </ul>
                         </div>
-                        
-                        {/* <div className="cnt-block">
-                        <ul className="list-unstyled list-inline">
-                            <li className="dropdown dropdown-small">
-                                <Link to="/!" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
-                                    <span className="value">Login</span><b className="caret"></b>
-                                </Link>
-
-                                <ul className="dropdown-menu">
-                                    <li><Link to="/!">Register</Link></li>
-                                    <li><Link to="/!">Login</Link></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div> */}
                         <div className="clearfix"></div>
                     </div>
                 </div>

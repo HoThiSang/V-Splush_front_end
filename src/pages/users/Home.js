@@ -7,7 +7,6 @@ import axios from "axios";
 import "./style.css";
 import { Card } from "antd";
 import axiosService from "../../services/configAxios";
-import { Card } from "antd";
 
 function HomeTest() {
   const [popularProducts, setPopularProducts] = useState([]);
