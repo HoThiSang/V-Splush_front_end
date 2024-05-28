@@ -24,6 +24,10 @@ const ProductDetail = () => {
     }
   };
 
+  useEffect(() => {
+    fetchProduct();
+  }, [id]);
+
   const fetchData = async () => {
     try {
       const response = await axiosService.get("/admin-product");
@@ -33,15 +37,13 @@ const ProductDetail = () => {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleThumbnailClick = (image) => {
     setMainImage(image);
   };
-
-  useEffect(() => {
-    fetchProduct();
-    fetchData();
-  }, [id]);
-
   return (
     <div className="container">
       {product && (
