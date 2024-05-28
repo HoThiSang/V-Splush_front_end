@@ -14,7 +14,6 @@ function Header() {
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
                                 <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
                                 <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
-
                             </ul>
                         </div>
                         <div className="clearfix"></div>
