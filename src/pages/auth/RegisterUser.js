@@ -92,7 +92,7 @@ const RegistrationForm = () => {
 
     return (
         <div className="registration-form">
-            <form onSubmit={handleRegister}>
+            <form onSubmit={handleRegister} className='form-rigister'>
             <h2>Registration</h2>
                 <div className="input-box">
                     <label htmlFor="username">Username</label>
