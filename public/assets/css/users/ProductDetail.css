@@ -1,0 +1,59 @@
+.product-detail {
+  display: flex;
+  gap: 20px;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+}
+
+
+.thumbnail {
+  width: 150px; //Đặt một giá trị cố định cho chiều rộng của thumbnail
+  height: auto; /* Đảm bảo chiều cao tự động tính toán dựa trên tỉ lệ khung hình */
+  cursor: pointer;
+}
+
+
+.image1 {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  height: 100%; /* Đảm bảo chiều cao của div là 100% */
+}
+
+.main-image {
+  width:85%;
+  height: auto;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+
+.right-section {
+  flex: 1;
+}
+
+.product-title {
+  font-size: 35px;
+  margin-bottom: 10px;
+  margin-top: 40px
+}
+
+.product-description{
+  font-size: 18px;
+}
+.product-price {
+  font-size: 20px;
+  color: green;
+  margin-bottom: 20px;
+}
+hr {
+  border-top: 1px solid black;
+}
+
+.add-to-cart{
+  margin-bottom: 20px;
+}

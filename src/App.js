@@ -7,6 +7,7 @@ import About from './components/About.js';
 import Product from './pages/users/Product.js';
 import RegistrationForm from './pages/auth/RegisterUser.js';
 import Login from './pages/auth/Login.js';
+import ProductDetail from './pages/users/ProductDetail.js';
 function App() {
  
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route path='/login'  element={<Login />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
+        <Route path='/about' element={<About />} />
+        <Route path="/productdetail/:id" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </div>

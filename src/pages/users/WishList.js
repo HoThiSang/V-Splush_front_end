@@ -4,18 +4,26 @@ import axiosService from "../../services/configAxios";
 
 function WishList() {
   const [wishlist, setWishList] = useState([]);
+  const [error, setError] = useState(null);
+  
+  const fetchData = async () => {
+    try {
+      const response = await axiosService.get("/show-allwishlist");
+      console.log('Wishlist Response:', response);
+      setWishList(response.data.data || []);
+    } catch (error) {
+      setError("Error fetching the wishlist data: " + error.message);
+      console.error("Error fetching the wishlist data", error);
+    }
+  };
 
-useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await axiosService.get('/show-allwishlist');
-        setWishList(data);
-      } catch (error) {
-        throw new  Error('Error fetching the wishlist data', error.message);
-      }
-    };
+  useEffect(() => {
     fetchData();
   }, []);
+
+  if (error) {
+    return <div className="alert alert-danger">{error}</div>;
+  }
 
   return (
     <div className="container mt-5">
@@ -26,21 +34,20 @@ useEffect(() => {
               <tr>
                 <th scope="col"></th>
                 <th scope="col" className="text-center">Image</th>
-                <th scope="col" className=" col-md-6 text-center">Product Name</th>
+                <th scope="col" className="col-md-6 text-center">Product Name</th>
                 <th scope="col" className="col-md-6 text-center">Category</th>
                 <th scope="col" className="text-center">Price</th>
                 <th scope="col" className="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
-              {wishlist.map((wishlist, index) => (
+              {wishlist.map((item, index) => (
                 <WishlistItem 
                   key={index}
-                  id={index}
-                  image_url={wishlist.image_url} 
-                  product_name={wishlist.product_name}
-                  category_name={wishlist.category_name}
-                  price={wishlist.price} 
+                  image_url={item.image_url} 
+                  product_name={item.product_name}
+                  category_name={item.category_name}
+                  price={item.price} 
                 />
               ))}
             </tbody>
@@ -50,4 +57,5 @@ useEffect(() => {
     </div>
   );
 }
+
 export default WishList;

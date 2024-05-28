@@ -23,12 +23,12 @@
   -webkit-box-orient: vertical;
   width: 250px;
 }
-.card img {
+.card-blog img {
   height: 200px;
   width: 250px;
   transition: transform 0.5s ease;
 }
-.card img:hover {
+.card-blog img:hover {
   background-color: black;
   transform: scale(1.1);
 }
