@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Input } from "../../components";
 import axiosService from "../../services/configAxios";
+import { useNavigate } from "react-router";
 
 const CheckoutForm = () => {
   const [carts, setCarts] = useState([]);
@@ -10,7 +11,7 @@ const CheckoutForm = () => {
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("");
   // const [user, setUser] = useState({});
-
+  const navigate = useNavigate();
   const fetchData = async () => {
     try {
       const { data } = await axiosService.get("/shopping-cart");
@@ -37,18 +38,15 @@ const CheckoutForm = () => {
     console.log("Phone:", phone);
     console.log("Address:", address);
     console.log("Payment:", payment);
-
+    const redirect = 'redirect';
     try {
-      const postData = await axiosService.post('/checkout', {name, email, phone, address, payment,user_id: 2 , totalPrice: 20000});
-     console.log(postData)
-      if(postData.status===200){
-      alert('Thành công!')
-     }else{
-      alert("Thất bại!")
-     }
-      
+      const postData = await axiosService.post('/checkout', {name, email, phone, address, payment,user_id: 2 , totalPrice: 20000,redirect});
+     
+      console.log(postData)
+      window.location.href=postData.data.data;
+    
     } catch (error) {
-      throw new Error('Wrong went checkout');
+      throw new Error('Wrong went you checkout')
     }
   }
 
