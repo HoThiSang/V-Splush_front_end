@@ -1,0 +1,18 @@
+.hr-checkout-page{
+    border-width: 2px;
+    border-color: #C4C4C4;
+}
+
+.hr-checkout-page-2{
+    border-width: 2px;
+    border-color: #C4C4C4;
+    margin-top: 10px;
+}
+
+.form-inline{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
