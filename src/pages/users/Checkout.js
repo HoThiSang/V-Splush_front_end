@@ -41,10 +41,8 @@ const CheckoutForm = () => {
     const redirect = 'redirect';
     try {
       const postData = await axiosService.post('/checkout', {name, email, phone, address, payment,user_id: 2 , totalPrice: 20000,redirect});
-     
-      console.log(postData)
       window.location.href=postData.data.data;
-    
+      
     } catch (error) {
       throw new Error('Wrong went you checkout')
     }

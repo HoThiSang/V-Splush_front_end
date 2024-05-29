@@ -61,6 +61,7 @@ function Product() {
             .map((product, index) => (
               <ProductItem
                 key={index}
+                id={product.id}
                 link={product.image_url}
                 id={product.id}
                 title={product.product_name}

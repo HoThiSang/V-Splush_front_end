@@ -112,6 +112,7 @@ function Header() {
     
                                     <li className="dropdown"> <Link to="/contact-us">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
+                                    <li className="dropdown"> <Link to="/blog">Blog</Link> </li>
 
                                         <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
                                     </ul>
