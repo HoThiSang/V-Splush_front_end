@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
 
 function ContactUs() {
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [user, setUser] = useState({});
   // const [user_id]=useState("1")
 
   const handleSetname = (e) => {
@@ -27,16 +26,23 @@ function ContactUs() {
   const handleSubmitContact = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosService.post("/user-send-contact", {name,email,subject,message});
-      alert('You sent successfully')
-            console.log(response.data.data);
+      const response = await axiosService.post("/user-send-contact", {
+        name,
+        email,
+        subject,
+        message,
+      });
+      alert("You sent successfully");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching email data:", error);
-      alert('You sent failed')
+      alert("You sent failed");
     }
-    
   };
-  
 
   return (
     <>
@@ -130,7 +136,6 @@ You In 24/7"
           </div>
         </div>
       </div>
-      
 
       <div className="inputs-contact-us">
         <h2>Contact</h2>
@@ -144,7 +149,7 @@ You In 24/7"
               <i class="fa fa-user " aria-hidden="true"></i>
               <input
                 type="text"
-                  placeholder="Name"
+                placeholder="Name"
                 className="input-infor"
                 value={name}
                 onChange={handleSetname}
@@ -183,20 +188,18 @@ You In 24/7"
                 onChange={handleMessage}
               />
             </div>
-             <div className="button-contact-us">
+            <div className="button-contact-us">
               <Button
                 className={"btn-primary"}
                 title={"SUBMIT"}
                 width={"300px"}
               />
             </div>
-
           </form>
         </div>
-        </div>
-
+      </div>
     </>
-  )}
-
+  );
+}
 
 export default ContactUs;
