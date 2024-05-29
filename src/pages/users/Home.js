@@ -3,7 +3,7 @@ import { Bennefit, Location, About, CardItem } from "../../components";
 import { BennefitData } from "../../data";
 import { Banner } from "../../layouts";
 import axios from "axios";
-// import axiosService from "../../services/configAxios";
+
 import "./style.css";
 import { Card } from "antd";
 import axiosService from "../../services/configAxios";
@@ -134,7 +134,6 @@ function HomeTest() {
                 </div>
             </div>
           </div>
-          <About />
         </div>
       </div>
     </div>

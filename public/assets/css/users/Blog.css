@@ -1,5 +1,5 @@
 .card-blog {
-  margin: 0px 0px 30px 0px
+  margin: 0px 0px 30px 0px;
 }
 
 .card-body-blog {
@@ -23,12 +23,12 @@
   -webkit-box-orient: vertical;
   width: 250px;
 }
-.card img {
+.card-blog img {
   height: 200px;
   width: 250px;
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
 }
-.card img:hover{
+.card-blog img:hover {
   background-color: black;
   transform: scale(1.1);
 }
@@ -50,15 +50,49 @@
   margin-top: 60px;
   text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.3);
 }
-@media  screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .ant-pagination {
     padding-bottom: 50px;
     margin-left: 500px;
   }
 }
 
-@media  screen and ( max-width: 900px){
-  .ant-pagination{
-    padding-left: 60px 
-  };
+@media screen and (max-width: 900px) {
+  .ant-pagination {
+    padding-left: 60px;
+  }
+}
+
+.img-blog-detail {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  margin-top: 250px;
+  margin-left: 250px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 5px white);
+}
+
+.img-blog-detail:hover {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  margin-top: 250px;
+  margin-left: 250px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 5px white);
+}
+
+.alert-blog-detail {
+  position: absolute;
+  height: 450px;
+}
+.p-blog-content {
+  width: 900px;
+  margin-top: 80px;
+  margin-left: 250px;
+  margin-bottom: 80px;
+  text-align: justify;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
