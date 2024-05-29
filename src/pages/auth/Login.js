@@ -5,6 +5,7 @@ import axiosService from "../../services/configAxios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
     const handleLogin = async(event)=>{
@@ -20,7 +21,9 @@ const Login = () => {
                 console.log(response.data.error);
             }
         } catch(e){
-            console.log(e);
+            if(e.response.status === 422){
+                setErrors(e.response.data.errors);
+            }
         }
     }
 
@@ -30,11 +33,17 @@ const Login = () => {
                 <h2>Login</h2>
                 <div className="input-box">
                     <label htmlFor="email">Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email" required />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email"  />
+                    {errors.email && (
+                        <p>{errors.email[0]}</p>
+                    )}
                 </div>
                 <div className="input-box">
                     <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password" required />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password"  />
+                    {errors.password && (
+                        <p>{errors.password[0]}</p>
+                    )}
                 </div>
                 <button type="submit">Login</button>
                 <div className="remember-signin">
