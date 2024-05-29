@@ -10,7 +10,7 @@ const CheckoutForm = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("");
-  // const [user, setUser] = useState({});
+
   const navigate = useNavigate();
   const fetchData = async () => {
     try {
@@ -47,6 +47,7 @@ const CheckoutForm = () => {
       throw new Error('Wrong went you checkout')
     }
   }
+ 
 
   return (
     <form className="form-checkout" onSubmit={handelSubmitForm}>
