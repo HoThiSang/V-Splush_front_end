@@ -30,7 +30,21 @@ const CheckoutForm = () => {
     console.log(e.target.value);
     setPayment(e.target.value);
   };
-  // debugger
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
   const handelSubmitForm = async (e) => {
     e.preventDefault();
     console.log("Username:", name);
@@ -65,25 +79,30 @@ const CheckoutForm = () => {
 
         <div className="row">
           <div className="form-container">
+          
             <Input
-              value={name}
               label="Name"
-              onChange={(e) => setName(e.target.value)}
+              type="text"
+              value={name}
+              onChange={handleNameChange}
             />
             <Input
-              value={email}
               label="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
             />
-            <Input
+             <Input
+              label="Phone"
+              type="text"
               value={phone}
-              label="Phone number"
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
             />
             <Input
-              value={address}
               label="Address"
-              onChange={(e) => setAddress(e.target.value)}
+              type="text"
+              value={address}
+              onChange={handleAddressChange}
             />
           </div>
         </div>
@@ -97,10 +116,10 @@ const CheckoutForm = () => {
             <Label idName="total-price" label="Total price" />
             {carts.map((item, index) => (
               <>
-                <Label idName="product" label={item.product_name} />
-                <Label idName="product" label={item.quantity} />
-                <Label idName="product" label={item.unit_price} />
-                <Label idName="product" label={item.total_price} />
+                <Label key={index} idName="product" label={item.product_name} />
+                <Label key={index} idName="product" label={item.quantity} />
+                <Label key={index} idName="product" label={item.unit_price} />
+                <Label key={index} idName="product" label={item.total_price} />
               </>
             ))}
           </div>
