@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import axiosService from '../services/configAxios';
+
 
 function Header() {
     const [user, setUser] = useState(null);
@@ -10,6 +12,24 @@ function Header() {
             setUser(JSON.parse(storedUser));
         }
     }, []);
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        try {
+            await axiosService.post('/logout', null, {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                },
+            });
+
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('user');
+          document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+          navigate('/');
+        } catch (error) {
+          console.error('Logout error:', error);
+        }
+      };
 
     return (
         <header className="header-style-1">
@@ -23,7 +43,7 @@ function Header() {
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
 
                                 {user ? (
-                                    <li><Link to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
+                                    <li><Link onClick={handleLogout} to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
                                 ) : (
                                     <>
                                         <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
