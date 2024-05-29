@@ -26,7 +26,7 @@ const Login = () => {
 
     return (
         <div className="registration-form">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="register-form">
                 <h2>Login</h2>
                 <div className="input-box">
                     <label htmlFor="email">Email</label>

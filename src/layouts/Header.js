@@ -75,7 +75,7 @@ function Header() {
     
                                     <li className="dropdown hidden-sm"> <Link to="/products">Products</Link> </li>
     
-                                    <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
+                                    <li className="dropdown"> <Link to="/contact-us">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
 
                                         <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>

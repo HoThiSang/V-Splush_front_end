@@ -1,91 +1,81 @@
 .background-contact-us {
-  background-color:rgba(132, 168, 178, 1);
+  background-color: rgba(132, 168, 178, 1);
   width: 400px;
-  height: 400px;
+  height: 390px;
   position: absolute;
-  margin-top: 10px;
-  margin-left: 230px;
-  
-
+  margin-left: 100px;
 }
-.image-contact-us{
+.image-contact-us {
   padding-bottom: 90px;
   position: relative;
   padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 40px;
-  
+  padding-top: 30px;
 }
 
-.contact-us{
-  display: flex;
-  margin-left: 30px;
+.infor-contact-us {
+  /* display: flex; */
+  padding-top: 10px;
 }
 
-.infor-contact-us{
-  display: flex;
-  padding-top: 16px;
-}
-
-.icon-contact-us{
+.icon-contact-us {
   border: 2px solid rgba(122, 156, 165, 1);
   width: 54px;
   height: 54px;
   color: rgba(122, 156, 165, 1);
   padding-left: 12px;
   padding-top: 12px;
-margin-right: 20px;
 }
 
-
-
-.body-contact-us{
+.body-contact-us {
   padding-top: 15px;
   padding-left: 20px;
   width: 450px;
 }
 
-.inputs-contact-us{
+.inputs-contact-us {
   background-color: rgba(235, 243, 245, 1);
   height: 600px;
   position: relative;
-
+  padding-top: 15px;
 }
-.inputs-contact-us h2{
-  padding-top: 30px;
- text-align: center;
-
+.inputs-contact-us h2 {
+  /* padding-top: 30px; */
+  text-align: center;
 }
-.p-text{
+.p-text {
   text-align: center;
 }
 
-.input-infor-contact-us{
+.input-infor-contact-us {
   background-color: white;
-  margin-left: 300px;
+  margin-left: 300px; 
   margin-right: 250px;
   height: 450px;
-  padding-top: 20px;
-  box-shadow:  0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
+   padding-top: 20px;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.iput-group-contact-us{
+.iput-group-contact-us {
   border: 2px solid rgba(122, 156, 165, 1);
-  margin-left: 200px;
+  margin-left: 200px; 
   margin-right: 200px;
-  margin-top:30px;
-  
+   margin-top:30px;
 }
-.iput-group-contact-us i{
- margin: 10px 10px 10px 10px;
+.iput-group-contact-us i {
+  margin: 10px 10px 10px 10px;
 }
-.input-infor{
+.input-infor {
   border: 1px solid white;
   outline: none;
+  padding-left: 10px;
+  width: 300px;
 }
 
-.button-contact-us{
-  margin-top: 30px;
+.button-contact-us {
+  margin-top: 30px; 
   margin-left: 260px;
 }
+
+
+
+  
