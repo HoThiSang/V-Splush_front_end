@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
     return (
         <header className="header-style-1">
             <div className="top-bar animate-dropdown">
@@ -12,8 +21,15 @@ function Header() {
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
-                                <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
-                                <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+
+                                {user ? (
+                                    <li><Link to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
+                                ) : (
+                                    <>
+                                        <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
+                                        <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                         <div className="clearfix"></div>

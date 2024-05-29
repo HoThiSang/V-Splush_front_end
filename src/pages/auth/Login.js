@@ -1,19 +1,33 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axiosService from "../../services/configAxios";
 
 const Login = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
+    const [user, setUser] = useState(null);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
     const handleLogin = async(event)=>{
         event.preventDefault();
         try{
             const response = await axiosService.post("/login", {email, password});
-            if (response.data.token) {
+            if (response.data.user) {
+                // Lưu vào localStorage
                 localStorage.setItem('authToken', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+                // // Lưu thông tin user vào cookie
+                // document.cookie = `user=${JSON.stringify(response.data.user)}; path=/`;
+
+                setUser(response.data.user);
                 setEmail("");
                 setPassword("");
                 navigate("/");
