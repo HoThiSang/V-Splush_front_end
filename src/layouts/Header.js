@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
     return (
         <header className="header-style-1">
             <div className="top-bar animate-dropdown">
@@ -12,8 +21,15 @@ function Header() {
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
-                                <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
-                                <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+
+                                {user ? (
+                                    <li><Link to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
+                                ) : (
+                                    <>
+                                        <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
+                                        <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                         <div className="clearfix"></div>
@@ -53,29 +69,29 @@ function Header() {
                                     <div className="total-price-basket"> <span className="lbl"></span> <span className="total-price"> <span className="sign"></span><span className="value"></span> </span> </div>
                                 </div>
                             </Link>
-    
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-        <div className="header-nav animate-dropdown">
-            <div className="container">
-                <div className="yamm navbar navbar-default" role="navigation">
-                    <div className="navbar-header">
-                        <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" className="navbar-toggle collapsed" type="button">
-                            <span className="sr-only">Toggle navigation</span> <span className="icon-bar"></span> <span className="icon-bar"></span> <span className="icon-bar"></span> </button>
-                    </div>
-                    <div className="nav-bg-class">
-                        <div className="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
-                            <div className="nav-outer">
-                                <ul className="nav navbar-nav">
-                                    <li className="active dropdown yamm-fw"> <Link to="/" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</Link> </li>
-    
-                                    <li className="dropdown hidden-sm"> <Link to="/products">Products</Link> </li>
-    
-                                    <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
-                                    <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
+            <div className="header-nav animate-dropdown">
+                <div className="container">
+                    <div className="yamm navbar navbar-default" role="navigation">
+                        <div className="navbar-header">
+                            <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" className="navbar-toggle collapsed" type="button">
+                                <span className="sr-only">Toggle navigation</span> <span className="icon-bar"></span> <span className="icon-bar"></span> <span className="icon-bar"></span> </button>
+                        </div>
+                        <div className="nav-bg-class">
+                            <div className="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
+                                <div className="nav-outer">
+                                    <ul className="nav navbar-nav">
+                                        <li className="active dropdown yamm-fw"> <Link to="/" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</Link> </li>
+
+                                        <li className="dropdown hidden-sm"> <Link to="/products">Products</Link> </li>
+
+                                        <li className="dropdown"> <Link to="/!">Contact us</Link> </li>
+                                        <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
 
                                         <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
                                     </ul>
