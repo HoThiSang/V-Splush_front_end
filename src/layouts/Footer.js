@@ -78,7 +78,7 @@ const Footer = () => {
                   <li><Link to={'/blog'} title="Blog">Blog</Link></li>
                   <li><Link to="#" title="Company">Company</Link></li>
                   <li><Link to="#" title="Investor Relations">Investor Relations</Link></li>
-                  <li className=" last"><Link to="contact-us.html" title="Suppliers">Contact Us</Link></li>
+                  <li className=" last"><Link to="/contact-us" title="Suppliers">Contact Us</Link></li>
                 </ul>
               </div>
             </div>

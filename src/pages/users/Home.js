@@ -135,10 +135,7 @@ function HomeTest() {
             </div>
           </div>
         </div>
-        <About />
-      
       </div>
-     
     </div>
     <Location />
     </>

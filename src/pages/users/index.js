@@ -5,3 +5,4 @@ export { default as WishList } from "./WishList";
 export {default as Blog} from "./Blog";
 export {default as Product } from './Product'
 export {default as BlogDetail}  from "./BlogDetail"
+export {default as ContactUs}  from "./ContactUs"
