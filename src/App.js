@@ -8,7 +8,6 @@ import Product from './pages/users/Product.js';
 import RegistrationForm from './pages/auth/RegisterUser.js';
 import Login from './pages/auth/Login.js';
 import ProductDetail from './pages/users/ProductDetail.js';
-
 function App() {
  
   return (
@@ -28,7 +27,6 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />}/>
-
       </Routes>
       <Footer />
     </div>
