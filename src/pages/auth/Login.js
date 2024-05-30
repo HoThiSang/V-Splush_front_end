@@ -16,10 +16,10 @@ const Login = () => {
         }
     }, []);
 
-    const handleLogin = async(event)=>{
+    const handleLogin = async (event) => {
         event.preventDefault();
-        try{
-            const response = await axiosService.post("/login", {email, password});
+        try {
+            const response = await axiosService.post("/login", { email, password });
             if (response.data.user) {
                 // Lưu vào localStorage
                 localStorage.setItem('authToken', response.data.token);

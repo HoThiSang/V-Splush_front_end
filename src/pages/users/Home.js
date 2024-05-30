@@ -125,7 +125,8 @@ function HomeTest() {
                 >
                        { displayedProducts.map((item, index) => (
                         <CardItem 
-                          key={item.id} 
+                          key={item.id}
+                          id={item.id} 
                           product_name={item.product_name}
                           description={item.description}
                           image_url={item.image_url}
