@@ -44,11 +44,12 @@ const ProductDetail = () => {
     fetchData();
   }, []);
 
-  const storedUser = localStorage.getItem('user');
-  if (storedUser) {
-    setUser(JSON.parse(storedUser));
-  }
+  // Move this logic into a useEffect to avoid infinite re-renders
   useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
 
   const handleThumbnailClick = (image) => {
@@ -130,7 +131,7 @@ const ProductDetail = () => {
       <div className="row">
         {popularProducts.slice(0, 3).map((popularProduct, index) => (
           <ProductItem
-            key={index} 
+            key={index}
             id={popularProduct.id}
             link={popularProduct.image_url}
             title={popularProduct.product_name}
