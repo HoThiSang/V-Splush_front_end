@@ -18,7 +18,9 @@ const CheckoutForm = () => {
       setCarts(data.carts);
       console.log(data.carts);
     } catch (error) {
+      alert("Error fetching data:", error);
       throw new Error("Error fetching data:", error);
+     
     }
   };
 

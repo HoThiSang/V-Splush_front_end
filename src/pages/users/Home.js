@@ -31,6 +31,7 @@ function HomeTest() {
       console.log(response.data.data);
       setBanners(response.data.data);
     } catch (error) {
+      alert("Error fetching data:", error);
       throw new Error("Error fetching data:", error);
     }
   };

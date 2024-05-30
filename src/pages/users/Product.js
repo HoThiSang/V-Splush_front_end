@@ -27,6 +27,7 @@ function Product() {
       setProducts(Object.values(updatedProducts));
     } catch (error) {
       console.error("Error fetching product data", error);
+      alert("Error fetching product data", error);
     }
   };
   useEffect(() => {
