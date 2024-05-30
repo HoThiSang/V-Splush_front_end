@@ -30,7 +30,7 @@ const Login = () => {
                 setUser(response.data.user);
                 setEmail("");
                 setPassword("");
-                navigate("/register");
+                navigate("/");
             } else {
                 console.log(response.data.error);
             }
