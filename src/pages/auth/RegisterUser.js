@@ -105,7 +105,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setName(e.target.value)}
                         onFocus={() => setNameFocus(true)}
                         onBlur={() => setNameFocus(false)}
-                        required
+                        
                     />
                     {nameFocus && name && !validName && (
                         <p>Please enter a valid username.</p>
@@ -123,7 +123,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         onFocus={() => setEmailFocus(true)}
                         onBlur={() => setEmailFocus(false)}
-                        required
+
                     />
                     {emailFocus && email && !validEmail && (
                         <p>Please enter a valid email address.</p>
@@ -141,7 +141,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setPhone(e.target.value)}
                         onFocus={() => setPhoneFocus(true)}
                         onBlur={() => setPhoneFocus(false)}
-                        required
+                        
                     />
                     {phoneFocus && phone && !validPhone && (
                         <p>Please enter a valid phone number.</p>
@@ -159,7 +159,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setAddress(e.target.value)}
                         onFocus={() => setAddressFocus(true)}
                         onBlur={() => setAddressFocus(false)}
-                        required
+                        
                     />
                     {addressFocus && address && !validAddress && (
                         <p>Please enter a valid address.</p>
@@ -177,7 +177,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         onFocus={() => setPasswordFocus(true)}
                         onBlur={() => setPasswordFocus(false)}
-                        required
+                       
                     />
                     {passwordFocus && password && !validPassword && (
                         <p>
@@ -199,7 +199,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         onFocus={() => setConfirmPasswordFocus(true)}
                         onBlur={() => setConfirmPasswordFocus(false)}
-                        required
+                        
                     />
                     {confirmPasswordFocus && confirmPassword && !validConfirmPassword && (
                         <p>Passwords do not match.</p>

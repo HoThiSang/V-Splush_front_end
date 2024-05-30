@@ -1,7 +1,36 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import axiosService from '../services/configAxios';
+
 
 function Header() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        try {
+            await axiosService.post('/logout', null, {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                },
+            });
+
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('user');
+          document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+          navigate('/');
+        } catch (error) {
+          console.error('Logout error:', error);
+        }
+      };
+
     return (
         <header className="header-style-1">
             <div className="top-bar animate-dropdown">
@@ -12,8 +41,15 @@ function Header() {
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
-                                <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
-                                <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+
+                                {user ? (
+                                    <li><Link onClick={handleLogout} to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
+                                ) : (
+                                    <>
+                                        <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
+                                        <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                         <div className="clearfix"></div>
