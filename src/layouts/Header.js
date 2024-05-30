@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Search } from '../components';
 function Header() {
     return (
         <header className="header-style-1">
@@ -14,7 +14,6 @@ function Header() {
                                 <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
                                 <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
                                 <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
-
                             </ul>
                         </div>
                         <div className="clearfix"></div>
@@ -40,8 +39,7 @@ function Header() {
                                             <Link className="dropdown-toggle" data-toggle="dropdown" to="/!category.html">Categories <b className="caret"></b></Link>
                                         </li>
                                     </ul>
-                                    <input className="search-field" name="keyword_submitted" placeholder="Search here..." />
-                                    <Link className="search-button" to="/!"></Link>
+                                    <Search/>
                                 </div>
                                 {/* </form> */}
                             </div>
@@ -54,7 +52,6 @@ function Header() {
                                     <div className="total-price-basket"> <span className="lbl"></span> <span className="total-price"> <span className="sign"></span><span className="value"></span> </span> </div>
                                 </div>
                             </Link>
-    
                         </div>
                     </div>
                 </div>
