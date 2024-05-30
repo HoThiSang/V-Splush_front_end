@@ -14,4 +14,3 @@ function ProductItem({ id,link, title, description,price }) {
   );
 }
 export default ProductItem;
-1
