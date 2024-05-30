@@ -6,9 +6,7 @@ import { Home, Cart, Test, WishList,Blog,BlogDetail,ContactUs, CheckoutForm, Che
 import About from './components/About.js';
 import Product from './pages/users/Product.js';
 import RegistrationForm from './pages/auth/RegisterUser.js';
-import Login from './pages/auth/Login.js';
-import Search from './components/Search.js';
-function App() {
+import Login from './pages/auth/Login.js';function App() {
  
   return (
     <div className='cnt-home'> 
