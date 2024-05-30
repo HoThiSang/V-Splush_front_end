@@ -30,12 +30,12 @@ const Login = () => {
                 setUser(response.data.user);
                 setEmail("");
                 setPassword("");
-                navigate("/");
+                navigate("/register");
             } else {
                 console.log(response.data.error);
             }
-        } catch(e){
-            if(e.response.status === 422){
+        } catch (e) {
+            if (e.response.status === 422) {
                 setErrors(e.response.data.errors);
             }
         }
@@ -47,14 +47,14 @@ const Login = () => {
                 <h2>Login</h2>
                 <div className="input-box">
                     <label htmlFor="email">Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email"  />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email" />
                     {errors.email && (
                         <p>{errors.email[0]}</p>
                     )}
                 </div>
                 <div className="input-box">
                     <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password"  />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password" />
                     {errors.password && (
                         <p>{errors.password[0]}</p>
                     )}
