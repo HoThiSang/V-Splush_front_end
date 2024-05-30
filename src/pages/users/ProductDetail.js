@@ -44,11 +44,11 @@ const ProductDetail = () => {
     fetchData();
   }, []);
 
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
   }, []);
 
   const handleThumbnailClick = (image) => {
@@ -59,7 +59,7 @@ const ProductDetail = () => {
     if (!user) {
       navigate('/login');
     } else {
-      alert('Add to cart thành công');
+      alert('Add to cart successfully');
     }
   };
 
@@ -70,7 +70,7 @@ const ProductDetail = () => {
       navigate('/checkout');
     }
   };
-  
+
   return (
     <div className="container">
       {product && (
@@ -128,9 +128,9 @@ const ProductDetail = () => {
       <h3>Popular Products</h3>
       <hr />
       <div className="row">
-        {popularProducts.slice(0, 3).map((popularProduct) => (
+        {popularProducts.slice(0, 3).map((popularProduct, index) => (
           <ProductItem
-            key={popularProduct.id}
+            key={index} 
             id={popularProduct.id}
             link={popularProduct.image_url}
             title={popularProduct.product_name}
