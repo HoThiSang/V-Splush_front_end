@@ -9,7 +9,7 @@ function ContactUs() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  // const [user_id]=useState("1")
+  const user_id = localStorage.getItem('userId');
 
   const handleSetname = (e) => {
     setName(e.target.value);
@@ -31,6 +31,7 @@ function ContactUs() {
         email,
         subject,
         message,
+        user_id,
       });
       alert("You sent successfully");
       setName("");
