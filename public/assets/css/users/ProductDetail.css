@@ -6,22 +6,22 @@
 .left-section {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+  flex-direction: column; 
 }
 
 
 .thumbnail {
-  width: 150px; //Đặt một giá trị cố định cho chiều rộng của thumbnail
-  height: auto; /* Đảm bảo chiều cao tự động tính toán dựa trên tỉ lệ khung hình */
+  width: 150px;
+  height: auto;
   cursor: pointer;
 }
 
 
 .image1 {
   display: flex;
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
-  height: 100%; /* Đảm bảo chiều cao của div là 100% */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .main-image {
