@@ -18,9 +18,8 @@ const Search = () => {
       console.error("Error searching products:", error);
     }
   };
-
   return (
-    <div>
+    <>
       <input
         className="search-field"
         name="keyword_submitted"
@@ -32,7 +31,7 @@ const Search = () => {
       <button className="search-button" onClick={handleSearch}>
         Search
       </button>
-    </div>
+    </>
   );
 };
 export default Search;
