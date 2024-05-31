@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosService from "../services/configAxios";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -8,8 +8,8 @@ const Search = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/search-product/${keyword}`
+      const response = await axiosService.get(
+        `/search-product/${keyword}`
       );
       const searchData = response.data;
       console.log(searchData);
