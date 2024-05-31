@@ -113,7 +113,7 @@ function Header() {
                       <Link
                         className="dropdown-toggle"
                         data-toggle="dropdown"
-                        to={"/prodcts"}
+                        to={"/products"}
                       >
                         Categories <b className="caret"></b>
                       </Link>
