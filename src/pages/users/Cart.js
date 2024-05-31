@@ -1,13 +1,18 @@
 import { CartItem } from "../../components";
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
 
   const fetchData = async () => {
-    const { data } = await axiosService.get("/shopping-cart");
-    setCarts(data.carts);
+    const { data } = await axiosService.get("/user/shopping-cart",  {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      }})
+
+    setCarts(data.data);
   };
 
   useEffect(() => {
@@ -17,10 +22,13 @@ function Cart() {
   console.log(carts);
   const handleIncreaseQuantity = async (id) => {
     try {
-      const { data } = await axiosService.post(`/update-cart/${id}`, {
+      const { data } = await axiosService.post(`/user/update-cart/${id}`, {
         quantity: 1,
         product_id: id
-      });
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        }});
       console.log(data);
       const index = carts.findIndex((item) => item.product_id === id);
       if (index !== -1) {
@@ -29,16 +37,19 @@ function Cart() {
         setCarts(list);
       }
     } catch (error) {
-      throw new Error("Something went wrong!");
+      alert('Something wrong when update cart!')
     }
   };
 
   const handleDescreaseQuantity = async (id) => {
     try {
-      const { data } = await axiosService.post(`/sub-update-cart/${id}`, {
+      const { data } = await axiosService.post(`/user/sub-update-cart/${id}`, {
         quantity: 1,
         product_id: id
-      });
+      },{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        }});
       console.log(data);
       const index = carts.findIndex((item) => item.product_id === id);
       if (index !== -1) {
@@ -47,32 +58,42 @@ function Cart() {
         setCarts(list);
       }
     } catch (error) {
-      throw new Error("Something went wrong!");
+      alert('Something wrong when update cart!')
     }
   };
 
   const handleDeletCart = async (id) => {
     try {
-      const { data } = await axiosService.delete(`delete-cart/${id}`);
+      const { data } = await axiosService.delete(`/user/delete-cart/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        }});
       console.log(data);
 
       const updatedCarts = carts.filter((item) => item.product_id !== id);
       setCarts(updatedCarts);
     } catch (err) {
-      throw new Error("Failed to delete cart item. Please try again later.");
+      alert("Failed to delete cart item. Please try again later.");
     }
   };
   return (
     <>
       <div className="container cart-component">
         <div className="row">
+        {carts.length === 0 ? (
+          <div className="cart-empty ">
+                  <h1>Your cart is empty</h1>
+                  <div style={{ alignItems:'center', border: '1px solid gray', borderRadius:'20px' }}>
+                  <Link to='/products' className="btn">Continuos shopping</Link>
+                  </div>
+            </div> ) : (
           <table className="table table-striped text-center">
             <thead className="text-center">
               <tr>
                 <th scope="col"></th>
                 <th scope="col">Image</th>
                 <th scope="col">Product name</th>
-                <th scope="col">Product name</th>
+        
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Action quantity</th>
@@ -80,12 +101,8 @@ function Cart() {
               </tr>
             </thead>
             <tbody>
-              {carts.length === 0 ? (
-                <div>
-                  <h1>Your cart is empty</h1>
-                </div>
-              ) : (
-                carts.map((cart, index) => (
+             
+               { carts.map((cart, index) => (
                   <CartItem
                     key={index}
                     id={cart.product_id}
@@ -100,7 +117,7 @@ function Cart() {
                     handleDescreaseQuantity={handleDescreaseQuantity}
                   />
                 ))
-              )}
+            }
               <tr>
                 <h4>Total price : </h4>
                 <h4>Shipping : </h4>
@@ -111,13 +128,13 @@ function Cart() {
                     type="submit"
                     className="btn btn-primary checkout-btn"
                   >
-                    <a className="btn " href="#!">PROCCED TO CHEKOUT</a>
+                   <Link to={`/checkout`} className="btn">PROCCED TO CHEKOUT</Link>
                   </button>
                 </div>
               </tr>
             </tbody>
-          </table>
-        </div>
+          </table>) }
+        </div> 
       </div>
     </>
   );

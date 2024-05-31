@@ -8,3 +8,4 @@ export { default as Home } from "./Home";
 export { default as CheckoutForm } from "./Checkout";
 export {default as BlogDetail}  from "./BlogDetail"
 export {default as ContactUs}  from "./ContactUs"
+export {default as CheckoutSuccess}  from "./CheckoutSuccess"

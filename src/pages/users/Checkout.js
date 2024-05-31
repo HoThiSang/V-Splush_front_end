@@ -10,16 +10,20 @@ const CheckoutForm = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("");
-
+  const [result , setResult] = useState([]);
   const navigate = useNavigate();
   const fetchData = async () => {
     try {
-      const { data } = await axiosService.get("/shopping-cart");
-      setCarts(data.carts);
-      console.log(data.carts);
-    } catch (error) {
+      const { data } = await axiosService.get("/user/shopping-cart", {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        },
+    });
+      setCarts(data.data);
+      console.log(data.data);
+     
+    } catch (error) { 
       alert("Error fetching data:", error);
-      throw new Error("Error fetching data:", error);
      
     }
   };
@@ -55,20 +59,26 @@ const CheckoutForm = () => {
     console.log("Address:", address);
     console.log("Payment:", payment);
     const redirect = "redirect";
+    const user_id = localStorage.getItem('user.id');
     try {
-      const postData = await axiosService.post("/checkout", {
+      const postData = await axiosService.post("/user/checkout", {
         name,
         email,
         phone,
         address,
         payment,
-        user_id: 2,
+        user_id,
         totalPrice: 20000,
         redirect
-      });
+      }, 
+      {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        }});
+      console.log(postData)
       window.location.href = postData.data.data;
     } catch (error) {
-      throw new Error("Wrong went you checkout");
+      alert("Wrong went you checkout");
     }
   };
 
@@ -81,7 +91,7 @@ const CheckoutForm = () => {
 
         <div className="row">
           <div className="form-container">
-          
+
             <Input
               label="Name"
               type="text"

@@ -13,6 +13,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
 }
+
+.cart-empty{
+    min-height: 400px;
+}
+
+.checkout-page-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+  }
+  
+  .checkout-icon {
+    font-size: 25rem;
+    color: green;
+  }
+
+  .btn-checkout{
+    .btn-checkout {
+        display: flex;
+        justify-content: center;
+        gap: 4rem; 
+      }
+    }
+
+    .btn-1{
+        margin-right:25px;
+        background-color: #157ED2;
+    }

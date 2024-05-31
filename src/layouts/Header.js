@@ -12,6 +12,19 @@ function Header() {
             setUser(JSON.parse(storedUser));
         }
     }, []);
+
+      useEffect(() => {
+        window.addEventListener("storage", handleEventStorage);
+    
+        return () => {
+          window.removeEventListener("storage", handleEventStorage);
+        };
+      });
+    
+      function handleEventStorage() {
+        const storedUser = localStorage.getItem("user");
+        setUser(JSON.parse(storedUser || null));
+      }
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
