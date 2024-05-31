@@ -6,6 +6,7 @@ import { Pagination } from "antd";
 import { useLocation } from "react-router-dom";
 
 const numEachPage = 9;
+
 function Product() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -74,7 +75,6 @@ function Product() {
       maxValue: value * numEachPage,
     });
   };
-
   return (
     <div className="product-container">
       <div className="row product-item no-margin-left">
