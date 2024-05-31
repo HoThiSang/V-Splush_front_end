@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
-import { Location, About, CardItem, BannerBottom } from "../../components";
+import { Location, About, CardItem, BannerBottom, Bennefit } from "../../components";
 import { Banner } from "../../layouts";
 import axiosService from "../../services/configAxios";
-import { BannerData } from "../../data";
+import { BannerData, BennefitData } from "../../data";
 
 function HomeTest() {
   const [popularProducts, setPopularProducts] = useState([]);
@@ -43,17 +43,17 @@ function HomeTest() {
 
   return (
     <>
-      <div className="body-content outer-top-xs" id="top-banner-and-menu">
-        <div className="container">
-          <div className="row">
-            <div
-              className="container"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
+    <div className="body-content outer-top-xs" id="top-banner-and-menu">
+      <div className="container">
+        <div className="row">
+          <div className="container"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+          
               <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
                 <div id="hero">
                   <div
@@ -70,10 +70,22 @@ function HomeTest() {
                     ))}
                   </div>
                 </div>
-              <BannerBottom />
+                <div className="info-boxes wow fadeInUp">
+                  <div className="info-boxes-inner">
+                    <div className="row">
+                    {BannerData.map((item, index) => (
+                        <BannerBottom
+                          key={index}
+                          sub_title={item.sub_title}
+                          title={item.title}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
                 >
-                      { displayedProducts.map((item, index) => (
+                       { displayedProducts.map((item, index) => (
                         <CardItem 
                           key={item.id}
                           id={item.id} 
@@ -81,28 +93,17 @@ function HomeTest() {
                           description={item.description}
                           image_url={item.image_url}
                         />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  id="product-tabs-slider"
-                  className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
-                >
-                  {displayedProducts.map((item, index) => (
-                    <CardItem
-                      key={item.id}
-                      product_name={item.product_name}
-                      description={item.description}
-                      image_url={item.image_url}
-                    />
                   ))}
                 </div>
+                
+               
             </div>
           </div>
+          <About />
         </div>
-        <About />
-
+      </div>
+      
+    </div>
     <Location />
     </>
   );
