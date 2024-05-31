@@ -1,140 +1,181 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axiosService from '../services/configAxios';
-
+import axiosService from "../services/configAxios";
+import Search from "../components/Search";
 
 function Header() {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
-
-      useEffect(() => {
-        window.addEventListener("storage", handleEventStorage);
-    
-        return () => {
-          window.removeEventListener("storage", handleEventStorage);
-        };
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await axiosService.post("/logout", null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
       });
-    
-      function handleEventStorage() {
-        const storedUser = localStorage.getItem("user");
-        setUser(JSON.parse(storedUser || null));
-      }
-    const navigate = useNavigate();
-    const handleLogout = async () => {
-        try {
-            await axiosService.post('/logout', null, {
-                headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                },
-            });
 
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('user');
-          document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("user");
+      document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-          navigate('/');
-        } catch (error) {
-          console.error('Logout error:', error);
-        }
-      };
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
-    return (
-        <header className="header-style-1">
-            <div className="top-bar animate-dropdown">
-                <div className="container">
-                    <div className="header-top-inner">
-                        <div className="cnt-account">
-                            <ul className="list-unstyled">
-                                <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
-                                <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
-                                {user ? (
-                                    <li><Link onClick={handleLogout} to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
-                                ) : (
-                                    <>
-                                        <li><Link to="/register"><i className="icon fa fa-check"></i>Register</Link></li>
-                                        <li><Link to="/login"><i className="icon fa fa-check"></i>Login</Link></li>
-                                    </>
-                                )}
-                            </ul>
-                        </div>
-                        <div className="clearfix"></div>
-                    </div>
-                </div>
+  return (
+    <header className="header-style-1">
+      <div className="top-bar animate-dropdown">
+        <div className="container">
+          <div className="header-top-inner">
+            <div className="cnt-account">
+              <ul className="list-unstyled">
+                <li>
+                  <Link to="/!">
+                    <i className="icon fa fa-heart"></i>Wishlist
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/carts">
+                    <i className="icon fa fa-shopping-cart"></i>My Cart
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/test">
+                    <i className="icon fa fa-check"></i>Checkout
+                  </Link>
+                </li>
+
+                {user ? (
+                  <li>
+                    <Link onClick={handleLogout} to="/logout">
+                      <i className="icon fa fa-check"></i>Logout
+                    </Link>
+                  </li>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/register">
+                        <i className="icon fa fa-check"></i>Register
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/login">
+                        <i className="icon fa fa-check"></i>Login
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
+            <div className="clearfix"></div>
+          </div>
+        </div>
+      </div>
 
-            <div className="main-header">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                            <div className="logo">
-                                <Link to="/">
-                                    <h1 style={{ color: "white" }}>V_SPLUSH </h1>
-                                </Link> </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
-                            <div className="search-area">
-                                <div className="control-group">
-                                    <ul className="categories-filter animate-dropdown">
-                                        <li className="dropdown">
-                                            <Link className="dropdown-toggle" data-toggle="dropdown" to="/!category.html">Categories <b className="caret"></b></Link>
-                                        </li>
-                                    </ul>
-                                    <input className="search-field" name="keyword_submitted" placeholder="Search here..." />
-                                    <Link className="search-button" to="/!"></Link>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
-                            <div className=" dropdown-cart"> <Link to="/!" className="lnk-cart">
-                                <div className="items-cart-inner">
-                                    <div className="basket"><i className="icon fa fa-shopping-cart"></i></div>
-                                    <div className="basket-item-count"><span className="count"></span></div>
-                                    <div className="total-price-basket"> <span className="lbl"></span> <span className="total-price"> <span className="sign"></span><span className="value"></span> </span> </div>
-                                </div>
-                            </Link>
-    
-                        </div>
-                    </div>
-                </div>
+    <div className="main-header">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
+              <div className="logo">
+                <Link to="/">
+                  <h1 style={{ color: "white" }}>V_SPLUSH </h1>
+                </Link>{" "}
+              </div>
             </div>
-        </div> 
-        <div className="header-nav animate-dropdown">
-            <div className="container">
-                <div className="yamm navbar navbar-default" role="navigation">
-                    <div className="navbar-header">
-                        <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" className="navbar-toggle collapsed" type="button">
-                            <span className="sr-only">Toggle navigation</span> <span className="icon-bar"></span> <span className="icon-bar"></span> <span className="icon-bar"></span> </button>
-                    </div>
-                    <div className="nav-bg-class">
-                        <div className="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
-                            <div className="nav-outer">
-                                <ul className="nav navbar-nav">
-                                    <li className="active dropdown yamm-fw"> <Link to="/" data-hover="dropdown" className="dropdown-toggle" data-toggle="dropdown">Home</Link> </li>
-    
-                                    <li className="dropdown hidden-sm"> <Link to="/products">Products</Link> </li>
-    
-                                    <li className="dropdown"> <Link to="/contact-us">Contact us</Link> </li>
-                                    <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
-                                    <li className="dropdown"> <Link to="/blog">Blog</Link> </li>
-
-                                        <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
-                                    </ul>
-                                    <div className="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
+              <div className="search-area">
+                {/* <form action="" method="POST"> */}
+                <div className="control-group">
+                  <ul className="categories-filter animate-dropdown">
+                    <li className="dropdown">
+                      <Link
+                        className="dropdown-toggle"
+                        data-toggle="dropdown"
+                        to={"/prodcts"}
+                      >
+                        Categories <b className="caret"></b>
+                      </Link>
+                    </li>
+                  </ul>
+                  <Search/>
                 </div>
+                {/* </form> */}
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="header-nav animate-dropdown">
+        <div className="container">
+          <div className="yamm navbar navbar-default" role="navigation">
+            <div className="navbar-header">
+              <button
+                data-target="#mc-horizontal-menu-collapse"
+                data-toggle="collapse"
+                className="navbar-toggle collapsed"
+                type="button"
+              >
+                <span className="sr-only">Toggle navigation</span>{" "}
+                <span className="icon-bar"></span>{" "}
+                <span className="icon-bar"></span>{" "}
+                <span className="icon-bar"></span>{" "}
+              </button>
+            </div>
+            <div className="nav-bg-class">
+              <div
+                className="navbar-collapse collapse"
+                id="mc-horizontal-menu-collapse"
+              >
+                <div className="nav-outer">
+                  <ul className="nav navbar-nav">
+                    <li className="active dropdown yamm-fw">
+                      {" "}
+                      <Link
+                        to="/"
+                        data-hover="dropdown"
+                        className="dropdown-toggle"
+                        data-toggle="dropdown"
+                      >
+                        Home
+                      </Link>{" "}
+                    </li>
 
-        </header>
-    )
+                    <li className="dropdown hidden-sm">
+                      {" "}
+                      <Link to="/products">Products</Link>{" "}
+                    </li>
+
+                    <li className="dropdown">
+                      {" "}
+                      <Link to="/contact-us">Contact us</Link>{" "}
+                    </li>
+                    <li className="dropdown">
+                      {" "}
+                      <Link to="/!">Order purchased</Link>{" "}
+                    </li>
+
+                    <li className="dropdown  navbar-right special-menu">
+                      {" "}
+                      <Link to="/!#">Todays offer</Link>{" "}
+                    </li>
+                  </ul>
+                  <div className="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 export default Header;
