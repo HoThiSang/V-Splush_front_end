@@ -43,17 +43,17 @@ function HomeTest() {
 
   return (
     <>
-    <div className="body-content outer-top-xs" id="top-banner-and-menu">
-      <div className="container">
-        <div className="row">
-          <div className="container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-          
+      <div className="body-content outer-top-xs" id="top-banner-and-menu">
+        <div className="container">
+          <div className="row">
+            <div
+              className="container"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
               <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
                 <div id="hero">
                   <div
@@ -83,7 +83,9 @@ function HomeTest() {
                     </div>
                   </div>
                 </div>
-                <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
+                <div
+                  id="product-tabs-slider"
+                  className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
                 >
                        { displayedProducts.map((item, index) => (
                         <CardItem 
