@@ -58,13 +58,10 @@ const ProductDetail = () => {
     setMainImage(image);
   };
 
-  const handleAddToCart = () => {
-    if (!user) {
-      navigate('/login');
-    } else {
-      alert('Add to cart successfully');
-    }
-  };
+  const handleAddToCart=async() =>{
+    const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1})
+    console.log(res.data)
+  }
 
   const handleBuyNow = () => {
     if (!user) {
@@ -105,7 +102,7 @@ const ProductDetail = () => {
                 <Button
                   className="btn-outline-success"
                   width="600px"
-                  onClick={handleAddToCart}
+                  onClick={handleAddToCart} 
                   title="Add to cart"
                   color="#abd07e"
                 />
