@@ -9,6 +9,7 @@ import RegistrationForm from './pages/auth/RegisterUser.js';
 import Login from './pages/auth/Login.js';
 import ProductDetail from './pages/users/ProductDetail.js';
 
+import Search from './components/Search.js';
 function App() {
  
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />}/>
 
+        <Route path='/search' element={<Search />} />
       </Routes>
       <Footer />
     </div>
