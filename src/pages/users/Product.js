@@ -47,25 +47,6 @@ function Product() {
         : products
     );
   }, [products, selectedCategory]);
-  useEffect(() => {
-    if (searchKeyword.trim() === "") {
-      setFilteredProducts(products);
-    } else {
-      setFilteredProducts(
-        products.filter((product) =>
-          product.product_name
-            .toLowerCase()
-            .includes(searchKeyword.toLowerCase())
-        )
-      );
-    }
-  }, [searchKeyword, products]);
-
-  useEffect(() => {
-    if (keyword) {
-      setSearchKeyword(keyword);
-    }
-  }, [keyword]);
   const startIndex = page.minValue;
   const endIndex = page.maxValue;
 
