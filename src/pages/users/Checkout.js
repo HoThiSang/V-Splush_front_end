@@ -59,7 +59,11 @@ const CheckoutForm = () => {
     console.log("Address:", address);
     console.log("Payment:", payment);
     const redirect = "redirect";
-    const user_id = localStorage.getItem('user.id');
+    const userString = localStorage.getItem('user');
+      const user = JSON.parse(userString);
+
+    const { id } = user;
+  console.log(id)
     try {
       const postData = await axiosService.post("/user/checkout", {
         name,
@@ -67,14 +71,15 @@ const CheckoutForm = () => {
         phone,
         address,
         payment,
-        user_id,
+        id,
         totalPrice: 20000,
         redirect
       }, 
       {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-        }});
+        }}
+      );
       console.log(postData)
       window.location.href = postData.data.data;
     } catch (error) {
@@ -155,7 +160,7 @@ const CheckoutForm = () => {
                 name="payment_method"
               >
                 <option value="">--Choose an option--</option>
-                <option value="VNP">VNP</option>
+                <option value="NCB">VNP</option>
                 <option value="COD">COD</option>
               </select>
             </div>
