@@ -51,6 +51,7 @@ const ProductDetail = () => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
+      console.log(user)
     }
   }, []);
 
@@ -60,7 +61,8 @@ const ProductDetail = () => {
 
   const handleAddToCart=async() =>{
     const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1})
-    console.log(res.data)
+    console.log(res.data);
+    alert("Add product successfully")
   }
 
   const handleBuyNow = () => {
@@ -102,7 +104,7 @@ const ProductDetail = () => {
                 <Button
                   className="btn-outline-success"
                   width="600px"
-                  onClick={handleAddToCart} 
+                  onClick={handleAddToCart}
                   title="Add to cart"
                   color="#abd07e"
                 />
