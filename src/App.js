@@ -6,8 +6,10 @@ import { Home, Cart, Test, WishList,Blog,BlogDetail,ContactUs, CheckoutForm, Che
 import About from './components/About.js';
 import Search from './components/Search.js';
 import Product from './pages/users/Product.js';
-import RegistrationForm from './pages/auth/RegisterUser.js';
-import Login from './pages/auth/Login.js';function App() {
+import RegistrationForm from './pages/auth/RegisterUser.js';import Login from './pages/auth/Login.js';
+import ProductDetail from './pages/users/ProductDetail.js';
+
+function App() {
  
   return (
     <div className='cnt-home'> 
@@ -27,8 +29,7 @@ import Login from './pages/auth/Login.js';function App() {
       <Route path='/about' element={<About />} />
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />}/>
-        <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
-        <Route path='/search' element={<Search />} />
+        <Route path='/search' element={<Search />}/>
       </Routes>
       <Footer />
     </div>
