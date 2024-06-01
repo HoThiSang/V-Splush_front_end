@@ -9,13 +9,13 @@ function ContactUs() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [user, setUer] = useState([]);
+  const [user, setUer] = useState({});
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
      setUer(user);
-     console.log("hiiii",user)
+     console.log(user)
     }
   }, []);
 
