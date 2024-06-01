@@ -64,7 +64,6 @@ function Product() {
                 key={index}
                 id={product.id}
                 link={product.image_url}
-                id={product.id}
                 title={product.product_name}
                 description={product.description}
                 price={product.price}
