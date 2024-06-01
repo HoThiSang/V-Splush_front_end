@@ -17,7 +17,7 @@ function CartItem(cart) {
 
   return (
     <tr key={index}>
-      <th scope="row">{index + 1}</th>
+      <th scope="row"><input type="checkbox" /></th>
       <td className="image-row">
         <img
           className="image-cart-item"
@@ -27,7 +27,6 @@ function CartItem(cart) {
         />
       </td>
       <td>{product_name}</td>
-      <td>{total_price}</td>
       <td>{discount}</td>
       <td>{quantity}</td>
       <td>

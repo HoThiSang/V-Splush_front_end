@@ -12,6 +12,19 @@ function Header() {
             setUser(JSON.parse(storedUser));
         }
     }, []);
+
+      useEffect(() => {
+        window.addEventListener("storage", handleEventStorage);
+    
+        return () => {
+          window.removeEventListener("storage", handleEventStorage);
+        };
+      });
+    
+      function handleEventStorage() {
+        const storedUser = localStorage.getItem("user");
+        setUser(JSON.parse(storedUser || null));
+      }
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
@@ -40,8 +53,6 @@ function Header() {
                             <ul className="list-unstyled">
                                 <li><Link to="/!"><i className="icon fa fa-heart"></i>Wishlist</Link></li>
                                 <li><Link to="/carts"><i className="icon fa fa-shopping-cart"></i>My Cart</Link></li>
-                                <li><Link to="/test"><i className="icon fa fa-check"></i>Checkout</Link></li>
-
                                 {user ? (
                                     <li><Link onClick={handleLogout} to="/logout"><i className="icon fa fa-check"></i>Logout</Link></li>
                                 ) : (
@@ -68,7 +79,6 @@ function Header() {
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
                             <div className="search-area">
-                                {/* <form action="" method="POST"> */}
                                 <div className="control-group">
                                     <ul className="categories-filter animate-dropdown">
                                         <li className="dropdown">
@@ -78,7 +88,7 @@ function Header() {
                                     <input className="search-field" name="keyword_submitted" placeholder="Search here..." />
                                     <Link className="search-button" to="/!"></Link>
                                 </div>
-                                {/* </form> */}
+
                             </div>
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
@@ -113,6 +123,7 @@ function Header() {
 
                                     <li className="dropdown"> <Link to="/contact-us">Contact us</Link> </li>
                                     <li className="dropdown"> <Link to="/!">Order purchased</Link> </li>
+                                    <li className="dropdown"> <Link to="/blog">Blog</Link> </li>
 
                                         <li className="dropdown  navbar-right special-menu"> <Link to="/!#">Todays offer</Link> </li>
                                     </ul>

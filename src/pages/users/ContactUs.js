@@ -39,7 +39,6 @@ function ContactUs() {
       setMessage("");
       console.log(response.data.data);
     } catch (error) {
-      console.error("Error fetching email data:", error);
       alert("You sent failed");
     }
   };
