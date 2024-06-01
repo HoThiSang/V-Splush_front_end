@@ -15,7 +15,6 @@ function ContactUs() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
      setUer(user);
-     console.log(user)
     }
   }, []);
 
@@ -46,7 +45,6 @@ function ContactUs() {
       setEmail("");
       setSubject("");
       setMessage("");
-      console.log(response.data.data);
     } catch (error) {
       alert("You sent failed");
     }
