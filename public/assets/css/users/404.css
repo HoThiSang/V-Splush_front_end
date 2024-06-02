@@ -6,3 +6,16 @@
 .custom-alert {
   margin-bottom: 0;
 }
+@media (max-width: 600px) {
+  .responsive-image {
+    width: 100%; 
+  }
+  .custom-alert p{
+    font-size: 30px;
+  }
+  .custom-alert{
+    margin-bottom: 0;
+    height: 190px;
+  }
+
+}
