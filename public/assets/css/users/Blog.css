@@ -26,14 +26,21 @@
 .card-blog img {
   height: 200px;
   width: 250px;
-  transition: transform 0.5s ease;
+  border-radius: 5px 5px 5px 5px;
 }
 .card-blog img:hover {
   background-color: black;
+}
+.card-blog{
+  transition: transform 0.5s ease;
+
+}
+.card-blog:hover{
   transform: scale(1.1);
+
 }
 
-.ant-alert {
+.ant-alert{
   background-color: rgba(30, 44, 48, 1);
   border-color: rgba(30, 44, 48, 1);
   border-radius: 0px;
@@ -43,15 +50,13 @@
 }
 
 .ant-alert .alert-blog-detail{
-  height: 300px;
+  height: 450px;
   margin-bottom: 100px;
-
 }
 
 .ant-alert .ant-alert-description {
   color: white;
   text-align: center;
-  margin-top: 60px;
   text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.3);
 }
 @media screen and (min-width: 1024px) {
@@ -99,4 +104,7 @@
   text-align: justify;
   word-wrap: break-word;
   white-space: pre-wrap;
+}
+.blog{
+  margin-top: 50px;
 }

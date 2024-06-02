@@ -1,0 +1,198 @@
+.ant-alert.alert-about-us .ant-alert-message {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  }
+  
+  
+  .img-about-us {
+    width: 60px;
+    height: 70px;
+  
+  }
+  
+  .img-border-about-us:hover{
+    transform: scale(1.1);
+  
+  }
+  .img-border-about-us {
+    border: 1px solid black;
+    background-color: rgba(92, 134, 146, 1);
+    margin-top: 15px;
+    transition: transform 0.5s ease;
+  
+  }
+  
+  .comment-about-us {
+    background-color: white;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    border-radius: 8px 8px 0px 0px;
+    transition: transform 0.5s ease;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  }
+  .comment-about-us:hover{
+    transform: scale(1.1);
+  
+  }
+  .background-comment-about-us {
+    background-color: rgba(237, 245, 247, 1);
+    margin-bottom: 50px;
+    margin-top:30px ;
+  }
+  
+  .img-customer-about-us {
+    background-color: rgba(30, 44, 48, 1);
+    height: 80px;
+   
+  }
+  
+  .card .image-customer-about-us {
+    margin-top: 10px;
+    max-height: 60px;
+    max-width: 60px;
+  }
+  
+  .name-customer {
+    margin-top: 15px;
+    color: white;
+  }
+  
+  
+  
+  .card-about-us {
+    background-color: rgba(237, 245, 247, 1);
+    margin-bottom: 40px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 0.5s ease;
+    
+  }
+  .card-about-us:hover{
+    transform: scale(1.1);
+  }
+  .imgcrop {
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 10px 10px 0px 0px;
+    
+  }
+  
+  .name-about-us {
+    color: rgb(255, 63, 164);
+    text-align: center;
+    font-size: 15px;
+  }
+  
+  .name-card-body {
+    text-align: center;
+  }
+  
+  .title-about-us{
+    text-align: center;
+    margin-bottom:50px ;
+    transition: transform 0.5s ease;
+  
+  }
+  .title-about-us:hover{
+    color: rgba(92, 134, 146, 1);
+    transform: scale(1.1);
+  
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .value-about-us {
+      margin-left: 50px;
+      margin-top: 10px;
+    }
+    .google-map{
+      width: 400px;
+      height: 240px;
+      margin-left: 30px;
+      margin-top: 5px;
+      border: none;
+    }
+    .btn-about-us{
+      margin-left: 535px;
+      margin-top: 20px;
+    }
+    .come-visit-about-us{
+      border: 1px solid  black;
+    }
+    .ant-alert.alert-about-us .ant-alert-description {
+      font-size: 15px;
+      text-align: center;
+      max-width: 60%;
+      margin-left: 280px;
+    }
+  
+    }
+    @media screen and (max-width: 900px) {
+      .google-map{
+        width: 360px;
+        height: 200px;
+        margin-top: 5px;
+      border: none;
+  
+      }
+      .ant-alert.alert-about-us .ant-alert-description {
+        font-size: 13px;
+  
+      }
+      .image-customer-about-us{
+        position: absolute;
+      }
+      .name-customer{
+        position: relative;
+        margin-left: 80px;
+      }
+      .btn-about-us{
+        margin-left: 120px;
+        margin-top: 20px;
+      }
+      .comment-about-us{
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+  
+  
+    }
+  
+  
+  
+  .address-visit-about-us{
+    background-color: rgba(30, 44, 48, 1);
+    color: white;
+  }
+  .title-come-visit-about-us{
+    font-weight: bold;
+  }
+  
+  .background-location-about-us{
+    background-color: white;
+    margin-bottom: 50px;
+    transition: transform 0.5s ease;
+  }
+  .background-location-about-us:hover{
+    transform: scale(1.1);
+  }
+  .title-location-about-us{
+    color: rgba(92, 134, 146, 1);
+  }
+  
+  .amazing-about-us{
+    background-color: white;
+    margin-top: 50px;
+  }
+  
+  .contain-about-us{
+   margin: 0px 10px 0px 10px;
+  }
+  
+  .margin-abou-us{
+    margin-right: 50px;
+  }
