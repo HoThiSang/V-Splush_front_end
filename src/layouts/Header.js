@@ -5,32 +5,6 @@ import { CurrentUserContext } from "../context/CurrentUserContext"
 
 function Header() {
     const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-
-    // useEffect(() => {
-    //     const storedUser = localStorage.getItem("user");
-    //     if (storedUser) {
-    //       setUser(JSON.parse(storedUser));
-    //     }
-    //   }, []);
-
-    //   useEffect(() => {
-    //     const handleEventStorage = () => {
-    //       const storedUser = localStorage.getItem("user");
-    //       setUser(JSON.parse(storedUser || null));
-    //     };
-      
-    //     window.addEventListener("storage", handleEventStorage);
-      
-    //     return () => {  
-    //       window.removeEventListener("storage", handleEventStorage);
-    //     };
-    //   }, []); 
-    
-    //   function handleEventStorage() {
-    //     const storedUser = localStorage.getItem("user");
-    //     setUser(JSON.parse(storedUser || null));
-    //     console.log(123)
-    //   }
       
       console.log(currentUser)
     const navigate = useNavigate();
