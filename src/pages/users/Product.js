@@ -12,6 +12,10 @@ function Product() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [page, setPage] = useState({ minValue: 0, maxValue: numEachPage });
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const keyword = queryParams.get("keyword");
 
 
   const fetchData = async () => {
@@ -44,7 +48,6 @@ function Product() {
         : products
     );
   }, [products, selectedCategory]);
-
   const startIndex = page.minValue;
   const endIndex = page.maxValue;
 
@@ -64,7 +67,6 @@ function Product() {
             .map((product, index) => (
               <ProductItem
                 key={index}
-                id={product.id}
                 link={product.image_url}
                 title={product.product_name}
                 description={product.description}

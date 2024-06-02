@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const [images, setImages] = useState([]);
   const [mainImage, setMainImage] = useState('');
   const [popularProducts, setPopularProducts] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -48,9 +48,10 @@ const ProductDetail = () => {
 
   // Move this logic into a useEffect to avoid infinite re-renders
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+     setUser(user)
+     console.log(user)
     }
   }, []);
 
@@ -58,13 +59,10 @@ const ProductDetail = () => {
     setMainImage(image);
   };
 
-  const handleAddToCart = () => {
-    if (!user) {
-      navigate('/login');
-    } else {
-      alert('Add to cart successfully');
-    }
-  };
+  const handleAddToCart=async() =>{
+    const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1,user_id:user.id})
+    alert("Add product successfully")
+  }
 
   const handleBuyNow = () => {
     if (!user) {
