@@ -29,7 +29,6 @@ const Search = () => {
         onChange={(e) => setKeyword(e.target.value)}
       />
       <button className="search-button" onClick={handleSearch}>
-        Search
       </button>
     </>
   );

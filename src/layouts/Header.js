@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosService from "../services/configAxios";
 import { CurrentUserContext } from "../context/CurrentUserContext"
-import Search from "../components/Search";
+import { Search } from "../components";
 
 function Header() {
-   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+    const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
       
       console.log(currentUser)
     const navigate = useNavigate();
@@ -17,20 +16,18 @@ function Header() {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },
             });
-          
+
             localStorage.removeItem("authToken");
             localStorage.removeItem("user");
-           document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             setCurrentUser(null);
-            
             navigate("/");
-            
         } catch (error) {
             console.error("Logout error:", error);
         }
     };
 
-       return (
+    return (
         <header className="header-style-1">
             <div className="top-bar animate-dropdown">
                 <div className="container">
@@ -88,7 +85,7 @@ function Header() {
                 </div>
             </div>
 
-<div className="main-header">
+            <div className="main-header">
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
@@ -112,12 +109,7 @@ function Header() {
                                             </Link>
                                         </li>
                                     </ul>
-                                    <input
-                                        className="search-field"
-                                        name="keyword_submitted"
-                                        placeholder="Search here..."
-                                    />
-                                    <Link className="search-button" to="/!"></Link>
+                                    <Search></Search>
                                 </div>
 
                             </div>
