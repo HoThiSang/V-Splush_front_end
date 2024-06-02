@@ -4,7 +4,28 @@
 .row.no-margin-left {
   margin-left: 0;
 }
+.row.no-margin-right {
+  margin-right: 0;
+}
 .ant-pagination.product {
   margin-left: 600px;
   margin-bottom: 30px;
+}
+@media (max-width: 760px) {
+  .card-product {
+    margin: 0 auto;
+  }
+  .card-price {
+    font-size: 80%;
+  }
+  .ant-pagination.product {
+    margin:8%;
+  }
+  .product-item{
+    margin-top: 20px;
+  }
+  .row.no-margin-left {
+    margin-left: 0;
+  }
+
 }

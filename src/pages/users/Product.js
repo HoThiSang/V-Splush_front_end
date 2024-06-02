@@ -3,13 +3,16 @@ import axiosService from "../../services/configAxios";
 import ProductItem from "../../components/ProductItem";
 import ProductFilterSidebar from "../../components/ProductFilterSidebar";
 import { Pagination } from "antd";
+import { useLocation } from "react-router-dom";
 
 const numEachPage = 9;
+
 function Product() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [page, setPage] = useState({ minValue: 0, maxValue: numEachPage });
   const [filteredProducts, setFilteredProducts] = useState([]);
+
 
   const fetchData = async () => {
     try {
@@ -51,12 +54,11 @@ function Product() {
       maxValue: value * numEachPage,
     });
   };
-
   return (
     <div className="product-container">
-      <div className="row product-item no-margin-left">
+      <div className="row product-item no-margin-left no-margin-right">
         <ProductFilterSidebar setSelectedCategory={setSelectedCategory} />
-        <div className="col-md-8">
+        <div className="col-md-9">
           {filteredProducts
             .slice(startIndex, endIndex)
             .map((product, index) => (
@@ -76,7 +78,7 @@ function Product() {
         defaultPageSize={numEachPage}
         onChange={handleChange}
         total={filteredProducts.length}
-        className='product'
+        className="product"
       />
     </div>
   );
