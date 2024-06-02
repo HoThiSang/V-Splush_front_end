@@ -60,8 +60,13 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart=async() =>{
-    const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1,user_id:user.id})
-    alert("Add product successfully")
+    if(user.id){
+      const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1,user_id:user.id})
+      alert("Add product successfully")
+      }
+      else{
+        navigate('/login')
+      }
   }
 
   const handleBuyNow = () => {
