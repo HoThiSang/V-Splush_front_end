@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosService from "../services/configAxios";
 import { CurrentUserContext } from "../context/CurrentUserContext"
+import { Search } from "../components";
 
 function Header() {
     const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -108,12 +109,7 @@ function Header() {
                                             </Link>
                                         </li>
                                     </ul>
-                                    <input
-                                        className="search-field"
-                                        name="keyword_submitted"
-                                        placeholder="Search here..."
-                                    />
-                                    <Link className="search-button" to="/!"></Link>
+                                    <Search/>
                                 </div>
 
                             </div>

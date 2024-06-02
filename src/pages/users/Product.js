@@ -17,7 +17,6 @@ function Product() {
   const queryParams = new URLSearchParams(location.search);
   const keyword = queryParams.get("keyword");
 
-
   const fetchData = async () => {
     try {
       const response = await axiosService.get("/admin-product");
@@ -34,9 +33,9 @@ function Product() {
       setProducts(Object.values(updatedProducts));
     } catch (error) {
       console.error("Error fetching product data", error);
-      alert("Error fetching product data", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -48,6 +47,25 @@ function Product() {
         : products
     );
   }, [products, selectedCategory]);
+
+  useEffect(() => {
+    if (searchKeyword.trim() === "") {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) =>
+          product.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
+        )
+      );
+    }
+  }, [searchKeyword, products]);
+
+  useEffect(() => {
+    if (keyword) {
+      setSearchKeyword(keyword);
+    }
+  }, [keyword]);
+
   const startIndex = page.minValue;
   const endIndex = page.maxValue;
 
@@ -57,11 +75,16 @@ function Product() {
       maxValue: value * numEachPage,
     });
   };
+
+  const handleSearch = (event) => {
+    setSearchKeyword(event.target.value);
+  };
+
   return (
     <div className="product-container">
-      <div className="row product-item no-margin-left no-margin-right">
+      <div className="row product-item no-margin-left">
         <ProductFilterSidebar setSelectedCategory={setSelectedCategory} />
-        <div className="col-md-9">
+        <div className="col-md-8">
           {filteredProducts
             .slice(startIndex, endIndex)
             .map((product, index) => (
@@ -81,7 +104,7 @@ function Product() {
         defaultPageSize={numEachPage}
         onChange={handleChange}
         total={filteredProducts.length}
-        className="product"
+        className='product'
       />
     </div>
   );
