@@ -1,10 +1,11 @@
 import React from "react";
 import { Alert } from "antd";
+
 function Error() {
   return (
     <div className="error-container">
       <Alert
-      className="custom-alert"
+        className="custom-alert"
         description={<p>404 Error Page</p>}
         type="info"
       />
@@ -16,4 +17,5 @@ function Error() {
     </div>
   );
 }
+
 export default Error;

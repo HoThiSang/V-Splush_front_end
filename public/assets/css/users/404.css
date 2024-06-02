@@ -3,19 +3,22 @@
   text-align: center;
   width: 100%;
 }
+
 .custom-alert {
   margin-bottom: 0px;
 }
+
 @media (max-width: 600px) {
   .responsive-image {
-    width: 10%; 
+    width: 100%; 
   }
-  .custom-alert p{
+
+  .custom-alert p {
     font-size: 30px;
   }
-  .custom-alert{
+
+  .custom-alert {
     margin-bottom: 0px;
     height: 190px;
   }
-
 }
