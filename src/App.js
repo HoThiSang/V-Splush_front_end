@@ -30,8 +30,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />}/>
-        <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
-
+       <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
         <Route path='/404' element={<Error />}/>
       </Routes>
       <Footer />
