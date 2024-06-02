@@ -17,6 +17,7 @@ function Product() {
   const queryParams = new URLSearchParams(location.search);
   const keyword = queryParams.get("keyword");
 
+
   const fetchData = async () => {
     try {
       const response = await axiosService.get("/admin-product");
@@ -58,9 +59,9 @@ function Product() {
   };
   return (
     <div className="product-container">
-      <div className="row product-item no-margin-left">
+      <div className="row product-item no-margin-left no-margin-right">
         <ProductFilterSidebar setSelectedCategory={setSelectedCategory} />
-        <div className="col-md-8">
+        <div className="col-md-9">
           {filteredProducts
             .slice(startIndex, endIndex)
             .map((product, index) => (
