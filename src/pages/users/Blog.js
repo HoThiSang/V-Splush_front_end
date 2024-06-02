@@ -27,7 +27,7 @@ function Blog() {
   };
   return (
     <>
-      <Alert description="Articles & News" type="info" />
+      <Alert description="Articles & News" type="info" className="alert-blog-detail"/>
       <div className="blog">
         <div className="container">
           <div className="row  main-blog">
