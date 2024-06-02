@@ -96,7 +96,6 @@ function Header() {
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
                             <div className="search-area">
-                                {/* <form action="" method="POST"> */}
                                 <div className="control-group">
                                     <ul className="categories-filter animate-dropdown">
                                         <li className="dropdown">
@@ -116,7 +115,7 @@ function Header() {
                                     />
                                     <Link className="search-button" to="/!"></Link>
                                 </div>
-                                {/* </form> */}
+
                             </div>
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
@@ -146,6 +145,7 @@ function Header() {
                     </div>
                 </div>
             </div>
+
             <div className="header-nav animate-dropdown">
                 <div className="container">
                     <div className="yamm navbar navbar-default" role="navigation">
@@ -185,6 +185,7 @@ function Header() {
                                             {" "}
                                             <Link to="/products">Products</Link>{" "}
                                         </li>
+
 
                                         <li className="dropdown">
                                             {" "}

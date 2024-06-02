@@ -2,7 +2,7 @@ import './App.css';
 import Header from './layouts/Header.js';
 import Footer from './layouts/Footer.js';
 import { Routes, Route}  from 'react-router-dom'
-import { Home, Cart, Test, WishList,Blog,BlogDetail,ContactUs} from './pages/users'
+import { Home, Cart, Test, WishList,Blog,BlogDetail,ContactUs, CheckoutForm, CheckoutSuccess} from './pages/users'
 import About from './components/About.js';
 import Product from './pages/users/Product.js';
 import RegistrationForm from './pages/auth/RegisterUser.js';
@@ -12,6 +12,7 @@ import { CurrentUserContext, CurrentUserProvider } from './context/CurrentUserCo
 function App() {
  
   return (
+
   <CurrentUserProvider>
       <div className='cnt-home'> 
         <Header />
@@ -30,7 +31,7 @@ function App() {
           <Route path="/productdetail/:id" element={<ProductDetail />} />
           <Route path='/contact-us' element={<ContactUs />}/>
           <Route path='/profile-user' element={<ContactUs />}/>
-
+        <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
         </Routes>
         <Footer />
       </div>

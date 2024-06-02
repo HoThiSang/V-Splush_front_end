@@ -22,6 +22,7 @@ const ProductDetail = () => {
       setMainImage(data.imageAll[0]);
     } catch (error) {
       console.error('Error fetching product data:', error);
+      alert('Error fetching product data:', error)
     }
   };
 
@@ -36,7 +37,8 @@ const ProductDetail = () => {
       const response = await axiosService.get('/admin-product');
       setPopularProducts(response.data.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      alert("Error fetching data:", error);
+      console.error("Error fetching data:", error);
     }
   };
 

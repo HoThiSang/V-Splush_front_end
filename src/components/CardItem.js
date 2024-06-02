@@ -18,7 +18,7 @@ function CardItem(props) {
           </div>
         </div>
 </div>
-  
+
   );
 }
 
