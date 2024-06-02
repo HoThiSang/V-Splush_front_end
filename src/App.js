@@ -8,7 +8,6 @@ import Search from './components/Search.js';
 import Product from './pages/users/Product.js';
 import RegistrationForm from './pages/auth/RegisterUser.js';
 import Login from './pages/auth/Login.js';
-import Search from './components/Search.js';
 function App() {
  
   return (
@@ -27,6 +26,8 @@ function App() {
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/productdetail/:id' element={<ProductDetail />} />
+        <Route path='/contact-us' element={<ContactUs />} />
       </Routes>
       <Footer />
     </div>
