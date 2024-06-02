@@ -66,7 +66,7 @@ function Header() {
                                 ) : (
                                     <>
                                         <li>
-                                            <Link to="/register">
+<Link to="/register">
                                                 <i className="icon fa fa-check"></i>Register
                                             </Link>
                                         </li>
@@ -123,7 +123,7 @@ function Header() {
                                 {" "}
                                 <Link to="/!" className="lnk-cart">
                                     <div className="items-cart-inner">
-                                        <div className="basket">
+<div className="basket">
                                             <i className="icon fa fa-shopping-cart"></i>
                                         </div>
                                         <div className="basket-item-count">
@@ -177,7 +177,7 @@ function Header() {
                                                 className="dropdown-toggle"
                                                 data-toggle="dropdown"
                                             >
-                                                Home
+Home
                                             </Link>{" "}
                                         </li>
 
