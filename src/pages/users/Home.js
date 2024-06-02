@@ -1,27 +1,20 @@
 import { React, useState, useEffect } from "react";
-import { Bennefit, Location, About, CardItem } from "../../components";
-import { BennefitData } from "../../data";
+import { Location, About, CardItem, BannerBottom, Bennefit } from "../../components";
 import { Banner } from "../../layouts";
-import axios from "axios";
-
-import "./style.css";
-import { Card } from "antd";
 import axiosService from "../../services/configAxios";
+import { BannerData, BennefitData } from "../../data";
 
 function HomeTest() {
   const [popularProducts, setPopularProducts] = useState([]);
-  // const [load, setLoad] = useState(false);
   const [banners, setBanners] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await axiosService.get(
-        "/admin-product"
-      );
+      const response = await axiosService.get("/admin-product");
       setPopularProducts(response.data.data);
       console.log(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      throw new Error("Error fetching data:", error);
     }
   };
 
@@ -34,13 +27,12 @@ function HomeTest() {
 
   const fechDataBanner = async () => {
     try {
-      const response = await axiosService.get(
-        "/admin-show-all-banner"
-      );
+      const response = await axiosService.get("/admin-show-all-banner");
       console.log(response.data.data);
       setBanners(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      alert("Error fetching data:", error);
+      throw new Error("Error fetching data:", error);
     }
   };
 
@@ -51,17 +43,17 @@ function HomeTest() {
 
   return (
     <>
-    <div className="body-content outer-top-xs" id="top-banner-and-menu">
-      <div className="container">
-        <div className="row">
-          <div className="container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-          
+      <div className="body-content outer-top-xs" id="top-banner-and-menu">
+        <div className="container">
+          <div className="row">
+            <div
+              className="container"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
               <div className="col-xs-12 col-sm-12 col-md-9 homebanner-holder ">
                 <div id="hero">
                   <div
@@ -81,47 +73,19 @@ function HomeTest() {
                 <div className="info-boxes wow fadeInUp">
                   <div className="info-boxes-inner">
                     <div className="row">
-                      <div className="col-md-6 col-sm-4 col-lg-4">
-                        <div className="info-box">
-                          <div className="row">
-                            <div className="col-xs-12">
-                              <h4 className="info-box-heading green">
-                                money back
-                              </h4>
-                            </div>
-                          </div>
-                          <h6 className="text">30 Days Money Back Guarantee</h6>
-                        </div>
-                      </div>
-
-                      <div className="hidden-md col-sm-4 col-lg-4">
-                        <div className="info-box">
-                          <div className="row">
-                            <div className="col-xs-12">
-                              <h4 className="info-box-heading green">
-                                free shipping
-                              </h4>
-                            </div>
-                          </div>
-                          <h6 className="text">Shipping on orders over $99</h6>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-sm-4 col-lg-4">
-                        <div className="info-box">
-                          <div className="row">
-                            <div className="col-xs-12">
-                              <h4 className="info-box-heading green">
-                                Special Sale
-                              </h4>
-                            </div>
-                          </div>
-                          <h6 className="text">Extra $5 off on all items </h6>
-                        </div>
-                      </div>
+                    {BannerData.map((item, index) => (
+                        <BannerBottom
+                          key={index}
+                          sub_title={item.sub_title}
+                          title={item.title}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
-                <div id="product-tabs-slider" className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
+                <div
+                  id="product-tabs-slider"
+                  className="scroll-tabs outer-top-vs wow fadeInUp mb-5"
                 >
                        { displayedProducts.map((item, index) => (
                         <CardItem 
@@ -133,10 +97,14 @@ function HomeTest() {
                         />
                   ))}
                 </div>
+                
+               
             </div>
           </div>
+          <About />
         </div>
       </div>
+      
     </div>
     <Location />
     </>
