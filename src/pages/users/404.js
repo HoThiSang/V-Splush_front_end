@@ -11,6 +11,7 @@ function Error() {
       <img
         src="/404.jpg"
         alt="Error"
+        className="responsive-image"
       />
     </div>
   );
