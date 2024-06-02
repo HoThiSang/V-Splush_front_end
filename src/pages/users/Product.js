@@ -3,13 +3,19 @@ import axiosService from "../../services/configAxios";
 import ProductItem from "../../components/ProductItem";
 import ProductFilterSidebar from "../../components/ProductFilterSidebar";
 import { Pagination } from "antd";
+import { useLocation } from "react-router-dom";
 
 const numEachPage = 9;
+
 function Product() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [page, setPage] = useState({ minValue: 0, maxValue: numEachPage });
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const keyword = queryParams.get("keyword");
 
   const fetchData = async () => {
     try {
@@ -41,7 +47,6 @@ function Product() {
         : products
     );
   }, [products, selectedCategory]);
-
   const startIndex = page.minValue;
   const endIndex = page.maxValue;
 
@@ -51,7 +56,6 @@ function Product() {
       maxValue: value * numEachPage,
     });
   };
-
   return (
     <div className="product-container">
       <div className="row product-item no-margin-left">
@@ -64,7 +68,6 @@ function Product() {
                 key={index}
                 id={product.id}
                 link={product.image_url}
-                id={product.id}
                 title={product.product_name}
                 description={product.description}
                 price={product.price}
@@ -77,7 +80,7 @@ function Product() {
         defaultPageSize={numEachPage}
         onChange={handleChange}
         total={filteredProducts.length}
-        className='product'
+        className="product"
       />
     </div>
   );

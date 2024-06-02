@@ -40,6 +40,8 @@
   -webkit-box-orient: vertical;
   padding: 3px;
   margin-bottom: 0px;
+  color: black;
+
 }
 
 .card-price {
@@ -47,6 +49,8 @@
   font-weight: bold;
   padding: 3px;
   margin-top: 0px;
+  color: black;
+
 }
 .product-bottom{
   margin-bottom: 50px;
