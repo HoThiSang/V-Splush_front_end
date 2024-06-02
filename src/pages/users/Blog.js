@@ -41,6 +41,7 @@ function Blog() {
             defaultPageSize={numEachPage}
             onChange={handleChange}
             total={blogs.length}
+            className="blog"
           />
         </div>
       </div>
