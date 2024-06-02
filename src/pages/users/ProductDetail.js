@@ -61,7 +61,6 @@ const ProductDetail = () => {
 
   const handleAddToCart=async() =>{
     const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1,user_id:user.id})
-    console.log(res.data);
     alert("Add product successfully")
   }
 
