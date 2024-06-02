@@ -5,7 +5,7 @@ import { Button } from '../../components';
 import ProductItem from '../../components/ProductItem';
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState();
   const [images, setImages] = useState([]);
   const [mainImage, setMainImage] = useState('');
   const [popularProducts, setPopularProducts] = useState([]);
@@ -46,7 +46,6 @@ const ProductDetail = () => {
     fetchData();
   }, []);
 
-  // Move this logic into a useEffect to avoid infinite re-renders
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -86,7 +85,7 @@ const ProductDetail = () => {
               <div className="row image1">
                 {mainImage && <img src={mainImage.image_url} alt="Main Product" className="main-image" />}
               </div>
-              <div className="row border">
+              <div className="row border thumbnail-container">
                 {images.map((image, index) => (
                   <div className="col-md-4 border" key={`${image.id}-${index}`}>
                     <img
@@ -133,7 +132,7 @@ const ProductDetail = () => {
       )}
       <h3>Popular Products</h3>
       <hr />
-      <div className="row">
+      <div className="popular-products">
         {popularProducts.slice(0, 3).map((popularProduct, index) => (
           <ProductItem
             key={index}
