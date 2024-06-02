@@ -1,6 +1,5 @@
 import React from "react";
 import { Alert } from "antd";
-
 function Error() {
   return (
     <div className="error-container">
