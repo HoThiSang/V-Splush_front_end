@@ -26,14 +26,20 @@
 .card-blog img {
   height: 200px;
   width: 250px;
-  transition: transform 0.5s ease;
+  border-radius: 5px 5px 5px 5px;
 }
 .card-blog img:hover {
   background-color: black;
-  transform: scale(1.1);
 }
+.card-blog{
+  transition: transform 0.5s ease;
 
-.ant-alert {
+}
+.card-blog:hover{
+  transform: scale(1.1);
+
+}
+.ant-alert.ant-alert-blog{
   background-color: rgba(30, 44, 48, 1);
   border-color: rgba(30, 44, 48, 1);
   border-radius: 0px;
@@ -41,17 +47,21 @@
   font-size: 50px;
   text-transform: uppercase;
 }
-
-.ant-alert .alert-blog-detail{
-  height: 300px;
+.ant-alert.alert-blog-detail{
+  background-color: rgba(30, 44, 48, 1);
+  border-color: rgba(30, 44, 48, 1);
+  border-radius: 0px;
+  width: 100%;
+  font-size: 50px;
+  text-transform: uppercase;
+  height: 450px;
   margin-bottom: 100px;
-
+  position:absolute;
 }
 
 .ant-alert .ant-alert-description {
   color: white;
   text-align: center;
-  margin-top: 60px;
   text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.3);
 }
 @media screen and (min-width: 1024px) {
@@ -87,10 +97,8 @@
   filter: drop-shadow(0 0 5px white);
 }
 
-.alert-blog-detail {
-  position: absolute;
-  height: 450px;
-}
+
+
 .p-blog-content {
   width: 900px;
   margin-top: 80px;
@@ -99,4 +107,7 @@
   text-align: justify;
   word-wrap: break-word;
   white-space: pre-wrap;
+}
+.blog{
+  margin-top: 50px;
 }
