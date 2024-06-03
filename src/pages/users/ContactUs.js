@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Alert } from "antd";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
