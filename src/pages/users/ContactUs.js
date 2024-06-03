@@ -49,6 +49,7 @@ function ContactUs() {
         description="We Are Ready To Assist
 You In 24/7"
         type="info"
+        className="alert-contact-us"
       />
       <div className="container">
         <div className="row">
