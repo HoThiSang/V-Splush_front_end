@@ -2,6 +2,7 @@ import { Alert } from "antd";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
+import { useNavigate } from "react-router";
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ function ContactUs() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [user, setUer] = useState({});
+  const navigate =useNavigate()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -31,21 +33,29 @@ function ContactUs() {
   };
   const handleSubmitContact = async (e) => {
     e.preventDefault();
+    if(user.id){
     try {
-      const response = await axiosService.post("/user-send-contact", {
+      const response = await axiosService.post("/user/user-send-contact", {
         name,
         email,
         subject,
         message,
-        user_id:user.id
+      },{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
       });
       alert("You sent successfully");
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
+      
     } catch (error) {
       alert("You sent failed");
+      console.log(error)
+    }}else{
+      navigate('/login')
     }
   };
 

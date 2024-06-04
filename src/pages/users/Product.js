@@ -54,7 +54,9 @@ function Product() {
     } else {
       setFilteredProducts(
         products.filter((product) =>
-          product.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
+          product.product_name
+            .toLowerCase()
+            .includes(searchKeyword.toLowerCase())
         )
       );
     }
@@ -90,6 +92,7 @@ function Product() {
             .map((product, index) => (
               <ProductItem
                 key={index}
+                id={product.id}
                 link={product.image_url}
                 title={product.product_name}
                 description={product.description}
@@ -103,7 +106,7 @@ function Product() {
         defaultPageSize={numEachPage}
         onChange={handleChange}
         total={filteredProducts.length}
-        className='product'
+        className="product"
       />
     </div>
   );
