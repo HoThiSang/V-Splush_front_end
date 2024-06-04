@@ -50,7 +50,6 @@ const ProductDetail = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setUser(user);
-      // console.log(user);
     }
   }, []);
 
