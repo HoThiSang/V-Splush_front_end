@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {  useParams, useNavigate } from "react-router-dom";
 import axiosService from "../../services/configAxios";
 import { Button } from "../../components";
 import ProductItem from "../../components/ProductItem";
@@ -12,6 +12,7 @@ const ProductDetail = () => {
   const [user, setUser] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(1);
 
   const fetchProduct = async () => {
     try {
@@ -77,11 +78,28 @@ const ProductDetail = () => {
     }
   };
 
-  const handleBuyNow = () => {
-    if (!user) {
-      navigate("/login");
+  const handleBuyNow = (id) => {
+    if (user.id) {
+      const productCart = {
+        quantity: quantity,
+        productName: product.product_name,
+        unitPrice: product.price,
+        totalPrice : quantity * product.price
+      };
+      localStorage.setItem("product", JSON.stringify(productCart));
+      navigate("/buy-now");
     } else {
-      navigate("/checkout");
+      navigate("/login");
+    }
+  };
+
+  const increaseQuantity = (e) => {
+    setQuantity(quantity + 1);
+  };
+  
+  const decreaseQuantity = (e) => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
 
@@ -117,6 +135,18 @@ const ProductDetail = () => {
               <h1 className="product-title">{product.product_name}</h1>
               <p className="product-description">{product.description}</p>
               <p className="product-price">${product.price}</p>
+              <div class="quantity-container">
+                <div class="quantity-controls">
+                <button class="add-quantity-button" onClick={decreaseQuantity}>
+                  --
+                </button>
+                  <input type="text" id="quantity-input" value={quantity} readonly />
+                  <button class="add-quantity-button"  onClick={increaseQuantity}>
+                    +
+                  </button>
+                </div>
+              </div>
+             
               <hr />
               <div className="add-to-cart">
                 <Button
@@ -131,7 +161,7 @@ const ProductDetail = () => {
                 <Button
                   className="btn-outline-success"
                   width="600px"
-                  onClick={handleBuyNow}
+                  onClick={() => handleBuyNow(product.id)}
                   title="Buy now"
                   color="#abd07e"
                 />
