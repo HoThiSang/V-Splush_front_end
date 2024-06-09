@@ -1,0 +1,77 @@
+.profile-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .sidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #e9ecef;
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+  
+  .side-menu .head {
+    margin-bottom: 20px;
+  }
+  
+  .user-icon {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  
+  .user-icon img {
+    border-radius: 50%;
+  }
+  
+  .sidebar .list-group-item {
+    border: none;
+    padding: 10px 15px;
+  }
+  
+  .sidebar .list-group-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .sidebar .list-group-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card .card-body {
+    padding: 20px;
+  }
+  
+  .button-wrapper .btn {
+    margin-right: 10px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  form .row .col-md-6 {
+    padding-bottom: 15px; /* Add spacing between input fields */
+  }
+  
+
+  
+  button.btn-equal {
+    width: 120px; /* Equal width for both buttons */
+  }
+  
