@@ -44,11 +44,6 @@ function Header() {
                                         <i className="icon fa fa-shopping-cart"></i>My Cart
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to="/test">
-                                        <i className="icon fa fa-check"></i>Checkout
-                                    </Link>
-                                </li>
 
                                 {currentUser ? (
                                     <>

@@ -1,15 +1,23 @@
-import axios from "axios";
 import { Alert } from "antd";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
+import { useNavigate } from "react-router";
 
 function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  // const [user_id]=useState("1")
+  const [user, setUer] = useState({});
+  const navigate =useNavigate()
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+     setUer(user);
+    }
+  }, []);
 
   const handleSetname = (e) => {
     setName(e.target.value);
@@ -25,21 +33,29 @@ function ContactUs() {
   };
   const handleSubmitContact = async (e) => {
     e.preventDefault();
+    if(user.id){
     try {
-      const response = await axiosService.post("/user-send-contact", {
+      const response = await axiosService.post("/user/user-send-contact", {
         name,
         email,
         subject,
         message,
+      },{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
       });
       alert("You sent successfully");
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
-      console.log(response.data.data);
+      
     } catch (error) {
       alert("You sent failed");
+      console.log(error)
+    }}else{
+      navigate('/login')
     }
   };
 
@@ -49,6 +65,7 @@ function ContactUs() {
         description="We Are Ready To Assist
 You In 24/7"
         type="info"
+        className="alert-contact-us"
       />
       <div className="container">
         <div className="row">

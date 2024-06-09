@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import axiosService from '../../services/configAxios';
-import { Button } from '../../components';
-import ProductItem from '../../components/ProductItem';
+import React, { useState, useEffect } from "react";
+import {  useParams, useNavigate } from "react-router-dom";
+import axiosService from "../../services/configAxios";
+import { Button } from "../../components";
+import ProductItem from "../../components/ProductItem";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState();
   const [images, setImages] = useState([]);
-  const [mainImage, setMainImage] = useState('');
+  const [mainImage, setMainImage] = useState("");
   const [popularProducts, setPopularProducts] = useState([]);
   const [user, setUser] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(1);
 
   const fetchProduct = async () => {
     try {
@@ -21,8 +22,8 @@ const ProductDetail = () => {
       setImages(data.imageAll);
       setMainImage(data.imageAll[0]);
     } catch (error) {
-      console.error('Error fetching product data:', error);
-      alert('Error fetching product data:', error)
+      console.error("Error fetching product data:", error);
+      alert("Error fetching product data:", error);
     }
   };
 
@@ -34,7 +35,7 @@ const ProductDetail = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosService.get('/admin-product');
+      const response = await axiosService.get("/admin-product");
       setPopularProducts(response.data.data);
     } catch (error) {
       alert("Error fetching data:", error);
@@ -47,10 +48,9 @@ const ProductDetail = () => {
   }, []);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-     setUser(user)
-     console.log(user)
+      setUser(user);
     }
   }, []);
 
@@ -58,21 +58,48 @@ const ProductDetail = () => {
     setMainImage(image);
   };
 
-  const handleAddToCart=async() =>{
-    if(user.id){
-      const res = await axiosService.post(`/add-to-cart`,{id:product.id,quantity:1,user_id:user.id})
-      alert("Add product successfully")
-      }
-      else{
-        navigate('/login')
-      }
-  }
-
-  const handleBuyNow = () => {
-    if (!user) {
-      navigate('/login');
+  const handleAddToCart = async () => {
+    if (user.id) {
+      const res = await axiosService.post(
+        `/user/add-to-cart`,
+        {
+          product_id: product.id,
+          quantity: 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+      alert("Add product successfully");
     } else {
-      navigate('/checkout');
+      navigate("/login");
+    }
+  };
+
+  const handleBuyNow = (id) => {
+    if (user.id) {
+      const productCart = {
+        quantity: quantity,
+        productName: product.product_name,
+        unitPrice: product.price,
+        totalPrice : quantity * product.price
+      };
+      localStorage.setItem("product", JSON.stringify(productCart));
+      navigate("/buy-now");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const increaseQuantity = (e) => {
+    setQuantity(quantity + 1);
+  };
+  
+  const decreaseQuantity = (e) => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
 
@@ -83,7 +110,13 @@ const ProductDetail = () => {
           <div className="product-detail row">
             <div className="left-section col-6">
               <div className="row image1">
-                {mainImage && <img src={mainImage.image_url} alt="Main Product" className="main-image" />}
+                {mainImage && (
+                  <img
+                    src={mainImage.image_url}
+                    alt="Main Product"
+                    className="main-image"
+                  />
+                )}
               </div>
               <div className="row border thumbnail-container">
                 {images.map((image, index) => (
@@ -102,6 +135,18 @@ const ProductDetail = () => {
               <h1 className="product-title">{product.product_name}</h1>
               <p className="product-description">{product.description}</p>
               <p className="product-price">${product.price}</p>
+              <div class="quantity-container">
+                <div class="quantity-controls">
+                <button class="add-quantity-button" onClick={decreaseQuantity}>
+                  --
+                </button>
+                  <input type="text" id="quantity-input" value={quantity} readonly />
+                  <button class="add-quantity-button"  onClick={increaseQuantity}>
+                    +
+                  </button>
+                </div>
+              </div>
+             
               <hr />
               <div className="add-to-cart">
                 <Button
@@ -116,7 +161,7 @@ const ProductDetail = () => {
                 <Button
                   className="btn-outline-success"
                   width="600px"
-                  onClick={handleBuyNow}
+                  onClick={() => handleBuyNow(product.id)}
                   title="Buy now"
                   color="#abd07e"
                 />

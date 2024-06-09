@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
-
+  const user = localStorage.getItem('user')
   const fetchData = async () => {
-    const { data } = await axiosService.get("/user/shopping-cart",  {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-      }})
-
-    setCarts(data.data);
+    if(user){
+      const { data } = await axiosService.get("/user/shopping-cart",  {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        }})
+        setCarts(data.data);
+    }
   };
 
   useEffect(() => {
