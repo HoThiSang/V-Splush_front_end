@@ -24,9 +24,9 @@ const ProductDetail = () => {
     try {
       const response = await axiosService.get(`/admin-product-detail/${id}`);
       const data = response.data;
-      setProduct(data.productDetail);
-      setImages(data.imageAll);
-      setMainImage(data.imageAll[0]);
+      setProduct(data.productData);
+      setImages(data.imageData);
+      setMainImage(data.imageData[0]);
     } catch (error) {
       console.error("Error fetching product data:", error);
       alert("Error fetching product data:", error);

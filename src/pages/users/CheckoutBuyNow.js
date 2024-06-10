@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Input, Label } from "../../components";
 import axiosService from "../../services/configAxios";
-import { useNavigate } from "react-router";
+
 
 function CheckoutBuyNow () {
   const [name, setName] = useState("");
@@ -9,7 +9,7 @@ function CheckoutBuyNow () {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("");
-  const navigate = useNavigate();
+
 
   const product =  JSON.parse(localStorage.getItem('product'));
   console.log(product);

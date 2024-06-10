@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axiosService from "../../services/configAxios";
 import { Alert } from "react-bootstrap";
+import { Modal } from "antd";
 
 function UserProfile() {
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : {};
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     name: user.name || "",
@@ -54,7 +59,7 @@ function UserProfile() {
         updateData.append('image_url', uploadedImage);
       }
 
-      const profileResponse = await axiosService.post(`/updateInformation/${formData.id}`, updateData, {
+      const profileResponse = await axiosService.post(`/user/updateInformation/${formData.id}`, updateData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'multipart/form-data',
@@ -66,15 +71,21 @@ function UserProfile() {
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setShowSuccess(true);
         setShowError(false);
+        setSuccessMessage('Updated user information successfully!');
+        setIsSuccessModalVisible(true);
       } else {
         console.error("Failed to update user profile");
         setShowSuccess(false);
         setShowError(true);
+        setErrorMessage("Failed to update user profile !");
+        setIsErrorModalVisible(true);
       }
     } catch (error) {
       console.error("An error occurred while updating user profile:", error);
       setShowSuccess(false);
       setShowError(true);
+      setErrorMessage("Update user information faild !");
+      setIsErrorModalVisible(true);
     }
   };
 
@@ -215,6 +226,22 @@ function UserProfile() {
           </div>
         </div>
       </div>
+      <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
     </div>
   );
 }
