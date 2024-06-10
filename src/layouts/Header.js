@@ -45,7 +45,21 @@ function Header() {
                                     </Link>
                                 </li>
 
-                                {currentUser ? (
+                                {currentUser===null ? (
+                                    
+                                    <>
+                                        <li>
+<Link to="/register">
+                                                <i className="icon fa fa-check"></i>Register
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/login">
+                                                <i className="icon fa fa-check"></i>Login
+                                            </Link>
+                                        </li>
+                                    </>
+                                ) : (
                                     <>
                                     <li>
                                         <Link to="/profile-user">
@@ -59,19 +73,6 @@ function Header() {
                                     </li>
                                     </>
                                     
-                                ) : (
-                                    <>
-                                        <li>
-<Link to="/register">
-                                                <i className="icon fa fa-check"></i>Register
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/login">
-                                                <i className="icon fa fa-check"></i>Login
-                                            </Link>
-                                        </li>
-                                    </>
                                 )}
                             </ul>
                         </div>
@@ -98,7 +99,7 @@ function Header() {
                                             <Link
                                                 className="dropdown-toggle"
                                                 data-toggle="dropdown"
-                                                to="/!category.html"
+                                                to="/!"
                                             >
                                                 Categories <b className="caret"></b>
                                             </Link>
@@ -177,14 +178,17 @@ Home
                                             <Link to="/products">Products</Link>{" "}
                                         </li>
 
-
+                                        <li className="dropdown">
+                                            {" "}
+                                            <Link to="/blog">Blogs</Link>{" "}
+                                        </li>
                                         <li className="dropdown">
                                             {" "}
                                             <Link to="/contact-us">Contact us</Link>{" "}
                                         </li>
                                         <li className="dropdown">
                                             {" "}
-                                            <Link to="/!">Order purchased</Link>{" "}
+                                            <Link to="/about-us">About us</Link>{" "}
                                         </li>
 
                                         <li className="dropdown  navbar-right special-menu">

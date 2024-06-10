@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router";
+import { Modal } from "antd";
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -11,6 +12,11 @@ function ContactUs() {
   const [message, setMessage] = useState("");
   const [user, setUer] = useState({});
   const navigate =useNavigate()
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -45,15 +51,22 @@ function ContactUs() {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
       });
-      alert("You sent successfully");
+     
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
+      setSuccessMessage('Send mail successfully!');
+      setIsSuccessModalVisible(true);
       
     } catch (error) {
-      alert("You sent failed");
-      console.log(error)
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+        setIsErrorModalVisible(true);
+      } else {
+        setErrorMessage('An error occurred. Please try again later.');
+        setIsErrorModalVisible(true);
+      }
     }}else{
       navigate('/login')
     }
@@ -214,6 +227,22 @@ You In 24/7"
           </form>
         </div>
       </div>
+      <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
     </>
   );
 }

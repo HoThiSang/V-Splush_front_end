@@ -17,7 +17,7 @@ function Product() {
   const queryParams = new URLSearchParams(location.search);
   const keyword = queryParams.get("keyword");
 
-  const fetchData = async () => {
+  const fetchProductData = async () => {
     try {
       const response = await axiosService.get("/admin-product");
       const responseData = response.data;
@@ -37,7 +37,7 @@ function Product() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchProductData();
   }, []);
 
   useEffect(() => {

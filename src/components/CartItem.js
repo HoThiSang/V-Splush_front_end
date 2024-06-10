@@ -7,7 +7,7 @@ function CartItem(cart) {
     index,
     image_url,
     product_name,
-    discount,
+    unit_price,
     total_price,
     quantity,
     handleIncreaseQuantity,
@@ -27,7 +27,7 @@ function CartItem(cart) {
         />
       </td>
       <td>{product_name}</td>
-      <td>{discount}</td>
+      <td>{unit_price}</td>
       <td>{quantity}</td>
       <td>
         <Button

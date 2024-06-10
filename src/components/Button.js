@@ -1,6 +1,3 @@
-// note chỉ nhập className dạng : btn btn-outline-success or btn btn-primary 
-// còn nhưng thông số có thể thay ddổi
-
 import styled from "styled-components";
 const StyleLink=styled.a`
 
@@ -28,9 +25,11 @@ function Button({title,href,onClick,className,color,size,width,height}){
   
     return (
         <>
-            <Component className={`btn ${className}`} color={color} size={size} {...props} width={width} height= {height}>{title}</Component>
+            <Component className={`btn ${className}`} color={color} size={size} 
+            {...props} width={width} height= {height}>{title}</Component>
         </>
     );
 }
 
 export  default Button;
+
