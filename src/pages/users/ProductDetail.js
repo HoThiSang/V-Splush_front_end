@@ -3,6 +3,7 @@ import {  useParams, useNavigate } from "react-router-dom";
 import axiosService from "../../services/configAxios";
 import { Button } from "../../components";
 import ProductItem from "../../components/ProductItem";
+import { Modal } from "antd";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState();
@@ -13,6 +14,11 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+
 
   const fetchProduct = async () => {
     try {
@@ -64,7 +70,7 @@ const ProductDetail = () => {
         `/user/add-to-cart`,
         {
           product_id: product.id,
-          quantity: 1,
+          quantity: quantity,
         },
         {
           headers: {
@@ -72,7 +78,8 @@ const ProductDetail = () => {
           },
         }
       );
-      alert("Add product successfully");
+      setSuccessMessage('Add product to cart successfully!');
+      setIsSuccessModalVisible(true);
     } else {
       navigate("/login");
     }
@@ -134,7 +141,7 @@ const ProductDetail = () => {
             <div className="right-section col-6">
               <h1 className="product-title">{product.product_name}</h1>
               <p className="product-description">{product.description}</p>
-              <p className="product-price">${product.price}</p>
+              <p className="product-price">{product.price} VND</p>
               <div class="quantity-container">
                 <div class="quantity-controls">
                 <button class="add-quantity-button" onClick={decreaseQuantity}>
@@ -189,6 +196,22 @@ const ProductDetail = () => {
           />
         ))}
       </div>
+      <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
     </div>
   );
 };

@@ -2,17 +2,24 @@ import { CartItem } from "../../components";
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
-
+import { Modal } from "antd";
 function Cart() {
   const [carts, setCarts] = useState([]);
   const user = localStorage.getItem('user')
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+
   const fetchData = async () => {
     if(user){
-      const { data } = await axiosService.get("/user/shopping-cart",  {
+      const  data = await axiosService.get("/user/shopping-cart",  {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
         }})
-        setCarts(data.data);
+        setCarts(data.data.data);
+        console.log(data.data.data)
+       
     }
   };
 
@@ -20,7 +27,6 @@ function Cart() {
     fetchData();
   }, []);
 
-  console.log(carts);
   const handleIncreaseQuantity = async (id) => {
     try {
       const { data } = await axiosService.post(`/user/update-cart/${id}`, {
@@ -73,21 +79,32 @@ function Cart() {
 
       const updatedCarts = carts.filter((item) => item.product_id !== id);
       setCarts(updatedCarts);
-    } catch (err) {
-      alert("Failed to delete cart item. Please try again later.");
+      setSuccessMessage('Deleted cart successfully!');
+      setIsSuccessModalVisible(true);
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+        setIsErrorModalVisible(true);
+      } else {
+        setErrorMessage('An error occurred. Please try again later.');
+        setIsErrorModalVisible(true);
+      }
     }
   };
+  let sum =0;
   return (
     <>
       <div className="container cart-component">
         <div className="row">
-        {carts.length === 0 ? (
+        {!carts ? (
           <div className="cart-empty ">
                   <h1>Your cart is empty</h1>
                   <div style={{ alignItems:'center', border: '1px solid gray', borderRadius:'20px' }}>
                   <Link to='/products' className="btn">Continuos shopping</Link>
                   </div>
-            </div> ) : (
+            </div> 
+            
+            ) : (
           <table className="table table-striped text-center">
             <thead className="text-center">
               <tr>
@@ -104,12 +121,13 @@ function Cart() {
             <tbody>
              
                { carts.map((cart, index) => (
+                
                   <CartItem
                     key={index}
                     id={cart.product_id}
                     index={index}
                     image_url={cart.image_url}
-                    discount={cart.discount}
+                    unit_price={cart.unit_price}
                     total_price={cart.total_price}
                     product_name={cart.product_name}
                     quantity={cart.quantity}
@@ -120,8 +138,8 @@ function Cart() {
                 ))
             }
               <tr>
-                <h4>Total price : </h4>
-                <h4>Shipping : </h4>
+                <h4 style={{ color:'red' }}>Total price : {sum} </h4>
+                <h4>Shipping : Free</h4>
               </tr>
               <tr>
                 <div className="cart-checkout-btn pull-right">
@@ -137,6 +155,22 @@ function Cart() {
           </table>) }
         </div> 
       </div>
+      <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
     </>
   );
 }

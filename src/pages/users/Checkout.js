@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Input, Label } from "../../components";
 import axiosService from "../../services/configAxios";
-import { useNavigate } from "react-router";
+import { Modal } from "antd";
 
 const CheckoutForm = () => {
   const [carts, setCarts] = useState([]);
@@ -10,8 +10,9 @@ const CheckoutForm = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("");
-  const [result , setResult] = useState([]);
-  const navigate = useNavigate();
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const fetchData = async () => {
     try {
       const { data } = await axiosService.get("/user/shopping-cart", {
@@ -61,7 +62,11 @@ const CheckoutForm = () => {
     const redirect = "redirect";
     const userString = localStorage.getItem('user');
       const user = JSON.parse(userString);
-
+      let sum=0;
+      {carts.map((item, index) => {
+          sum+=carts.total_price
+      }) }
+      console.log(sum)
     const { id } = user;
   console.log(id)
     try {
@@ -72,7 +77,7 @@ const CheckoutForm = () => {
         address,
         payment,
         id,
-        totalPrice: 20000,
+        totalPrice: 200,
         redirect
       }, 
       {
@@ -83,11 +88,18 @@ const CheckoutForm = () => {
       console.log(postData)
       window.location.href = postData.data.data;
     } catch (error) {
-      alert("Wrong went you checkout");
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+        setIsErrorModalVisible(true);
+      } else {
+        setErrorMessage('An error occurred. Please try again later.');
+        setIsErrorModalVisible(true);
+      }
     }
   };
 
   return (
+    <>
     <form className="form-checkout" onSubmit={handelSubmitForm}>
       <div className="container">
         <h3 className="checkout-heading">CHECKOUT PAGE</h3>
@@ -176,6 +188,15 @@ const CheckoutForm = () => {
         </div>
       </div>
     </form>
+    <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        </>
   );
 };
 

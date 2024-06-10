@@ -12,3 +12,4 @@ export {default as ContactUs}  from "./ContactUs"
 export {default as CheckoutSuccess}  from "./CheckoutSuccess"
 export {default as AboutUs} from "./AboutUs"
 export {default as CheckoutBuyNow} from "./CheckoutBuyNow"
+export {default as OrderHistory} from './OrderHistory'

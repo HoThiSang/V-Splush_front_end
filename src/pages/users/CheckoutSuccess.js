@@ -3,7 +3,7 @@ import axiosService from "../../services/configAxios";
 import { useEffect, useState } from "react";
 import { Button } from "antd";
 const CheckoutSuccess = () => {
-  const [checkout, setCheckout] = useState();
+  // const [checkout, setCheckout] = useState();
   const [searchParams] = useSearchParams();
 
   const vnpResponseCode = searchParams.get("vnp_ResponseCode");
@@ -16,7 +16,7 @@ const CheckoutSuccess = () => {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
       }
     });
-    setCheckout(postData);
+    // setCheckout(postData);
   };
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const CheckoutSuccess = () => {
         <h2>Checkout successfully !</h2>
         <div className="btn-checkout">
           <Link to="/" className="btn-1"><Button>Return to Home page</Button></Link>
-          <Link to="/" className="btn-2"><Button>Check Order</Button></Link>
+          <Link to="/order-history" className="btn-2"><Button>Check Order</Button></Link>
         </div>
       </div>
     </div>
