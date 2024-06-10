@@ -10,6 +10,7 @@ import RegistrationForm from './pages/auth/RegisterUser.js';
 import Login from './pages/auth/Login.js';
 import { CurrentUserContext, CurrentUserProvider } from './context/CurrentUserContext.js';
 import Error from './pages/users/404.js';
+import UserProfile from './pages/users/UserProfile.js';
 
 function App() {
  
@@ -32,7 +33,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path="/productdetail/:id" element={<ProductDetail />} />
           <Route path='/contact-us' element={<ContactUs />}/>
-          <Route path='/profile-user' element={<ContactUs />}/>
+          <Route path='/profile-user' element={<UserProfile />}/>
           <Route path='/checkout' element={<CheckoutForm />}/>
         <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
         <Route path='/search' element={<Search />} />

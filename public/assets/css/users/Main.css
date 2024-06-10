@@ -5300,9 +5300,9 @@ age-container #owl-main .owl-next {
   color: #666666;
 }
 .shopping-cart .shopping-cart-table table tbody tr .romove-item a:hover,
-.shopping-cart .shopping-cart-table table tbody tr .romove-item a:focus {
+/* .shopping-cart .shopping-cart-table table tbody tr .romove-item a:focus {
   color: #ff000 !important;
-}
+} */
 .shopping-cart .shopping-cart-table table tbody tr .cart-image .entry-thumbnail {
   display: block;
   text-align: center;
