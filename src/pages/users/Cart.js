@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 import { Modal } from "antd";
+
 function Cart() {
   const [carts, setCarts] = useState([]);
   const user = localStorage.getItem('user')
@@ -83,7 +84,7 @@ function Cart() {
       setIsSuccessModalVisible(true);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        setErrorMessage(error.response.data.message);
+        setErrorMessage('An error occurred. Please try again later.');
         setIsErrorModalVisible(true);
       } else {
         setErrorMessage('An error occurred. Please try again later.');
@@ -113,6 +114,7 @@ function Cart() {
                 <th scope="col">Product name</th>
         
                 <th scope="col">Price</th>
+                <th scope="col">Total price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Action quantity</th>
                 <th scope="col">Action</th>

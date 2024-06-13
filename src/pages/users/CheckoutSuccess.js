@@ -9,19 +9,23 @@ const CheckoutSuccess = () => {
   const hasUpdatedPost = useRef(false);
 
   const updatePost = async (vnpTxnRef) => {
-    await axiosService.post(`/user/update-order/${vnpTxnRef}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`
-      }
-    });
+    try {
+      if (vnpResponseCode !== "00" && !hasUpdatedPost.current) {
+      await axiosService.post(`/user/update-order/${vnpTxnRef}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        }
+      });
+      hasUpdatedPost.current = true;
+    }
+    } catch (error) {
+    }
   };
 
   useEffect(() => {
-    if (vnpResponseCode !== "00" && !hasUpdatedPost.current) {
       updatePost(vnpTxnRef);
-      hasUpdatedPost.current = true;
-    }
-  }, [vnpResponseCode, vnpTxnRef]);
+    
+  }, [ vnpTxnRef]);
   
   return (
     
