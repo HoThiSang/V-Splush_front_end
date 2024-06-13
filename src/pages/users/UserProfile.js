@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import axiosService from "../../services/configAxios";
 import { Alert } from "react-bootstrap";
 import { Modal } from "antd";
+import ProfileLayout from "./ProfileLayout";
 
 function UserProfile() {
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : {};
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
@@ -19,7 +20,9 @@ function UserProfile() {
     phone: user.phone || "",
     id: user.id || "",
     role_id: user.role_id || "",
-    image_url: user.image_url || "https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn",
+    image_url:
+      user.image_url ||
+      "https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn"
   });
 
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -47,31 +50,35 @@ function UserProfile() {
     }
     try {
       const updateData = new FormData();
-      updateData.append('name', formData.name);
-      updateData.append('email', formData.email);
-      updateData.append('date_of_birth', formData.date_of_birth);
-      updateData.append('address', formData.address);
-      updateData.append('phone', formData.phone);
-      updateData.append('id', formData.id);
-      updateData.append('role_id', formData.role_id);
+      updateData.append("name", formData.name);
+      updateData.append("email", formData.email);
+      updateData.append("date_of_birth", formData.date_of_birth);
+      updateData.append("address", formData.address);
+      updateData.append("phone", formData.phone);
+      updateData.append("id", formData.id);
+      updateData.append("role_id", formData.role_id);
 
       if (uploadedImage) {
-        updateData.append('image_url', uploadedImage);
+        updateData.append("image_url", uploadedImage);
       }
 
-      const profileResponse = await axiosService.post(`/user/updateInformation/${formData.id}`, updateData, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const profileResponse = await axiosService.post(
+        `/user/updateInformation/${formData.id}`,
+        updateData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "multipart/form-data"
+          }
+        }
+      );
 
       if (profileResponse.status === 200) {
         const updatedUser = profileResponse.data.user;
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setShowSuccess(true);
         setShowError(false);
-        setSuccessMessage('Updated user information successfully!');
+        setSuccessMessage("Updated user information successfully!");
         setIsSuccessModalVisible(true);
       } else {
         console.error("Failed to update user profile");
@@ -98,40 +105,19 @@ function UserProfile() {
       phone: user.phone || "",
       id: user.id || "",
       role_id: user.role_id || "",
-      image_url: user.image_url || "https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn",
+      image_url:
+        user.image_url ||
+        "https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn"
     });
     setUploadedImage(null);
   };
 
   return (
-    <div className="container-fluid profile-container">
-      <div className="row">
-        <div className="col-md-2 sidebar">
-          <div className="side-menu text-center">
-            <div className="user-icon">
-              <img
-                src={formData.image_url}
-                alt="user-avatar"
-                className="d-block rounded-circle mx-auto"
-                height="100px"
-                width="100px"
-              />
-            </div>
-            <p className="mt-2">{formData.name}</p>
-          </div>
-          <div className="sidebar-module-container">
-            <ul className="list-group">
-              <li className="list-group-item">
-                <a href="#personal-info">Personal Info</a>
-              </li>
-              <li className="list-group-item">
-                <a href="#order-list">Order List</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="col-md-10 main-content">
+  
+    <ProfileLayout 
+        image={formData.image_url}
+        username={formData.name}
+    >
           <div id="personal-info" className="section">
             <div className="card mb-4">
               <div className="card-body d-flex align-items-center gap-4">
@@ -145,24 +131,45 @@ function UserProfile() {
                 <div className="button-wrapper">
                   <label htmlFor="upload" className="btn btn-primary me-2 mb-4">
                     <span>Upload new photo</span>
-                    <input type="file" id="upload" className="account-file-input" hidden accept="image/png, image/jpeg" onChange={handleImageChange} />
+                    <input
+                      type="file"
+                      id="upload"
+                      className="account-file-input"
+                      hidden
+                      accept="image/png, image/jpeg"
+                      onChange={handleImageChange}
+                    />
                   </label>
-                  <button type="button" className="btn btn-outline-secondary mb-4" onClick={handleReset}>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary mb-4"
+                    onClick={handleReset}
+                  >
                     <span>Reset</span>
                   </button>
-                  <p className="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                  <p className="text-muted mb-0">
+                    Allowed JPG, GIF or PNG. Max size of 800K
+                  </p>
                 </div>
               </div>
             </div>
-            {showSuccess && <Alert variant="success">Profile updated successfully!</Alert>}
-            {showError && <Alert variant="danger">Failed to update profile. Please try again.</Alert>}
+            {showSuccess && (
+              <Alert variant="success">Profile updated successfully!</Alert>
+            )}
+            {showError && (
+              <Alert variant="danger">
+                Failed to update profile. Please try again.
+              </Alert>
+            )}
             <div className="card-body">
               <form id="formAccountSettings" onSubmit={handleSubmit}>
                 <input type="hidden" name="id" value={formData.id} />
                 <input type="hidden" name="role_id" value={formData.role_id} />
                 <div className="row">
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="name" className="form-label">Full Name</label>
+                    <label htmlFor="name" className="form-label">
+                      Full Name
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -174,7 +181,9 @@ function UserProfile() {
                     />
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="email" className="form-label">Email</label>
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -185,7 +194,9 @@ function UserProfile() {
                     />
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="date_of_birth" className="form-label">Date of birth</label>
+                    <label htmlFor="date_of_birth" className="form-label">
+                      Date of birth
+                    </label>
                     <input
                       className="form-control"
                       type="date"
@@ -196,7 +207,9 @@ function UserProfile() {
                     />
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="address" className="form-label">Address</label>
+                    <label htmlFor="address" className="form-label">
+                      Address
+                    </label>
                     <input
                       type="text"
                       className="form-control"
@@ -207,7 +220,9 @@ function UserProfile() {
                     />
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="phone" className="form-label">Phone number</label>
+                    <label htmlFor="phone" className="form-label">
+                      Phone number
+                    </label>
                     <input
                       type="text"
                       className="form-control"
@@ -219,30 +234,33 @@ function UserProfile() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <button type="submit" className="btn btn-primary">Save changes</button>
+                  <button type="submit" className="btn btn-primary">
+                    Save changes
+                  </button>
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
-      <Modal  className="error"
-          title="Error"
-          open={isErrorModalVisible}
-          onOk={() => setIsErrorModalVisible(false)}
-          onCancel={() => setIsErrorModalVisible(false)}
-        >
-          <p>{errorMessage}</p>
-        </Modal>
-        <Modal
-          title="Success"
-          open={isSuccessModalVisible}
-          onOk={() => setIsSuccessModalVisible(false)}
-          onCancel={() => setIsSuccessModalVisible(false)}
-        >
-          <p>{successMessage}</p>
-        </Modal>
-    </div>
+            <Modal
+              className="error"
+              title="Error"
+              open={isErrorModalVisible}
+              onOk={() => setIsErrorModalVisible(false)}
+              onCancel={() => setIsErrorModalVisible(false)}
+            >
+              <p>{errorMessage}</p>
+            </Modal>
+            <Modal
+              title="Success"
+              open={isSuccessModalVisible}
+              onOk={() => setIsSuccessModalVisible(false)}
+              onCancel={() => setIsSuccessModalVisible(false)}
+            >
+              <p>{successMessage}</p>
+            </Modal>
+          </div></ProfileLayout>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 

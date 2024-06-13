@@ -97,6 +97,7 @@ function Product() {
                 title={product.product_name}
                 description={product.description}
                 price={product.price}
+                quantity={product.quantity}
               />
             ))}
         </div>

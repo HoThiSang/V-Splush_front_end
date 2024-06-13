@@ -110,30 +110,7 @@ function Header() {
 
                             </div>
                         </div>
-                        <div className="col-xs-12 col-sm-12 col-md-2  top-cart-row">
-                            <div className=" dropdown-cart">
-                                {" "}
-                                <Link to="/!" className="lnk-cart">
-                                    <div className="items-cart-inner">
-<div className="basket">
-                                            <i className="icon fa fa-shopping-cart"></i>
-                                        </div>
-                                        <div className="basket-item-count">
-                                            <span className="count"></span>
-                                        </div>
-                                        <div className="total-price-basket">
-                                            {" "}
-                                            <span className="lbl"></span>{" "}
-                                            <span className="total-price">
-                                                {" "}
-                                                <span className="sign"></span>
-                                                <span className="value"></span>{" "}
-                                            </span>{" "}
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
+                                    
                     </div>
                 </div>
             </div>

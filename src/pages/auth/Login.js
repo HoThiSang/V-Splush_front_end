@@ -20,12 +20,9 @@ const Login = () => {
         event.preventDefault();
         try {
             const response = await axiosService.post("/login", { email, password });
-            console.log('User data', response.data)
             if (response.data.user) {
-                // Lưu vào localStorage
                 localStorage.setItem('authToken', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
-                // // Lưu thông tin user vào cookie
                 // document.cookie = `user=${JSON.stringify(response.data.user)}; path=/`;
                     
                 setCurrentUser(response.data.user);

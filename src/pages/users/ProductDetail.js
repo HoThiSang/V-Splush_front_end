@@ -20,7 +20,7 @@ const ProductDetail = () => {
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
 
-  const fetchProduct = async () => {
+  const fetchProduct = async (id) => {
     try {
       const response = await axiosService.get(`/admin-product-detail/${id}`);
       const data = response.data;
@@ -35,7 +35,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (id) {
-      fetchProduct();
+      fetchProduct(id);
     }
   }, [id]);
 
@@ -66,7 +66,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = async () => {
     if (user.id) {
-      const res = await axiosService.post(
+       await axiosService.post(
         `/user/add-to-cart`,
         {
           product_id: product.id,
@@ -155,6 +155,7 @@ const ProductDetail = () => {
               </div>
              
               <hr />
+              
               <div className="add-to-cart">
                 <Button
                   className="btn-outline-success"

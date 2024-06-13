@@ -44,7 +44,7 @@ function Cart() {
         setCarts(list);
       }
     } catch (error) {
-      alert('Something wrong when update cart!')
+      alert('Something wrong when update cart!', error)
     }
   };
 
@@ -65,7 +65,7 @@ function Cart() {
         setCarts(list);
       }
     } catch (error) {
-      alert('Something wrong when update cart!')
+      alert('Something wrong when update cart!', error)
     }
   };
 
