@@ -35,12 +35,13 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />}/>
           <Route path='/profile-user' element={<UserProfile />}/>
           <Route path='/checkout' element={<CheckoutForm />}/>
-        <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
-        <Route path='/search' element={<Search />} />
-        <Route path='/error' element={<Error />} />
-        <Route path='/about-us' element={<AboutUs />}/>
-        <Route path='/buy-now' element={<CheckoutBuyNow />}/>
-        <Route path='/order-history' element={<OrderHistory />}/>
+          <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
+          <Route path='/search' element={<Search />} />
+          <Route path='/error' element={<Error />} />
+          <Route path='/about-us' element={<AboutUs />}/>
+          <Route path='/buy-now' element={<CheckoutBuyNow />}/>
+          <Route path='/order-history' element={<OrderHistory />}/>
+          <Route path='*' element={<Error />} />
         </Routes>
         <Footer />
       </div>

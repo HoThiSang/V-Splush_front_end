@@ -3,7 +3,26 @@ import {  useParams, useNavigate } from "react-router-dom";
 import axiosService from "../../services/configAxios";
 import { Button } from "../../components";
 import ProductItem from "../../components/ProductItem";
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
+import styled from 'styled-components';
+
+const contentStyle = {
+  padding: 50,
+  background: "rgba(0, 0, 0, 0.05)",
+  borderRadius: 4
+};
+const content = <div style={contentStyle} />;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const Row = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
 
 const ProductDetail = () => {
   const [product, setProduct] = useState();
@@ -18,6 +37,7 @@ const ProductDetail = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
   const fetchProduct = async (id) => {
@@ -27,9 +47,13 @@ const ProductDetail = () => {
       setProduct(data.productData);
       setImages(data.imageData);
       setMainImage(data.imageData[0]);
+      setLoading(false);
+
     } catch (error) {
       console.error("Error fetching product data:", error);
       alert("Error fetching product data:", error);
+      setLoading(true);
+
     }
   };
 
@@ -54,11 +78,16 @@ const ProductDetail = () => {
   }, []);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setUser(user);
+    try {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        setUser(user);
+      }
+    } catch (error) {
+      console.error('Error parsing user data from localStorage:', error);
     }
   }, []);
+
 
   const handleThumbnailClick = (image) => {
     setMainImage(image);
@@ -110,6 +139,21 @@ const ProductDetail = () => {
     }
   };
 
+  if (loading)
+    return (
+      <Container>
+        <Row>
+          <Spin tip="Loading" size="large">
+            {content}
+          </Spin>
+        </Row>
+        <Row>
+          <Spin tip="Loading...">
+          </Spin>
+        </Row>
+      </Container>
+    );
+    
   return (
     <div className="container">
       {product && (

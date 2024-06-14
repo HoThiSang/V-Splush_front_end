@@ -11,7 +11,7 @@ function UserProfile() {
   const [successMessage, setSuccessMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-
+  
   const [formData, setFormData] = useState({
     name: user.name || "",
     email: user.email || "",

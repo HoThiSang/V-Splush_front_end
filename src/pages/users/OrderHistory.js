@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import ProfileLayout from "./ProfileLayout";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
