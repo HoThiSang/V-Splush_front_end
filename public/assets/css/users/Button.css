@@ -1,0 +1,20 @@
+.btn-outline-success {
+  border: 2px solid rgba(92, 134, 146, 1);
+  outline: rgba(92, 134, 146, 1) 10px;
+  margin: auto;
+  padding: 6px 12px 6px 12px;
+  text-align: center;
+  color: black;
+  border-radius: 0%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-outline-success:hover{
+  background-color: rgb(92, 134, 146, 1);
+  color: white;
+}
+
+.btn-primary{
+  border-radius: 5px;
+}
