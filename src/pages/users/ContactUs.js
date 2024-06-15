@@ -1,5 +1,4 @@
 import { Alert } from "antd";
-import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router";
@@ -197,8 +196,7 @@ You In 24/7"
                   value={name}
                   onChange={handleSetname} />
               <label>Full name</label>
-            </div>
-            
+            </div> 
             <div className="user-box">
               <input type="text" required value={email} onChange={handleSetEmail} />
               <label>Email</label>

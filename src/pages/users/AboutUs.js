@@ -18,7 +18,7 @@ function AboutUs() {
           <div className="col-lg-3"></div>
           <div className="col-lg-6">
             <div className="col-lg-12 content-about-us">
-              <h2 className="title-about-us">The work values we thrive for</h2>
+              <h3 className="title-about-us">The work values we thrive for</h3>
               <div className="col-lg-2 img-border-about-us">
                 <img
                   src="https://res.cloudinary.com/dt8km1sxl/image/upload/v1716968093/V-Splush/k3dfsygjymrs67jmwsns.png"
@@ -172,7 +172,7 @@ function AboutUs() {
         </div>
 
         <div className="row background-comment-about-us">
-          <h2 className="title-about-us">What our Customers says...</h2>
+          <h3 className="title-about-us">What our Customers says...</h3>
           <div className="row">
             <div className="col-md-6 col-lg-2"></div>
 

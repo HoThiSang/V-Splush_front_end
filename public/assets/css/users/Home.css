@@ -98,3 +98,7 @@
 .order-page{
   margin-bottom:100px;
 }
+.nav-bg-class .nav.navbar-nav li.active {
+  background-color: #003366;
+  color: #fff;
+}

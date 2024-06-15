@@ -7,7 +7,7 @@ function BlogDetail() {
   const { id } = useParams();
   const [blog, setBlog] = useState({});
 
-  const getBlogDetail = async () => {
+  const getBlogDetail = async (id) => {
     try {
       const res = await axiosService.get(`/admin-show-post/${id}`);
       setBlog(res.data.data);
@@ -17,7 +17,7 @@ function BlogDetail() {
   };
   useEffect(() => {
     getBlogDetail();
-  }, []);
+  }, [id]);
 
   return (
     <>
