@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Input, Label } from "../../components";
 import axiosService from "../../services/configAxios";
 import { Modal } from "antd";
-
+import {  useNavigate } from "react-router-dom"
 const CheckoutForm = () => {
   const [carts, setCarts] = useState([]);
   const [name, setName] = useState("");
@@ -12,7 +12,8 @@ const CheckoutForm = () => {
   const [payment, setPayment] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const navigate = useNavigate();
+  
   const fetchData = async () => {
     try {
       const { data } = await axiosService.get("/user/shopping-cart", {
@@ -54,22 +55,13 @@ const CheckoutForm = () => {
   };
   const handelSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("Username:", name);
-    console.log("Email:", email);
-    console.log("Phone:", phone);
-    console.log("Address:", address);
-    console.log("Payment:", payment);
     const redirect = "redirect";
     const userString = localStorage.getItem('user');
-      const user = JSON.parse(userString);
-      let sum=0;
-      {carts.map((item, index) => {
-          sum+=carts.total_price
-      }) }
-      console.log(sum)
+    const user = JSON.parse(userString);
+      
     const { id } = user;
-  console.log(id)
     try {
+      if(payment==="NCB"){
       const postData = await axiosService.post("/user/checkout", {
         name,
         email,
@@ -77,7 +69,6 @@ const CheckoutForm = () => {
         address,
         payment,
         id,
-        totalPrice: 200,
         redirect
       }, 
       {
@@ -85,8 +76,24 @@ const CheckoutForm = () => {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
         }}
       );
-      console.log(postData)
       window.location.href = postData.data.data;
+      }else{
+        await axiosService.post("/user/checkout", {
+          name,
+          email,
+          phone,
+          address,
+          payment,
+          id,
+          redirect
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          }}
+        );
+        navigate('/')
+      }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
@@ -138,20 +145,29 @@ const CheckoutForm = () => {
         <input type="hidden" name="user_id" value={2} />
         <h4 className="checkout-heading text-center mt-4">Order information</h4>
         <div className="form-container">
-          <div className="form-row mt-3">
-            <Label idName="product" label="Product name" />
-            <Label idName="quantity" label="Quantity" />
-            <Label idName="unit-price" label="Unit price" />
-            <Label idName="total-price" label="Total price" />
-            {carts.map((item, index) => (
-              <>
-                <Label key={index} idName="product" label={item.product_name} />
-                <Label key={index} idName="product" label={item.quantity} />
-                <Label key={index} idName="product" label={item.unit_price} />
-                <Label key={index} idName="product" label={item.total_price} />
-              </>
-            ))}
-          </div>
+         
+          <table className="table">
+          <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Unit price</th>
+            <th>Total price</th>
+           
+          </tr>
+          </thead>
+          <tbody>
+          {carts.map((item, index) =>(
+            <tr key={index}>
+              <td>{item.product_name}</td>
+              <td>{item.quantity}</td>
+              <td>{item.unit_price}</td>
+              <td>{item.total_price}</td>
+            </tr>
+          ) )}
+          </tbody>
+            
+          </table>
         </div>
         <div className="form-container">
           <div className="form-group col-md-12 text-right">

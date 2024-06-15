@@ -1,0 +1,189 @@
+.ant-alert.alert-contact-us {
+  background-color: rgba(30, 44, 48, 1);
+  border-color: rgba(30, 44, 48, 1);
+  border-radius: 0px;
+  width: 100%;
+  font-size: 50px;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+.background-contact-us {
+  background-color: rgba(132, 168, 178, 1);
+  width: 400px;
+  height: 390px;
+  position: absolute;
+  margin-left: 100px;
+}
+.image-contact-us {
+  padding-bottom: 90px;
+  position: relative;
+  padding-left: 50px;
+  padding-top: 30px;
+  display: flex;
+}
+
+.infor-contact-us {
+  /* display: flex; */
+  padding-top: 10px;
+}
+
+.icon-contact-us {
+  border: 2px solid rgba(122, 156, 165, 1);
+  width: 54px;
+  height: 54px;
+  color: rgba(122, 156, 165, 1);
+  padding-left: 12px;
+  padding-top: 12px;
+}
+
+.body-contact-us {
+  padding-top: 15px;
+  padding-left: 20px;
+  width: 450px;
+}
+
+.inputs-contact-us {
+  background-color: rgba(235, 243, 245, 1);
+  height: 600px;
+  position: relative;
+  padding-top: 15px;
+}
+.inputs-contact-us h2 {
+  /* padding-top: 30px; */
+  text-align: center;
+}
+.title-contact-us,
+.p-text {
+  text-align: center;
+}
+
+.input-infor-contact-us {
+  background-color: white;
+  margin-left: 300px;
+  margin-right: 250px;
+  height: 450px;
+  padding-top: 20px;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* .iput-group-contact-us {
+  border: 2px solid rgba(122, 156, 165, 1);
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 30px;
+} */
+/*
+.iput-group-contact-us i {
+  margin: 10px 10px 10px 10px;
+} */
+/* .input-infor {
+  border: 1px solid white;
+  outline: none;
+  padding-left: 10px;
+  width: 300px;
+} */
+
+/* .button-contact-us {
+  margin-top: 30px;
+  margin-left: 260px;
+} */
+
+.input-group-prepend {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.input-group-text {
+  background-color: transparent;
+  border: none;
+  padding-left: 12px;
+}
+
+.your-icon-class {
+  font-size: 16px;
+  color: #6c757d;
+}
+.input-group {
+  width: 400px;
+  height: 40px;
+  padding: 5px;
+}
+
+.login-box {
+  position: relative;
+  top: 300px;
+  left: 50%;
+  margin-bottom: 100px;
+  width: 500px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.login-box h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+.buton {
+  display: flex;
+  justify-content: center;
+}
+.buton .button-contact {
+  width: 100%;
+}

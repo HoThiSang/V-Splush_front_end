@@ -2,7 +2,7 @@ import './App.css';
 import Header from './layouts/Header.js';
 import Footer from './layouts/Footer.js';
 import { Routes, Route}  from 'react-router-dom'
-import { Home, Cart, Test, WishList,Blog,BlogDetail,ContactUs, CheckoutForm, CheckoutSuccess,ProductDetail,AboutUs, CheckoutBuyNow, OrderHistory} from './pages/users'
+import { Home, Cart, Test, Blog,BlogDetail,ContactUs, CheckoutForm, CheckoutSuccess,ProductDetail,AboutUs, CheckoutBuyNow, OrderHistory} from './pages/users'
 import About from './components/About.js';
 import Search from './components/Search.js';
 import Product from './pages/users/Product.js';
@@ -23,7 +23,6 @@ function App() {
           <Route path='/'  element={<Home />} />
           <Route path='/carts'  element={<Cart />} />
           <Route path='/test'  element={<Test />} />
-          <Route path='/wishlist' element={<WishList />} />
           <Route path='/about'  element={<About />} />
           <Route path='/products' element={<Product />} />
           <Route path='/register'  element={<RegistrationForm />} />
@@ -35,12 +34,12 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />}/>
           <Route path='/profile-user' element={<UserProfile />}/>
           <Route path='/checkout' element={<CheckoutForm />}/>
-        <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
-        <Route path='/search' element={<Search />} />
-        <Route path='/error' element={<Error />} />
-        <Route path='/about-us' element={<AboutUs />}/>
-        <Route path='/buy-now' element={<CheckoutBuyNow />}/>
-        <Route path='/order-history' element={<OrderHistory />}/>
+          <Route path='/checkoutSuccess' element={<CheckoutSuccess />}/>
+          <Route path='/search' element={<Search />} />
+          <Route path='/about-us' element={<AboutUs />}/>
+          <Route path='/buy-now' element={<CheckoutBuyNow />}/>
+          <Route path='/order-history' element={<OrderHistory />}/>
+          <Route path='*' element={<Error />} />
         </Routes>
         <Footer />
       </div>

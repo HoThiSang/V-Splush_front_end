@@ -28,6 +28,7 @@ function CartItem(cart) {
       </td>
       <td>{product_name}</td>
       <td>{unit_price}</td>
+      <td>{total_price}</td>
       <td>{quantity}</td>
       <td>
         <Button

@@ -4,9 +4,28 @@ import ProductItem from "../../components/ProductItem";
 import ProductFilterSidebar from "../../components/ProductFilterSidebar";
 import { Pagination } from "antd";
 import { useLocation } from "react-router-dom";
+import { Spin } from "antd";
+import styled from 'styled-components';
 
 const numEachPage = 9;
 
+const contentStyle = {
+  padding: 50,
+  background: "rgba(0, 0, 0, 0.05)",
+  borderRadius: 4
+};
+const content = <div style={contentStyle} />;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const Row = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
 function Product() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -16,6 +35,7 @@ function Product() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const keyword = queryParams.get("keyword");
+  const [loading, setLoading] = useState(true);
 
   const fetchProductData = async () => {
     try {
@@ -31,8 +51,11 @@ function Product() {
         }
       });
       setProducts(Object.values(updatedProducts));
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching product data", error);
+      setLoading(true);
+
     }
   };
 
@@ -82,6 +105,21 @@ function Product() {
     setSearchKeyword(event.target.value);
   };
 
+  if (loading)
+    return (
+      <Container>
+        <Row>
+          <Spin tip="Loading" size="large">
+            {content}
+          </Spin>
+        </Row>
+        <Row>
+          <Spin tip="Loading...">
+          </Spin>
+        </Row>
+      </Container>
+    );
+    
   return (
     <div className="product-container">
       <div className="row product-item no-margin-left">
@@ -97,6 +135,7 @@ function Product() {
                 title={product.product_name}
                 description={product.description}
                 price={product.price}
+                quantity={product.quantity}
               />
             ))}
         </div>

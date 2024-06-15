@@ -9,7 +9,7 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const user = JSON.parse(stringUser);
       setCurrentUser(user);
-      console.log("User data", user);
+    
     } catch (error) {}
   }, []);
   return (

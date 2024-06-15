@@ -10,7 +10,6 @@
 @import url("fonts/index.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
 @import url("Button.css");
-@import url("WishLish.css");
 @import url("ProductItem.css");
 @import url("Product.css");
 @import url("Component.css");
@@ -18,11 +17,13 @@
 @import url("Blog.css");
 @import url("Component.css");
 @import url("ProductDetail.css");
-@import url("ContactUs.css");
 @import url("Checkout.css");
 @import url("ProductFilterSidebar.css");
 @import url("404.css");
 @import url("Error.css");
 @import url("AboutUs.css");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:700|Roboto:300");@import url('ProfileUser.css');
-@import url('ProfileUser.css');
+/* @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:700|Roboto:300"); */
+@import url("ProfileUser.css");
+@import url("ProfileUser.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+@import url("../users/fonts/index.js");

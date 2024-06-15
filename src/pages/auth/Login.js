@@ -1,14 +1,15 @@
-import { useState, useEffect, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axiosService from "../../services/configAxios";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const { register, handleSubmit, setError, formState: { errors } } = useForm();
+    const [apiErrors, setApiErrors] = useState([]);
     const navigate = useNavigate();
     const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
@@ -16,50 +17,70 @@ const Login = () => {
         }
     }, []);
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
+    const onSubmit = async (data) => {
         try {
-            const response = await axiosService.post("/login", { email, password });
-            console.log('User data', response.data)
+            const response = await axiosService.post("/login", data);
+            console.log('User data', response.data);
             if (response.data.user) {
-                // Lưu vào localStorage
                 localStorage.setItem('authToken', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
-                // // Lưu thông tin user vào cookie
-                // document.cookie = `user=${JSON.stringify(response.data.user)}; path=/`;
-                    
                 setCurrentUser(response.data.user);
-                setEmail("");
-                setPassword("");
                 navigate("/");
             } else {
                 console.log(response.data.error);
             }
         } catch (e) {
             if (e.response.status === 422) {
-                setErrors(e.response.data.errors);
+                e.response.data.errors.forEach(error => {
+                    setError(error.field, { type: "manual", message: error.message });
+                });
+            } else {
+                setApiErrors([e.response.data.message]);
             }
         }
-    }
+    };
 
     return (
         <div className="registration-form">
-            <form onSubmit={handleLogin} className="form-rigister">
-                <h2>Login</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="form-rigister">
+                <h3>Login</h3>
                 <div className="input-box">
                     <label htmlFor="email">Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email" />
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: "Invalid email address"
+                            }
+                        })}
+                    />
                     {errors.email && (
-                        <p>{errors.email[0]}</p>
+                        <p>{errors.email.message}</p>
                     )}
                 </div>
                 <div className="input-box">
                     <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password" />
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        {...register("password", { required: "Password is required" })}
+                    />
                     {errors.password && (
-                        <p>{errors.password[0]}</p>
-                    )}
+                        <p>{errors.password.message}</p>
+)}
                 </div>
+                {apiErrors.length > 0 && (
+                    <div className="alert alert-danger">
+                        {apiErrors.map((error, index) => (
+                            <p key={index}>{error}</p>
+                        ))}
+                    </div>
+                )}
                 <button type="submit">Login</button>
                 <div className="remember-signin">
                     <span>Don't have an account?</span>
@@ -67,7 +88,7 @@ const Login = () => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

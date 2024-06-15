@@ -1,5 +1,5 @@
 
-export  const Benefit = [
+export  const BennefitData = [
     {
         title: "Feel more confident",
         description : "Our products help you feel more confident about your natural beauty."
@@ -28,4 +28,4 @@ export  const Benefit = [
 ]
 
 
-export default Benefit;
+export default BennefitData;

@@ -1,27 +1,30 @@
 import { Alert } from "antd";
-import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router";
 import { Modal } from "antd";
+import "../../styles/ContactUs.css";
 
 function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [user, setUer] = useState({});
-  const navigate =useNavigate()
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
-
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-     setUer(user);
+    try {
+      const user = localStorage.getItem("user");
+      if (user) {
+        setUser(JSON.parse(user));
+      }
+    } catch (error) {
+      console.error("Error parsing user data from local storage:", error);
     }
   }, []);
 
@@ -39,36 +42,44 @@ function ContactUs() {
   };
   const handleSubmitContact = async (e) => {
     e.preventDefault();
-    if(user.id){
-    try {
-      const response = await axiosService.post("/user/user-send-contact", {
-        name,
-        email,
-        subject,
-        message,
-      },{
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        },
-      });
-     
-      setName("");
-      setEmail("");
-      setSubject("");
-      setMessage("");
-      setSuccessMessage('Send mail successfully!');
-      setIsSuccessModalVisible(true);
-      
-    } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setErrorMessage(error.response.data.message);
-        setIsErrorModalVisible(true);
-      } else {
-        setErrorMessage('An error occurred. Please try again later.');
-        setIsErrorModalVisible(true);
+    if (user.id) {
+      try {
+         await axiosService.post(
+          "/user/user-send-contact",
+          {
+            name,
+            email,
+            subject,
+            message
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+          }
+        );
+
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        setSuccessMessage("Send mail successfully!");
+        setIsSuccessModalVisible(true);
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          setErrorMessage(error.response.data.message);
+          setIsErrorModalVisible(true);
+        } else {
+          setErrorMessage("An error occurred. Please try again later.");
+          setIsErrorModalVisible(true);
+        }
       }
-    }}else{
-      navigate('/login')
+    } else {
+      navigate("/login");
     }
   };
 
@@ -97,7 +108,7 @@ You In 24/7"
               <div className="col-lg-10">
                 <div className="body-contact-us">
                   <div className="col-lg-12">
-                    <h2>We are here to help you always...</h2>
+                    <h3>We are here to help you always...</h3>
                     <p>
                       There are many variations of passages of Lorem Ipsum
                       available, but the majority have suffered alteration in
@@ -165,84 +176,63 @@ You In 24/7"
           </div>
         </div>
       </div>
-
-      <div className="inputs-contact-us">
-        <h2>Contact</h2>
-        <p className="p-text">
-          There are many variations of passages of Lorem Ipsum available, <br />
-          but the majority have suffered alteration in some form.
-        </p>
-        <div className="input-infor-contact-us">
+      <div className="container">
+        <div className="row">
+          <div className="title-contact-us">
+            {" "}
+            <h3>Contact</h3>
+            <p className="p-text">
+              There are many variations of passages of Lorem Ipsum available,{" "}
+              <br />
+              but the majority have suffered alteration in some form.
+            </p>
+          </div>
+        </div>
+        <div className="login-box">
+          <h3>Form contact</h3>
           <form onSubmit={handleSubmitContact}>
-            <div className="iput-group-contact-us">
-              <i class="fa fa-user " aria-hidden="true"></i>
-              <input
-                type="text"
-                placeholder="Name"
-                className="input-infor"
-                value={name}
-                onChange={handleSetname}
-              />
+            <div className="user-box">
+              <input type="text" name="" required="" 
+                  value={name}
+                  onChange={handleSetname} />
+              <label>Full name</label>
+            </div> 
+            <div className="user-box">
+              <input type="text" required value={email} onChange={handleSetEmail} />
+              <label>Email</label>
             </div>
-            <div className="iput-group-contact-us">
-              <i class="fa fa-envelope-o " aria-hidden="true"></i>
-              <input
-                type="email"
-                placeholder="Email"
-                className="input-infor"
-                value={email}
-                onChange={handleSetEmail}
-              />
+            <div className="user-box">
+              <input type="text" required  value={subject} onChange={handleSubject} />
+              <label>Subject</label>
             </div>
-            <div className="iput-group-contact-us">
-              <i class="fa fa-contao" aria-hidden="true"></i>
-              <input
-                type="text"
-                placeholder="Subject"
-                className="input-infor"
-                value={subject}
-                onChange={handleSubject}
-              />
+            <div className="user-box">
+              <input type="text" required  value={message} onChange={handleMessage} />
+              <label>Message</label>
             </div>
-            <div className="iput-group-contact-us">
-              <i
-                className="fa fa-commenting-o icon-commenting-o"
-                aria-hidden="true"
-              ></i>
-              <textarea
-                className="input-infor"
-                placeholder="
-            Any Note For Us"
-                value={message}
-                onChange={handleMessage}
-              />
-            </div>
-            <div className="button-contact-us">
-              <Button
-                className={"btn-primary"}
-                title={"SUBMIT"}
-                width={"300px"}
-              />
+            <div className="buton">
+              <button type="submit" className="btn btn-primary button-contact">Submit</button>
             </div>
           </form>
+
         </div>
       </div>
-      <Modal  className="error"
-          title="Error"
-          open={isErrorModalVisible}
-          onOk={() => setIsErrorModalVisible(false)}
-          onCancel={() => setIsErrorModalVisible(false)}
-        >
-          <p>{errorMessage}</p>
-        </Modal>
-        <Modal
-          title="Success"
-          open={isSuccessModalVisible}
-          onOk={() => setIsSuccessModalVisible(false)}
-          onCancel={() => setIsSuccessModalVisible(false)}
-        >
-          <p>{successMessage}</p>
-        </Modal>
+      <Modal
+        className="error"
+        title="Error"
+        open={isErrorModalVisible}
+        onOk={() => setIsErrorModalVisible(false)}
+        onCancel={() => setIsErrorModalVisible(false)}
+      >
+        <p>{errorMessage}</p>
+      </Modal>
+      <Modal
+        title="Success"
+        open={isSuccessModalVisible}
+        onOk={() => setIsSuccessModalVisible(false)}
+        onCancel={() => setIsSuccessModalVisible(false)}
+      >
+        <p>{successMessage}</p>
+      </Modal>
     </>
   );
 }
